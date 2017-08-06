@@ -9,7 +9,7 @@ function calculateDate(jobStartDate){
     }
     return totalYears+"&"+partialMonths;
 }
-var result = calculateDate(new Date(2015,09,07));
+var result = calculateDate(new Date(2015,9,07));
 var year = result.split("&")[0];
 var month = result.split("&")[1];
 var totalYearsMonthhs = " <span></span> (" + year + " years, " + month + " months)";

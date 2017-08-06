@@ -294,7 +294,6 @@ ul#nav li.current a {
 .bars li em {
     font: 15px opensans-bold, sans-serif;
     color: #313131;
-    letter-spacing: 2px;
     font-weight: 400;
     top: -36px
 }
