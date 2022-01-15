@@ -1,1 +1,54 @@
-<router-outlet></router-outlet>
+<mat-sidenav-container class="app-sidenav-container" (backdropClick)="close()" [dir]="direction">
+  <mat-sidenav #sidenav (keydown.escape)="close()" disableClose class="app-sidenav-container__nav mat-elevation-z10" [mode]="isMobile ? 'over' : 'side'">
+    <aside>
+      <mat-toolbar color="primary">
+        <span>Contents</span>
+      </mat-toolbar>
+
+      <mat-nav-list>
+        <mat-list-item *ngFor="let navItem of navigationDetails">
+          <a matLine [routerLink]="[navItem.url]" routerLinkActive="active" (click)="sidenav.close()">
+            <mat-icon aria-hidden="false" [svgIcon]="navItem.icon" aria-label="Navigation Icon"></mat-icon>
+            <span>{{ navItem.name }}</span>
+          </a>
+        </mat-list-item>
+      </mat-nav-list>
+    </aside>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="app-sidenav-container__content">
+    <header>
+      <mat-toolbar color="primary">
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span class="example-spacer"></span>
+        <div class="app-sidenav-container__content--action-items">
+          <button mat-icon-button class="example-icon home-icon" aria-label="Example icon-button with home icon" (click)="redirectToHomePage()">
+            <mat-icon>home</mat-icon>
+          </button>
+          <button mat-icon-button class="example-icon home-icon" aria-label="Example icon-button with translate icon" (click)="toggleLanguage()">
+            <mat-icon>translate</mat-icon>
+          </button>
+          <button mat-button [matMenuTriggerFor]="menu">
+            <mat-icon aria-hidden="false" aria-label="Example user verified icon">more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="toggleTheme()">Toggle Theme</button>
+            <button mat-menu-item (click)="toggleDirection()">Toggle Direction</button>
+          </mat-menu>
+        </div>
+      </mat-toolbar>
+    </header>
+    <main>
+      <div class="wrapper">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+    <footer>
+      <mat-toolbar color="primary" class="footer">
+        <span>Handcrafted with <mat-icon class="icon">favorite</mat-icon> and Angular.</span>
+      </mat-toolbar>
+    </footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>
