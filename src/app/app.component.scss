@@ -26,6 +26,11 @@
         font-weight: 500;
       }
     }
+
+    &--footer {
+      position: absolute;
+      bottom: 0;
+    }
   }
 
   &__content {
@@ -52,10 +57,12 @@
       justify-content: center;
       position: fixed;
       bottom: 0;
+      font-style: oblique;
 
       .icon {
         position: relative;
         top: 0.35rem;
+        color: #dd0031;
       }
     }
   }

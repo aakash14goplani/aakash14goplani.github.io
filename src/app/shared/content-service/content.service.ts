@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { INavigation, PAGENAME, PAGEURL } from './global.model';
+import { INavigation, PAGENAME, PAGEURL } from '../global.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,10 @@ export class ContentService {
 
   getNavigationConfiguration(): Array<INavigation> {
     const navigationConfiguration: Array<INavigation> = [{
+      icon: 'home',
+      url: PAGEURL.HOME,
+      name: PAGENAME.HOME
+    }, {
       icon: 'about',
       url: PAGEURL.ABOUT,
       name: PAGENAME.ABOUT

@@ -1,10 +1,12 @@
 <mat-sidenav-container class="app-sidenav-container" (backdropClick)="close()" [dir]="direction">
+  <!-- side navigation list options -->
   <mat-sidenav #sidenav (keydown.escape)="close()" disableClose class="app-sidenav-container__nav mat-elevation-z10" [mode]="isMobile ? 'over' : 'side'">
     <aside>
+      <!-- side navigation header -->
       <mat-toolbar color="primary">
         <span>Contents</span>
       </mat-toolbar>
-
+      <!-- side navigation list -->
       <mat-nav-list>
         <mat-list-item *ngFor="let navItem of navigationDetails">
           <a matLine [routerLink]="[navItem.url]" routerLinkActive="active" (click)="sidenav.close()">
@@ -13,42 +15,71 @@
           </a>
         </mat-list-item>
       </mat-nav-list>
+      <!-- side navigation footer -->
+      <mat-toolbar color="primary" class="app-sidenav-container__nav--footer"></mat-toolbar>
     </aside>
   </mat-sidenav>
-
+  <!-- side navigation body content -->
   <mat-sidenav-content class="app-sidenav-container__content">
+    <!-- main header navigation -->
     <header>
       <mat-toolbar color="primary">
+        <!-- menu button to trigger side nav -->
         <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="sidenav.toggle()">
           <mat-icon>menu</mat-icon>
         </button>
         <span class="example-spacer"></span>
         <div class="app-sidenav-container__content--action-items">
-          <button mat-icon-button class="example-icon home-icon" aria-label="Example icon-button with home icon" (click)="redirectToHomePage()">
-            <mat-icon>home</mat-icon>
-          </button>
-          <button mat-icon-button class="example-icon home-icon" aria-label="Example icon-button with translate icon" (click)="toggleLanguage()">
+          <!-- language translation button -->
+          <button mat-icon-button class="example-icon translate-icon" aria-label="Example icon-button with translate icon" (click)="toggleLanguage()">
             <mat-icon>translate</mat-icon>
           </button>
-          <button mat-button [matMenuTriggerFor]="menu">
-            <mat-icon aria-hidden="false" aria-label="Example user verified icon">more_vert</mat-icon>
+          <!-- toggle theme option -->
+          <button mat-icon-button class="example-icon palette-icon" aria-label="Example icon-button with palette icon" (click)="toggleLanguage()">
+            <mat-icon class="icon" [matMenuTriggerFor]="menu">palette</mat-icon>
           </button>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="toggleTheme()">Toggle Theme</button>
-            <button mat-menu-item (click)="toggleDirection()">Toggle Direction</button>
+            <button *ngFor="let option of (options$ | async)" mat-menu-item (click)="changeTheme(option.value)">
+              <mat-icon role="img" svgicon="theme-example" aria-hidden="true">
+                <ng-container *ngTemplateOutlet="themeSvg; context: { option }" context></ng-container>
+              </mat-icon>
+              <span>{{ option.label }}</span>
+            </button>
           </mat-menu>
+          <!-- toggle button button -->
+          <button mat-icon-button (click)="toggleDirection()">
+            <mat-icon aria-hidden="false" aria-label="Toggle Sidenav Direction">directions</mat-icon>
+          </button>
         </div>
       </mat-toolbar>
     </header>
+    <!-- main body content -->
     <main>
       <div class="wrapper">
         <router-outlet></router-outlet>
       </div>
     </main>
+    <!-- main footer navigation -->
     <footer>
       <mat-toolbar color="primary" class="footer">
-        <span>Handcrafted with <mat-icon class="icon">favorite</mat-icon> and Angular.</span>
+        <span>Handcrafted with <mat-icon class="icon">favorite</mat-icon> and <mat-icon class="icon" [svgIcon]="'angular'"></mat-icon></span>
       </mat-toolbar>
     </footer>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+<!-- themes svgs -->
+<ng-template #themeSvg let-option="option">
+  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="0 0 80 80" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
+    <defs>
+      <path d="M77.87 0C79.05 0 80 .95 80 2.13v75.74c0 1.17-.95 2.13-2.13 2.13H2.13C.96 80 0 79.04 0 77.87V2.13C0 .95.96 0 2.13 0h75.74z" id="a">
+      </path>
+      <path d="M54 40c3.32 0 6 2.69 6 6 0 1.2 0-1.2 0 0 0 3.31-2.68 6-6 6H26c-3.31 0-6-2.69-6-6 0-1.2 0 1.2 0 0 0-3.31 2.69-6 6-6h28z" id="b">
+      </path>
+      <path d="M0 0h80v17.24H0V0z" id="c"></path>
+    </defs>
+    <use xlink:href="#a" [attr.fill]="option.backgroundColor"></use>
+    <use xlink:href="#b" [attr.fill]="option.buttonColor"></use>
+    <use xlink:href="#c" [attr.fill]="option.headingColor"></use>
+  </svg>
+</ng-template>

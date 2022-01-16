@@ -3,9 +3,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { MatSidenav } from '@angular/material/sidenav';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Router } from '@angular/router';
-import { ContentService } from './shared/content.service';
-import { INavigation } from './shared/global.model';
+import { Observable } from 'rxjs';
+import { ContentService } from './shared/content-service/content.service';
+import { INavigation, IThemes } from './shared/global.model';
+import { ThemeService } from './shared/theme-service/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -19,10 +20,12 @@ export class AppComponent implements OnInit {
   direction: Direction = 'ltr';
   isMobile: boolean = true;
   navigationDetails: Array<INavigation> = [];
+  showHomeButton: boolean = true;
+  options$: Observable<Array<IThemes>> = this.themeService.getThemeOptions();
 
   constructor(
     private helperService: ContentService,
-    private router: Router,
+    private themeService: ThemeService,
     private matIcon: MatIconRegistry,
     private sanitizer: DomSanitizer
   ) {
@@ -31,20 +34,21 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.navigationDetails = this.helperService.getNavigationConfiguration();
+    this.configureThemeOption();
+  }
+
+  private configureThemeOption(): void {
+    this.themeService.setTheme('deeppurple-amber');
   }
 
   close() {
     this.sidenav.close();
   }
 
-  redirectToHomePage() {
-    this.router.navigate(['']);
-  }
-
   toggleLanguage() { }
 
-  toggleTheme(): void {
-    this.isDarkTheme = !this.isDarkTheme;
+  changeTheme(themeToSet: string) {
+    this.themeService.setTheme(themeToSet);
   }
 
   toggleDirection(): void {

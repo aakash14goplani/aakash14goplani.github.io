@@ -7,7 +7,7 @@ export interface INavigation {
 export enum PAGENAME {
   HOME = 'HOME',
   ABOUT = 'ABOUT',
-  WORK_EXPERIENCE = 'WORK_EXPERIENCE',
+  WORK_EXPERIENCE = 'WORK EXPERIENCE',
   PROJECTS = 'PROJECTS',
   BLOGS = 'BLOGS'
 }
@@ -18,4 +18,12 @@ export enum PAGEURL {
   WORK_EXPERIENCE = '/work-experience',
   PROJECTS = '/projects',
   BLOGS = '/blogs'
+}
+
+export interface IThemes {
+  backgroundColor: string;
+  buttonColor: string;
+  headingColor: string;
+  label: string;
+  value: string;
 }
