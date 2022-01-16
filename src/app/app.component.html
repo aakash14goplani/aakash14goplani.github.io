@@ -9,14 +9,19 @@
       <!-- side navigation list -->
       <mat-nav-list>
         <mat-list-item *ngFor="let navItem of navigationDetails">
-          <a matLine [routerLink]="[navItem.url]" routerLinkActive="active" (click)="sidenav.close()">
+          <a matLine [routerLink]="[navItem.url]" routerLinkActive="" #link="routerLinkActive" (click)="sidenav.close()"
+            [ngClass]="{ 'active': themeType === 'light' && link.isActive, 'dark': themeType === 'dark' && link.isActive }">
             <mat-icon aria-hidden="false" [svgIcon]="navItem.icon" aria-label="Navigation Icon"></mat-icon>
             <span>{{ navItem.name }}</span>
           </a>
         </mat-list-item>
       </mat-nav-list>
       <!-- side navigation footer -->
-      <mat-toolbar color="primary" class="app-sidenav-container__nav--footer"></mat-toolbar>
+      <mat-toolbar color="primary" class="app-sidenav-container__nav--footer">
+        <span>
+          <mat-icon class="icon">copyright</mat-icon> {{ currentYear }} My Portfolio.
+        </span>
+      </mat-toolbar>
     </aside>
   </mat-sidenav>
   <!-- side navigation body content -->
@@ -43,7 +48,7 @@
               <mat-icon role="img" svgicon="theme-example" aria-hidden="true">
                 <ng-container *ngTemplateOutlet="themeSvg; context: { option }" context></ng-container>
               </mat-icon>
-              <span>{{ option.label }}</span>
+              <span [ngClass]="{ 'active': activeTheme === option.value, 'dark': activeTheme === option.value && option.type === 'dark' }">{{ option.label }}</span>
             </button>
           </mat-menu>
           <!-- toggle button button -->

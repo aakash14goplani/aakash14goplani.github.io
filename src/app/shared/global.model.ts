@@ -26,4 +26,5 @@ export interface IThemes {
   headingColor: string;
   label: string;
   value: string;
+  type: string;
 }

@@ -1,3 +1,16 @@
+@mixin footerStyles {
+  display: flex;
+  justify-content: center;
+  bottom: 0;
+  font-style: oblique;
+
+  .icon {
+    position: relative;
+    top: 0.35rem;
+    color: #dd0031;
+  }
+}
+
 .app-sidenav-container {
   flex: 1;
   width: 100%;
@@ -20,16 +33,11 @@
       > span {
         margin: 0 1rem;
       }
-
-      &.active {
-        color: #3f51b5;
-        font-weight: 500;
-      }
     }
 
     &--footer {
       position: absolute;
-      bottom: 0;
+      @include footerStyles();
     }
   }
 
@@ -53,19 +61,20 @@
     }
 
     .footer {
-      display: flex;
-      justify-content: center;
+      @include footerStyles();
       position: fixed;
-      bottom: 0;
-      font-style: oblique;
-
-      .icon {
-        position: relative;
-        top: 0.35rem;
-        color: #dd0031;
-      }
     }
   }
+}
+
+.active {
+  color: #3f51b5;
+  font-weight: 500;
+}
+
+.dark {
+  color: cyan;
+  font-weight: 500;
 }
 
 @media screen and (min-width: 600px) {

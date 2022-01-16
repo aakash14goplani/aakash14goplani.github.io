@@ -16,12 +16,13 @@ import { ThemeService } from './shared/theme-service/theme.service';
 export class AppComponent implements OnInit {
 
   @ViewChild('sidenav') sidenav!: MatSidenav;
-  isDarkTheme: boolean = false;
   direction: Direction = 'ltr';
   isMobile: boolean = true;
   navigationDetails: Array<INavigation> = [];
-  showHomeButton: boolean = true;
   options$: Observable<Array<IThemes>> = this.themeService.getThemeOptions();
+  activeTheme: string = '';
+  themeType: string = '';
+  currentYear: number = new Date().getFullYear();
 
   constructor(
     private helperService: ContentService,
@@ -38,7 +39,9 @@ export class AppComponent implements OnInit {
   }
 
   private configureThemeOption(): void {
-    this.themeService.setTheme('deeppurple-amber');
+    this.themeService.setTheme('indigo-pink');
+    this.activeTheme = 'indigo-pink';
+    this.themeType = 'light';
   }
 
   close() {
@@ -49,6 +52,8 @@ export class AppComponent implements OnInit {
 
   changeTheme(themeToSet: string) {
     this.themeService.setTheme(themeToSet);
+    this.activeTheme = themeToSet;
+    this.themeType = (themeToSet === 'indigo-pink' || themeToSet === 'deeppurple-amber') ? 'light' : 'dark';
   }
 
   toggleDirection(): void {
