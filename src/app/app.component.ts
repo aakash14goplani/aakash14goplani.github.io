@@ -1,5 +1,5 @@
 import { Direction } from '@angular/cdk/bidi';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { MatSidenav } from '@angular/material/sidenav';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -11,14 +11,15 @@ import { ThemeService } from './shared/theme-service/theme.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
 
   @ViewChild('sidenav') sidenav!: MatSidenav;
   direction: Direction = 'ltr';
   isMobile: boolean = true;
-  navigationDetails: Array<INavigation> = [];
+  navigationDetails$: Observable<Array<INavigation>> = this.helperService.getNavigationConfiguration();
   options$: Observable<Array<IThemes>> = this.themeService.getThemeOptions();
   activeTheme: string = '';
   themeType: string = '';
@@ -34,7 +35,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.navigationDetails = this.helperService.getNavigationConfiguration();
     this.configureThemeOption();
   }
 

@@ -8,7 +8,7 @@
       </mat-toolbar>
       <!-- side navigation list -->
       <mat-nav-list>
-        <mat-list-item *ngFor="let navItem of navigationDetails">
+        <mat-list-item *ngFor="let navItem of (navigationDetails$ | async)">
           <a matLine [routerLink]="[navItem.url]" routerLinkActive="" #link="routerLinkActive" (click)="sidenav.close()"
             [ngClass]="{ 'active': themeType === 'light' && link.isActive, 'dark': themeType === 'dark' && link.isActive }">
             <mat-icon aria-hidden="false" [svgIcon]="navItem.icon" aria-label="Navigation Icon"></mat-icon>

@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { INavigation, PAGENAME, PAGEURL } from '../global.model';
+import { Observable, of } from 'rxjs';
+import { INavigation, PAGENAME } from '../global.model';
+import navigation from '../site-content/navigation';
 
 @Injectable({
   providedIn: 'root'
@@ -10,29 +12,7 @@ export class ContentService {
 
   getContentForPage(pagename: PAGENAME): void { }
 
-  getNavigationConfiguration(): Array<INavigation> {
-    const navigationConfiguration: Array<INavigation> = [{
-      icon: 'home',
-      url: PAGEURL.HOME,
-      name: PAGENAME.HOME
-    }, {
-      icon: 'about',
-      url: PAGEURL.ABOUT,
-      name: PAGENAME.ABOUT
-    }, {
-      icon: 'experience',
-      url: PAGEURL.WORK_EXPERIENCE,
-      name: PAGENAME.WORK_EXPERIENCE
-    }, {
-      icon: 'projects',
-      url: PAGEURL.PROJECTS,
-      name: PAGENAME.PROJECTS
-    }, {
-      icon: 'blogs',
-      url: PAGEURL.BLOGS,
-      name: PAGENAME.BLOGS
-    }];
-
-    return navigationConfiguration;
+  getNavigationConfiguration(): Observable<Array<INavigation>> {
+    return of(navigation);
   }
 }
