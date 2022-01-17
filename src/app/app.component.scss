@@ -62,6 +62,10 @@
       margin: 1rem;
     }
 
+    footer {
+      margin-top: 5rem;
+    }
+
     .footer {
       @include footerStyles();
       position: fixed;

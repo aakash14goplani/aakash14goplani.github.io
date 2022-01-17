@@ -28,3 +28,15 @@ export interface IThemes {
   value: string;
   type: string;
 }
+
+export interface ISkills {
+  experteise: string;
+  skills: string;
+}
+
+export interface ICertifications {
+  name: string;
+  organization: string;
+  issued: string;
+  url: string;
+}

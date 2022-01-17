@@ -9,7 +9,7 @@
       <!-- side navigation list -->
       <mat-nav-list>
         <mat-list-item *ngFor="let navItem of (navigationDetails$ | async)">
-          <a matLine [routerLink]="[navItem.url]" routerLinkActive="" #link="routerLinkActive" (click)="sidenav.close()"
+          <a matLine [routerLink]="[navItem.url]" routerLinkActive #link="routerLinkActive" (click)="sidenav.close()"
             [ngClass]="{ 'active': themeType === 'light' && link.isActive, 'dark': themeType === 'dark' && link.isActive }">
             <mat-icon aria-hidden="false" [svgIcon]="navItem.icon" aria-label="Navigation Icon"></mat-icon>
             <span>{{ navItem.name }}</span>
@@ -30,17 +30,17 @@
     <header>
       <mat-toolbar color="primary">
         <!-- menu button to trigger side nav -->
-        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="sidenav.toggle()">
+        <button mat-icon-button aria-label="Example icon-button with menu icon" (click)="sidenav.toggle()">
           <mat-icon>menu</mat-icon>
         </button>
         <span class="example-spacer"></span>
         <div class="app-sidenav-container__content--action-items">
           <!-- language translation button -->
-          <button mat-icon-button class="example-icon translate-icon" aria-label="Example icon-button with translate icon" (click)="toggleLanguage()">
+          <button mat-icon-button class="translate-icon" aria-label="Example icon-button with translate icon" (click)="toggleLanguage()">
             <mat-icon>translate</mat-icon>
           </button>
           <!-- toggle theme option -->
-          <button mat-icon-button class="example-icon palette-icon" aria-label="Example icon-button with palette icon" (click)="toggleLanguage()">
+          <button mat-icon-button class="palette-icon" aria-label="Example icon-button with palette icon" (click)="toggleLanguage()">
             <mat-icon class="icon" [matMenuTriggerFor]="menu">palette</mat-icon>
           </button>
           <mat-menu #menu="matMenu">
