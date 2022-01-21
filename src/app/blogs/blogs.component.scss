@@ -1,0 +1,20 @@
+.blogs-container {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+
+  &__owcs,
+  &__web-dev {
+    margin-bottom: 2rem;
+
+    &--content {
+      margin-top: 1rem;
+      font-size: 1rem;
+      line-height: 1.6rem;
+
+      div:first-of-type {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}

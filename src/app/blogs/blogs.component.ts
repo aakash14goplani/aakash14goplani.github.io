@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { environment } from 'src/environments/environment';
+import { blogData } from '../shared/site-content/blogs';
 
 @Component({
   selector: 'app-blogs',
   templateUrl: './blogs.component.html',
-  styleUrls: ['./blogs.component.scss']
+  styleUrls: ['./blogs.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BlogsComponent implements OnInit {
+export class BlogsComponent {
 
-  constructor() { }
+  env: any;
+  blogData = blogData;
 
-  ngOnInit(): void {
+  constructor() {
+    this.env = environment;
   }
 
 }

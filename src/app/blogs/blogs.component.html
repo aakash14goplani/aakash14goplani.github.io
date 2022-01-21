@@ -2,11 +2,21 @@
   <div class="blogs-container">
     <mat-card class="blogs-container__owcs">
       <mat-card-title>Oracle WebCenter Sites</mat-card-title>
-      <mat-card-content></mat-card-content>
+      <mat-card-content class="blogs-container__owcs--content">
+        <div *ngFor="let content of blogData.owcsBlogContent">{{ content }}</div>
+      </mat-card-content>
+      <mat-card-actions>
+        <a [href]="env.owcs_blog" target="_blank" mat-button>VISIT BLOG SITE</a>
+      </mat-card-actions>
     </mat-card>
     <mat-card class="blogs-container__web-dev">
       <mat-card-title>Web Dev</mat-card-title>
-      <mat-card-content></mat-card-content>
+      <mat-card-content class="blogs-container__web-dev--content">
+        <div *ngFor="let content of blogData.webDevBlogContent">{{ content }}</div>
+      </mat-card-content>
+      <mat-card-actions>
+        <a [href]="env.blog" target="_blank" mat-button>VISIT BLOG SITE</a>
+      </mat-card-actions>
     </mat-card>
   </div>
 </section>
