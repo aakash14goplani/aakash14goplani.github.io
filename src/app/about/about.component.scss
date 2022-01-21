@@ -21,6 +21,16 @@
     font-size: 1.2rem;
     line-height: 1.6rem;
 
+    .mat-list-base .mat-list-item.mat-3-line,
+    .mat-list-base .mat-list-option.mat-3-line {
+      height: 10rem;
+    }
+
+    .wrap {
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+
     &--subtitle {
       font-size: 1.3rem;
       font-weight: 700;
@@ -37,5 +47,12 @@
 @media screen and (min-width: $small_desktop_screens) {
   .about-me-page-container {
     padding: 3rem;
+
+    &__contents {
+      .mat-list-base .mat-list-item.mat-3-line,
+      .mat-list-base .mat-list-option.mat-3-line {
+        height: 7rem;
+      }
+    }
   }
 }

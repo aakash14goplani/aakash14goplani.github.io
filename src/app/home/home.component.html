@@ -7,8 +7,19 @@
       <mat-card-title class="home-container__contents--title">Aakash Goplani</mat-card-title>
       <mat-card-subtitle class="home-container__contents--subtitle">Web and Hybrid Mobile App Dev</mat-card-subtitle>
       <mat-card-content class="home-container__contents--description">
-        I am a Full Stack JavaScript Developer with over 7 years of rich experience in developing Web Applications using Node and Angular. I am also experience in developing Hybrid Mobile Applications
-        using Ionic.
+        <div>
+          I am a Full Stack JavaScript Developer with {{ yearsOfExperience }} years of rich experience in developing Web Applications using Node and Angular. I am also experience in developing Hybrid
+          Mobile
+          Applications using Ionic.
+        </div>
+        <div class="button-row">
+          <a mat-button [href]="env.email" target="_blank">E-Mail</a>
+          <a mat-button [href]="env.linkedin" target="_blank">Linkedin</a>
+          <a mat-button [href]="env.twitter" target="_blank">Twitter</a>
+          <a mat-button [href]="env.github" target="_blank">Github</a>
+          <a mat-button [href]="env.stackoverflow" target="_blank">Stack Overflow</a>
+          <a mat-button [href]="env.blog" target="_blank">Blog</a>
+        </div>
       </mat-card-content>
     </div>
   </mat-card>

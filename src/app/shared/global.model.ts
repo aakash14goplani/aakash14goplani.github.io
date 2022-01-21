@@ -40,3 +40,22 @@ export interface ICertifications {
   issued: string;
   url: string;
 }
+
+export interface IDegree {
+  institute: string;
+  degree: string;
+  speciality: string;
+  duration: string;
+}
+
+export interface CompanyExperience {
+  title?: string;
+  startDate?: Date;
+  endDate?: Date | null;
+  location?: string;
+  description?: string;
+  isExpanded?: boolean;
+  expandable: boolean;
+  level: number;
+  id: string;
+}

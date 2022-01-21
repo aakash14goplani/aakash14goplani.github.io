@@ -1,1 +1,36 @@
-<p>work-experience works!</p>
+<section name="work-experience-page">
+  <mat-card class="work-experience-container">
+    <mat-card-title class="work-experience-container__title">Organizations</mat-card-title>
+    <mat-card-content class="work-experience-container__contents">
+      <cdk-tree [dataSource]="dataSource" [treeControl]="treeControl" [trackBy]="trackByFn">
+        <!-- This is the tree node template for leaf nodes -->
+        <cdk-tree-node *cdkTreeNodeDef="let node" cdkTreeNodePadding [style.display]="shouldRender(node) ? 'flex' : 'none'" class="example-tree-node">
+          <div class="description">
+            {{ node.description }}
+          </div>
+        </cdk-tree-node>
+        <!-- This is the tree node template for expandable nodes -->
+        <cdk-tree-node *cdkTreeNodeDef="let node; when: hasChild" cdkTreeNodePadding [style.display]="shouldRender(node) ? 'flex' : 'none'" class="example-tree-node">
+          <div class="node-icon">
+            <button mat-icon-button cdkTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name" (click)="node.isExpanded = !node.isExpanded"
+              [style.visibility]="node.expandable ? 'visible' : 'hidden'">
+              <mat-icon class="mat-icon-rtl-mirror">
+                {{ treeControl.getLevel(node) === 0 ? 'expand_more ' : treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
+              </mat-icon>
+            </button>
+          </div>
+          <div class="node-contents">
+            <div class="designation" [ngClass]="{ 'root-node': treeControl.getLevel(node) === 0 }">{{ node.title }}</div>
+            <ng-container *ngIf="treeControl.getLevel(node) === 0; else durationChildNodes">
+              <div class="duration">{{ computeRootNodeDuration(node.startDate, node.endDate) }}</div>
+            </ng-container>
+            <ng-template #durationChildNodes>
+              <div class="duration">{{ node.startDate | date: 'mediumDate' }} - {{ !node.endDate ? 'Present' : node.endDate | date: 'mediumDate' }}</div>
+            </ng-template>
+            <div class="location">{{ node.location }}</div>
+          </div>
+        </cdk-tree-node>
+      </cdk-tree>
+    </mat-card-content>
+  </mat-card>
+</section>

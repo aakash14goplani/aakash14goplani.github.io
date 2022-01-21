@@ -1,5 +1,7 @@
 export const environment = {
   production: true,
+  email: 'mailto:aakash.14.goplani@gmail.com',
+  github: 'https://github.com/aakash14goplani',
   linkedin: 'https://www.linkedin.com/in/aakashgoplani/',
   twitter: 'https://twitter.com/aakashgoplani',
   stackoverflow: 'https://stackoverflow.com/users/3411606/aakash-goplani',

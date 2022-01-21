@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -8,6 +9,12 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 })
 export class HomeComponent {
 
-  constructor() { }
+  env: any;
+  yearsOfExperience: number;
+
+  constructor() {
+    this.env = environment;
+    this.yearsOfExperience = new Date().getFullYear() - new Date('10/07/2015').getFullYear();
+  }
 
 }

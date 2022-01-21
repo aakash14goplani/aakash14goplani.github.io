@@ -1,0 +1,36 @@
+.work-experience-container {
+  &__title {
+    text-align: center;
+    margin: 2rem auto;
+  }
+
+  &__contents {
+    .example-tree-node {
+      display: flex;
+      align-items: center;
+
+      .description {
+        margin-bottom: 0.5rem;
+        word-break: break-word;
+      }
+
+      .node-contents {
+        .designation {
+          display: flex;
+          flex-direction: column;
+          font-weight: 500;
+          margin: 0.2rem 0;
+          font-size: 1.2rem;
+          word-break: break-word;
+        }
+        .root-node {
+          font-size: 1.6rem;
+          margin: 0.5rem 0;
+        }
+        .location {
+          margin-bottom: 0.5rem;
+        }
+      }
+    }
+  }
+}

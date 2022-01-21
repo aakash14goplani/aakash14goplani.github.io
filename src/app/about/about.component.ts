@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { ICertifications, ISkills } from '../shared/global.model';
+import { ICertifications, IDegree, ISkills } from '../shared/global.model';
 import { data } from '../shared/site-content/about-me';
 
 @Component({
@@ -13,6 +13,7 @@ export class AboutComponent implements OnInit {
 
   env: any;
   displayedColumns: Array<string> = ['experteise', 'skills'];
+  educationDetails: Array<IDegree> = [];
   dataSource: Array<ISkills> = [];
   certificationList: Array<ICertifications> = [];
   futureLearningSkills: Array<string> = [];
@@ -25,5 +26,6 @@ export class AboutComponent implements OnInit {
     this.dataSource = data.skills;
     this.futureLearningSkills = data.futureLearningSkills;
     this.certificationList = data.certificationList;
+    this.educationDetails = data.educationDetails;
   }
 }

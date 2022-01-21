@@ -1,5 +1,26 @@
-import { ICertifications, ISkills } from '../global.model';
+import { ICertifications, IDegree, ISkills } from '../global.model';
 import { environment } from '../../../environments/environment';
+
+const educationDetails: Array<IDegree> = [
+  {
+    institute: 'Vivekanand Education Society\'s Institute Of Technology',
+    degree: 'Bachelor of Engineering (B.E.)',
+    speciality: 'Computer',
+    duration: '2011 - 2015'
+  },
+  {
+    institute: 'Smt. Chandibai Himatlal Manshukhani College',
+    degree: 'High School Degree in Science',
+    speciality: 'Science',
+    duration: '2009 - 2011'
+  },
+  {
+    institute: 'St. Thomas English School',
+    degree: 'SSC Degree',
+    speciality: 'High School/Secondary Certificate Programs',
+    duration: '1997 - 2009'
+  }
+];
 
 const skills: Array<ISkills> = [
   { experteise: 'Frontend', skills: 'JavaScript, Angular (2+), HTML, CSS, SCSS, jQuery' },
@@ -54,6 +75,7 @@ const certificationList: Array<ICertifications> = [
 const futureLearningSkills = ['Web3', 'Blockchain', 'Focusing more on Cloud', 'Better at System Designing', 'Better at DSA', 'Better at designing systems using Micro-frontends & Monorepos'];
 
 export const data = {
+  educationDetails,
   skills,
   certificationList,
   futureLearningSkills
