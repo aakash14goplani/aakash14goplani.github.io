@@ -1,6 +1,6 @@
-import { CompanyExperience } from '../global.model';
+import { ICompanyExperience } from '../global.model';
 
-const workExperience: Array<CompanyExperience> = [{
+const workExperience: Array<ICompanyExperience> = [{
   title: 'Accenture',
   startDate: new Date('10/07/2015'),
   endDate: null,
@@ -17,7 +17,8 @@ const workExperience: Array<CompanyExperience> = [{
   level: 1,
   id: '11'
 }, {
-  description: 'Will hold mostly description on TL',
+  description: ['Will hold mostly description on TL', 'Will hold mostly description on TL', 'Will hold mostly description on TL', 'Will hold mostly description on TL'],
+  showMoreContent: false,
   expandable: false,
   level: 2,
   id: '21'
@@ -26,12 +27,13 @@ const workExperience: Array<CompanyExperience> = [{
   startDate: new Date('12/01/2018'),
   endDate: new Date('05/31/2020'),
   location: 'Mumbai, India',
-  description: '',
+  description: [''],
   expandable: true,
   level: 1,
   id: '12'
 }, {
-  description: 'Will hold mostly description on SSE',
+  description: ['Will hold mostly description on SSE', 'Will hold mostly description on SSE', 'Will hold mostly description on SSE'],
+  showMoreContent: false,
   expandable: false,
   level: 2,
   id: '22'
@@ -40,12 +42,13 @@ const workExperience: Array<CompanyExperience> = [{
   startDate: new Date('12/01/2016'),
   endDate: new Date('11/30/2018'),
   location: 'Mumbai, India',
-  description: '',
+  description: [''],
   expandable: true,
   level: 1,
   id: '13'
 }, {
-  description: 'Will hold mostly description on SE',
+  description: ['Will hold mostly description on SE', 'Will hold mostly description on SE'],
+  showMoreContent: false,
   expandable: false,
   level: 2,
   id: '23'
@@ -58,7 +61,8 @@ const workExperience: Array<CompanyExperience> = [{
   level: 1,
   id: '14'
 }, {
-  description: 'Will hold mostly description on ASE',
+  description: ['Will hold mostly description on ASE'],
+  showMoreContent: false,
   expandable: false,
   level: 2,
   id: '24'

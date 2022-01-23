@@ -1,7 +1,7 @@
 import { ArrayDataSource } from '@angular/cdk/collections';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CompanyExperience } from '../shared/global.model';
+import { ICompanyExperience } from '../shared/global.model';
 import workExperience from '../shared/site-content/work-experience';
 
 @Component({
@@ -14,18 +14,20 @@ export class WorkExperienceComponent {
 
   private readonly EXPERIENCE_DATA = workExperience;
 
-  treeControl = new FlatTreeControl<CompanyExperience>(
+  treeControl = new FlatTreeControl<ICompanyExperience>(
     node => node.level,
     node => node.expandable
   );
 
   dataSource = new ArrayDataSource(this.EXPERIENCE_DATA);
 
+  showMoreContent: boolean = false;
+
   constructor() { }
 
-  hasChild = (_: number, node: CompanyExperience) => node.expandable;
+  hasChild = (_: number, node: ICompanyExperience) => node.expandable;
 
-  getParentNode(node: CompanyExperience) {
+  getParentNode(node: ICompanyExperience) {
     const nodeIndex = this.EXPERIENCE_DATA.indexOf(node);
 
     for (let i = nodeIndex - 1; i >= 0; i--) {
@@ -37,7 +39,7 @@ export class WorkExperienceComponent {
     return null;
   }
 
-  shouldRender(node: CompanyExperience) {
+  shouldRender(node: ICompanyExperience) {
     let parent = this.getParentNode(node);
     while (parent) {
       if (!parent.isExpanded) {
@@ -48,7 +50,7 @@ export class WorkExperienceComponent {
     return true;
   }
 
-  trackByFn(index: number, item: CompanyExperience) {
+  trackByFn(index: number, item: ICompanyExperience) {
     return item.id;
   }
 
@@ -62,6 +64,10 @@ export class WorkExperienceComponent {
     }
 
     return totalYears + ' years, ' + partialMonths + ' months';
+  }
+
+  updateShowMoreContentForNode(node: ICompanyExperience) {
+    node.showMoreContent = !node.showMoreContent;
   }
 
 }

@@ -48,14 +48,22 @@ export interface IDegree {
   duration: string;
 }
 
-export interface CompanyExperience {
+export interface ICompanyExperience {
   title?: string;
   startDate?: Date;
   endDate?: Date | null;
   location?: string;
-  description?: string;
+  description?: Array<string>;
+  showMoreContent?: boolean;
   isExpanded?: boolean;
   expandable: boolean;
   level: number;
   id: string;
+}
+
+export interface IProjects {
+  title: string;
+  content: Array<string>;
+  link: string;
+  tools: Array<string>
 }

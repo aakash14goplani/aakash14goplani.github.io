@@ -42,13 +42,13 @@ const certificationList: Array<ICertifications> = [
   },
   {
     name: 'AWS Certified Developer - Associate',
-    organization: 'Udemy',
+    organization: 'Amazon',
     issued: 'Aug 2021',
     url: environment.aws_certificate
   },
   {
     name: 'Microsoft Certified: Azure Fundamentals',
-    organization: 'Udemy',
+    organization: 'Microsoft',
     issued: 'Feb 2021',
     url: environment.azure_certificate
   },

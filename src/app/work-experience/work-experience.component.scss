@@ -1,3 +1,5 @@
+@import "../../assets/css/variables";
+
 .work-experience-container {
   &__title {
     text-align: center;
@@ -7,11 +9,14 @@
   &__contents {
     .example-tree-node {
       display: flex;
-      align-items: center;
 
       .description {
-        margin-bottom: 0.5rem;
         word-break: break-word;
+        overflow: hidden;
+      }
+
+      .description-button {
+        margin: -1rem 0 1rem;
       }
 
       .node-contents {
@@ -32,5 +37,11 @@
         }
       }
     }
+  }
+}
+
+@media screen and (min-width: $small_desktop_screens) {
+  .work-experience-container {
+    padding: 3rem;
   }
 }
