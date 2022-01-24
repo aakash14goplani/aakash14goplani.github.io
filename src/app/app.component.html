@@ -9,7 +9,7 @@
       <!-- side navigation list -->
       <mat-nav-list>
         <mat-list-item *ngFor="let navItem of (navigationDetails$ | async)">
-          <a matLine [routerLink]="[navItem.url]" routerLinkActive #link="routerLinkActive" (click)="sidenav.close()"
+          <a matLine [routerLink]="[navItem.url]" routerLinkActive #link="routerLinkActive" (click)="sidenav.close(); downloadResume(navItem, $event)"
             [ngClass]="{ 'active': themeType === 'light' && link.isActive, 'dark': themeType === 'dark' && link.isActive }">
             <mat-icon aria-hidden="false" [svgIcon]="navItem.icon" aria-label="Navigation Icon"></mat-icon>
             <span>{{ navItem.name }}</span>

@@ -9,7 +9,8 @@ export enum PAGENAME {
   ABOUT = 'ABOUT',
   WORK_EXPERIENCE = 'WORK EXPERIENCE',
   PROJECTS = 'PROJECTS',
-  BLOGS = 'BLOGS'
+  BLOGS = 'BLOGS',
+  RESUME = 'RESUME'
 }
 
 export enum PAGEURL {
@@ -17,7 +18,8 @@ export enum PAGEURL {
   ABOUT = '/about',
   WORK_EXPERIENCE = '/work-experience',
   PROJECTS = '/projects',
-  BLOGS = '/blogs'
+  BLOGS = '/blogs',
+  RESUME = '#'
 }
 
 export interface IThemes {
@@ -65,5 +67,7 @@ export interface IProjects {
   title: string;
   content: Array<string>;
   link: string;
-  tools: Array<string>
+  tools: Array<string>;
+  showMoreContent: boolean;
+  id: string;
 }

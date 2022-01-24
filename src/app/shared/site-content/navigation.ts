@@ -20,6 +20,10 @@ const navigation = [{
   icon: 'blogs',
   url: PAGEURL.BLOGS,
   name: PAGENAME.BLOGS
+}, {
+  icon: 'resume',
+  url: PAGEURL.RESUME,
+  name: PAGENAME.RESUME
 }];
 
 export default navigation;
