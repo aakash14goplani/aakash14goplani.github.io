@@ -9,6 +9,10 @@ const navigation = [{
   url: PAGEURL.ABOUT,
   name: PAGENAME.ABOUT
 }, {
+  icon: 'education',
+  url: PAGEURL.EDUCATION,
+  name: PAGENAME.EDUCATION
+}, {
   icon: 'experience',
   url: PAGEURL.WORK_EXPERIENCE,
   name: PAGENAME.WORK_EXPERIENCE

@@ -1,0 +1,33 @@
+<section for="education-page">
+  <!-- Education -->
+  <mat-card class="education-page-container">
+    <mat-card-title class="education-page-container__contents--title">Education</mat-card-title>
+    <mat-card-content class="education-page-container__contents">
+      <mat-list role="list">
+        <mat-list-item role="listitem" *ngFor="let entry of educationDetails">
+          <div mat-line class="wrap">{{ entry.institute }}</div>
+          <div mat-line class="wrap">{{ entry.degree }} {{ entry.speciality }}</div>
+          <div mat-line>{{ entry.percentage }} <span class="dot-seperator"> . </span> ({{ entry.duration }})</div>
+          <mat-divider></mat-divider>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+  <!-- Certifications -->
+  <mat-card class="education-page-container">
+    <mat-card-title class="education-page-container__contents--title">Certifications</mat-card-title>
+    <mat-card-content class="education-page-container__contents">
+      <mat-list role="list">
+        <mat-list-item role="listitem" *ngFor="let entry of certificationList">
+          <div mat-line class="wrap">{{ entry.name }}</div>
+          <div mat-line>{{ entry.organization }}</div>
+          <div mat-line>{{ entry.issued }}</div>
+          <div mat-line>
+            <a mat-button [href]="entry.url" target="_blank">See Credentials</a>
+          </div>
+          <mat-divider></mat-divider>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</section>

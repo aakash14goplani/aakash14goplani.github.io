@@ -66,7 +66,7 @@ export class AppComponent implements OnInit {
     if (navItem.name === PAGENAME.RESUME) {
       event.preventDefault();
       this._snackBar.open('Feature still in progress', 'Close', {
-        duration: 6000
+        duration: 3000
       });
     }
   }

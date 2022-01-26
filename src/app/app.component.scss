@@ -59,11 +59,14 @@
     }
 
     .wrapper {
-      margin: 1rem;
+      margin: 6rem 1rem;
     }
 
-    footer {
-      margin-top: 5rem;
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 2;
     }
 
     .footer {
@@ -101,7 +104,7 @@
       }
 
       .wrapper {
-        margin: 2rem;
+        margin: 7rem 2rem;
       }
     }
   }
@@ -115,7 +118,7 @@
       }
 
       .wrapper {
-        margin: 3rem;
+        margin: 8rem 3rem;
       }
     }
   }

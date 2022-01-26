@@ -7,4 +7,9 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+
+  #cdk-overlay-0 {
+    position: absolute !important;
+    top: 20rem;
+  }
 }

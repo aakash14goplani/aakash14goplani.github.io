@@ -6,19 +6,22 @@ const educationDetails: Array<IDegree> = [
     institute: 'Vivekanand Education Society\'s Institute Of Technology',
     degree: 'Bachelor of Engineering (B.E.)',
     speciality: 'Computer',
-    duration: '2011 - 2015'
+    duration: '2011 - 2015',
+    percentage: '73%'
   },
   {
     institute: 'Smt. Chandibai Himatlal Manshukhani College',
     degree: 'High School Degree in Science',
     speciality: 'Science',
-    duration: '2009 - 2011'
+    duration: '2009 - 2011',
+    percentage: '86%'
   },
   {
     institute: 'St. Thomas English School',
     degree: 'SSC Degree',
-    speciality: 'High School/Secondary Certificate Programs',
-    duration: '1997 - 2009'
+    speciality: 'School/Secondary Certificate Programs',
+    duration: '1997 - 2009',
+    percentage: '89%'
   }
 ];
 

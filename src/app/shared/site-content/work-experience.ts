@@ -25,7 +25,7 @@ const workExperience: Array<ICompanyExperience> = [{
 }, {
   title: 'Senior Analyst',
   startDate: new Date('12/01/2018'),
-  endDate: new Date('05/31/2020'),
+  endDate: new Date('05/31/2021'),
   location: 'Mumbai, India',
   description: [''],
   expandable: true,

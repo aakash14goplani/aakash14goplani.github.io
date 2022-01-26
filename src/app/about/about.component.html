@@ -1,8 +1,8 @@
-<section name="about-me-page">
+<section name="skills-page">
   <!-- Technical Skills -->
-  <mat-card class="about-me-page-container">
-    <mat-card-subtitle class="about-me-page-container__contents--subtitle">Tech Stack</mat-card-subtitle>
-    <mat-card-content class="about-me-page-container__table">
+  <mat-card class="skills-page-container">
+    <mat-card-title class="skills-page-container__contents--title">Tech Stack</mat-card-title>
+    <mat-card-content class="skills-page-container__table">
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <ng-container matColumnDef="experteise">
           <th mat-header-cell *matHeaderCellDef> Experteise </th>
@@ -18,55 +18,10 @@
       </table>
     </mat-card-content>
   </mat-card>
-  <!-- Education -->
-  <mat-card class="about-me-page-container">
-    <mat-card-subtitle class="about-me-page-container__contents--subtitle">Education</mat-card-subtitle>
-    <mat-card-content class="about-me-page-container__contents">
-      <mat-list role="list">
-        <mat-list-item role="listitem" *ngFor="let entry of educationDetails">
-          <div mat-line class="wrap">{{ entry.institute }}</div>
-          <div mat-line class="wrap">{{ entry.degree }} {{ entry.speciality }}</div>
-          <div mat-line>({{ entry.duration }})</div>
-          <mat-divider></mat-divider>
-        </mat-list-item>
-      </mat-list>
-    </mat-card-content>
-  </mat-card>
-  <!-- Social Links -->
-  <mat-card class="about-me-page-container">
-    <mat-card-subtitle class="about-me-page-container__contents--subtitle">Social Handles</mat-card-subtitle>
-    <mat-card-content class="about-me-page-container__contents">
-      <div class="button-row">
-        <a mat-button [href]="env.email" target="_blank">E-Mail</a>
-        <a mat-button [href]="env.linkedin" target="_blank">Linkedin</a>
-        <a mat-button [href]="env.twitter" target="_blank">Twitter</a>
-        <a mat-button [href]="env.github" target="_blank">Github</a>
-        <a mat-button [href]="env.stackoverflow" target="_blank">Stack Overflow</a>
-        <a mat-button [href]="env.blog" target="_blank">Blog</a>
-      </div>
-    </mat-card-content>
-  </mat-card>
-  <!-- Certifications -->
-  <mat-card class="about-me-page-container">
-    <mat-card-subtitle class="about-me-page-container__contents--subtitle">Certifications</mat-card-subtitle>
-    <mat-card-content class="about-me-page-container__contents">
-      <mat-list role="list">
-        <mat-list-item role="listitem" *ngFor="let entry of certificationList">
-          <div mat-line class="wrap">{{ entry.name }}</div>
-          <div mat-line>{{ entry.organization }}</div>
-          <div mat-line>{{ entry.issued }}</div>
-          <div mat-line>
-            <a mat-button [href]="entry.url" target="_blank">See Credentials</a>
-          </div>
-          <mat-divider></mat-divider>
-        </mat-list-item>
-      </mat-list>
-    </mat-card-content>
-  </mat-card>
   <!-- Learning Aspirations -->
-  <mat-card class="about-me-page-container">
-    <mat-card-subtitle class="about-me-page-container__contents--subtitle">Future Learning Aspirations</mat-card-subtitle>
-    <mat-card-content class="about-me-page-container__contents">
+  <mat-card class="skills-page-container">
+    <mat-card-title class="skills-page-container__contents--title">Future Learning Aspirations</mat-card-title>
+    <mat-card-content class="skills-page-container__contents">
       <mat-list role="list">
         <mat-list-item role="listitem" *ngFor="let entry of futureLearningSkills">
           <div mat-line class="wrap">{{ entry }}</div>

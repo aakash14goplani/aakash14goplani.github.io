@@ -1,27 +1,27 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AboutComponent } from './about.component';
+import { EducationComponent } from './education.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
-import { MatTableModule } from '@angular/material/table';
-import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
 
 const routes: Routes = [
-  { path: '', component: AboutComponent }
+  { path: '', component: EducationComponent }
 ];
 
 @NgModule({
   declarations: [
-    AboutComponent
+    EducationComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     MatCardModule,
-    MatTableModule,
     MatListModule,
-    MatDividerModule
+    MatDividerModule,
+    MatButtonModule
   ]
 })
-export class AboutModule { }
+export class EducationModule { }

@@ -7,6 +7,7 @@ export interface INavigation {
 export enum PAGENAME {
   HOME = 'HOME',
   ABOUT = 'ABOUT',
+  EDUCATION = 'EDUCATION',
   WORK_EXPERIENCE = 'WORK EXPERIENCE',
   PROJECTS = 'PROJECTS',
   BLOGS = 'BLOGS',
@@ -16,6 +17,7 @@ export enum PAGENAME {
 export enum PAGEURL {
   HOME = '/home',
   ABOUT = '/about',
+  EDUCATION = '/education',
   WORK_EXPERIENCE = '/work-experience',
   PROJECTS = '/projects',
   BLOGS = '/blogs',
@@ -48,6 +50,7 @@ export interface IDegree {
   degree: string;
   speciality: string;
   duration: string;
+  percentage: string;
 }
 
 export interface ICompanyExperience {
