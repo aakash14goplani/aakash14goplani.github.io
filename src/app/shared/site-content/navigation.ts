@@ -5,9 +5,9 @@ const navigation = [{
   url: PAGEURL.HOME,
   name: PAGENAME.HOME
 }, {
-  icon: 'about',
-  url: PAGEURL.ABOUT,
-  name: PAGENAME.ABOUT
+  icon: 'skills',
+  url: PAGEURL.SKILLS,
+  name: PAGENAME.SKILLS
 }, {
   icon: 'education',
   url: PAGEURL.EDUCATION,
@@ -27,7 +27,7 @@ const navigation = [{
 }, {
   icon: 'resume',
   url: PAGEURL.RESUME,
-  name: PAGENAME.RESUME
+  name: PAGENAME.RESUME + ' DOWNLOAD'
 }];
 
 export default navigation;

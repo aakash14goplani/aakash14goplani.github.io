@@ -6,7 +6,7 @@ export interface INavigation {
 
 export enum PAGENAME {
   HOME = 'HOME',
-  ABOUT = 'ABOUT',
+  SKILLS = 'SKILLS',
   EDUCATION = 'EDUCATION',
   WORK_EXPERIENCE = 'WORK EXPERIENCE',
   PROJECTS = 'PROJECTS',
@@ -16,7 +16,7 @@ export enum PAGENAME {
 
 export enum PAGEURL {
   HOME = '/home',
-  ABOUT = '/about',
+  SKILLS = '/skills',
   EDUCATION = '/education',
   WORK_EXPERIENCE = '/work-experience',
   PROJECTS = '/projects',
@@ -73,4 +73,10 @@ export interface IProjects {
   tools: Array<string>;
   showMoreContent: boolean;
   id: string;
+}
+
+export enum SessionKey {
+  THEME = 'theme',
+  DIRECTION = 'direction',
+  LANGUAGE = 'language'
 }

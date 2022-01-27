@@ -6,7 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { ContentService } from './shared/content-service/content.service';
-import { INavigation, IThemes, PAGENAME } from './shared/global.model';
+import { INavigation, IThemes, PAGENAME, SessionKey } from './shared/global.model';
 import { ThemeService } from './shared/theme-service/theme.service';
 
 @Component({
@@ -18,7 +18,8 @@ import { ThemeService } from './shared/theme-service/theme.service';
 export class AppComponent implements OnInit {
 
   @ViewChild('sidenav') sidenav!: MatSidenav;
-  direction: Direction = 'ltr';
+  direction!: Direction;
+  language!: string;
   isMobile: boolean = true;
   navigationDetails$: Observable<Array<INavigation>> = this.helperService.getNavigationConfiguration();
   options$: Observable<Array<IThemes>> = this.themeService.getThemeOptions();
@@ -38,35 +39,59 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.configureThemeOption();
+    this.configureDirectionOption();
+    this.configureLanguageOption();
   }
 
   private configureThemeOption(): void {
-    this.themeService.setTheme('indigo-pink');
-    this.activeTheme = 'indigo-pink';
-    this.themeType = 'light';
+    const themeFromsession = sessionStorage.getItem(SessionKey.THEME);
+    this.themeService.setTheme(themeFromsession ? themeFromsession : 'indigo-pink');
+    this.activeTheme = themeFromsession ? themeFromsession : 'indigo-pink';
+    this.themeType = this.getThemeType(this.activeTheme);
+  }
+
+  private configureDirectionOption(): void {
+    const directionFromSession = sessionStorage.getItem(SessionKey.DIRECTION);
+    this.direction = directionFromSession ? (directionFromSession as Direction) : 'ltr';
+  }
+
+  private configureLanguageOption(): void {
+    const languageFromSession = sessionStorage.getItem(SessionKey.LANGUAGE);
+    this.language = languageFromSession ? languageFromSession : 'en';
   }
 
   close() {
     this.sidenav.close();
   }
 
-  toggleLanguage() { }
+  toggleLanguage() {
+    this.language = this.language === 'en' ? 'hi' : 'en';
+    sessionStorage.setItem(SessionKey.LANGUAGE, this.language);
+  }
 
   changeTheme(themeToSet: string) {
     this.themeService.setTheme(themeToSet);
     this.activeTheme = themeToSet;
-    this.themeType = (themeToSet === 'indigo-pink' || themeToSet === 'deeppurple-amber') ? 'light' : 'dark';
+    this.themeType = this.getThemeType(themeToSet);
+    sessionStorage.setItem(SessionKey.THEME, themeToSet);
+  }
+
+  private getThemeType(theme: string): string {
+    return (theme === 'indigo-pink' || theme === 'deeppurple-amber') ? 'light' : 'dark';
   }
 
   toggleDirection(): void {
     this.direction = this.direction === 'ltr' ? 'rtl' : 'ltr';
+    sessionStorage.setItem(SessionKey.DIRECTION, this.direction);
   }
 
   downloadResume(navItem: INavigation, event: Event): void {
-    if (navItem.name === PAGENAME.RESUME) {
+    if (navItem.name.includes(PAGENAME.RESUME)) {
       event.preventDefault();
       this._snackBar.open('Feature still in progress', 'Close', {
-        duration: 3000
+        duration: 6000,
+        verticalPosition: 'top',
+        horizontalPosition: 'center'
       });
     }
   }

@@ -1,19 +1,20 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { ISkills } from '../shared/global.model';
-import { data } from '../shared/site-content/about-me';
+import { skillsData } from '../shared/site-content/skills';
 
 @Component({
-  selector: 'app-about',
-  templateUrl: './about.component.html',
-  styleUrls: ['./about.component.scss'],
+  selector: 'app-skills',
+  templateUrl: './skills.component.html',
+  styleUrls: ['./skills.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AboutComponent implements OnInit {
+export class SkillsComponent implements OnInit {
 
   env: any;
   displayedColumns: Array<string> = ['experteise', 'skills'];
   dataSource: Array<ISkills> = [];
+  softSkills: Array<string> = [];
   futureLearningSkills: Array<string> = [];
 
   constructor() {
@@ -21,7 +22,8 @@ export class AboutComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dataSource = data.skills;
-    this.futureLearningSkills = data.futureLearningSkills;
+    this.dataSource = skillsData.technicalSkills;
+    this.softSkills = skillsData.softSkills;
+    this.futureLearningSkills = skillsData.futureLearningSkills;
   }
 }

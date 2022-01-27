@@ -1,6 +1,6 @@
 <section for="blogs">
   <div class="blogs-container">
-    <mat-card class="blogs-container__owcs">
+    <mat-card class="blogs-container__owcs" role="main">
       <mat-card-title>Oracle WebCenter Sites</mat-card-title>
       <mat-card-content class="blogs-container__owcs--content">
         <div *ngFor="let content of blogData.owcsBlogContent">{{ content }}</div>
@@ -9,7 +9,7 @@
         <a [href]="env.owcs_blog" target="_blank" mat-button>VISIT BLOG SITE</a>
       </mat-card-actions>
     </mat-card>
-    <mat-card class="blogs-container__web-dev">
+    <mat-card class="blogs-container__web-dev" role="main">
       <mat-card-title>Web Dev</mat-card-title>
       <mat-card-content class="blogs-container__web-dev--content">
         <div *ngFor="let content of blogData.webDevBlogContent">{{ content }}</div>

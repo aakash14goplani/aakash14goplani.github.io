@@ -1,6 +1,6 @@
-<mat-sidenav-container class="app-sidenav-container" (backdropClick)="close()" [dir]="direction">
+<mat-sidenav-container class="app-sidenav-container" (backdropClick)="close()" [dir]="direction" role="main">
   <!-- side navigation list options -->
-  <mat-sidenav #sidenav (keydown.escape)="close()" disableClose class="app-sidenav-container__nav mat-elevation-z10" [mode]="isMobile ? 'over' : 'side'">
+  <mat-sidenav #sidenav (keydown.escape)="close()" disableClose class="app-sidenav-container__nav mat-elevation-z10" [mode]="isMobile ? 'over' : 'side'" role="navigation">
     <aside>
       <!-- side navigation header -->
       <mat-toolbar color="primary">
@@ -30,17 +30,17 @@
     <header>
       <mat-toolbar color="primary">
         <!-- menu button to trigger side nav -->
-        <button mat-icon-button aria-label="Example icon-button with menu icon" (click)="sidenav.toggle()">
+        <button mat-icon-button aria-label="Menu Button" (click)="sidenav.toggle()">
           <mat-icon>menu</mat-icon>
         </button>
         <span class="example-spacer"></span>
         <div class="app-sidenav-container__content--action-items">
           <!-- language translation button -->
-          <button mat-icon-button class="translate-icon" aria-label="Example icon-button with translate icon" (click)="toggleLanguage()">
+          <button mat-icon-button class="translate-icon" aria-label="Toggle Language" (click)="toggleLanguage()">
             <mat-icon>translate</mat-icon>
           </button>
           <!-- toggle theme option -->
-          <button mat-icon-button class="palette-icon" aria-label="Example icon-button with palette icon" (click)="toggleLanguage()">
+          <button mat-icon-button class="palette-icon" aria-label="Toggle Theme" (click)="toggleLanguage()">
             <mat-icon class="icon" [matMenuTriggerFor]="menu">palette</mat-icon>
           </button>
           <mat-menu #menu="matMenu">
@@ -52,7 +52,7 @@
             </button>
           </mat-menu>
           <!-- toggle button button -->
-          <button mat-icon-button (click)="toggleDirection()">
+          <button mat-icon-button (click)="toggleDirection()" aria-label="Toggle Direction">
             <mat-icon aria-hidden="false" aria-label="Toggle Sidenav Direction">directions</mat-icon>
           </button>
         </div>

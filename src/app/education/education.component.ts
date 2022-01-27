@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ICertifications, IDegree } from '../shared/global.model';
-import { data } from '../shared/site-content/about-me';
+import { educationData } from '../shared/site-content/education';
 
 @Component({
   selector: 'app-education',
@@ -15,8 +15,8 @@ export class EducationComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.certificationList = data.certificationList;
-    this.educationDetails = data.educationDetails;
+    this.certificationList = educationData.certificationList;
+    this.educationDetails = educationData.educationDetails;
   }
 
 }

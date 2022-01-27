@@ -1,6 +1,6 @@
 <section for="projects">
   <div class="container">
-    <mat-card class="container__root" *ngFor="let project of projectContents; trackBy: trackById;">
+    <mat-card class="container__root" *ngFor="let project of projectContents; trackBy: trackById;" role="main">
       <mat-card-title class="container__root__title">{{ project.title }}</mat-card-title>
       <mat-card-content class="container__root__contents">
         <div class="description" [ngStyle]="{ 'max-height': project.showMoreContent ? 'inherit' : '5rem' }">
@@ -17,8 +17,8 @@
           <a [href]="project.link" mat-button target="_blank">GitHub</a>
         </mat-card-actions>
         <mat-chip-list aria-label="Tools Used" class="container__root__footer--chips">
-          <mat-chip *ngFor="let chips of project.tools; let i = index" color="{{ ((i + 1) % 3 === 1) ? 'primary' : ((i + 1) % 3 === 2) ? 'accent' : ((i + 1) % 3 === 0) ? 'warn' : 'undefined' }}"
-            selected>{{ chips }}
+          <mat-chip role="listbox" *ngFor="let chips of project.tools; let i = index"
+            color="{{ ((i + 1) % 3 === 1) ? 'primary' : ((i + 1) % 3 === 2) ? 'accent' : ((i + 1) % 3 === 0) ? 'warn' : 'undefined' }}" selected>{{ chips }}
           </mat-chip>
         </mat-chip-list>
       </mat-card-footer>

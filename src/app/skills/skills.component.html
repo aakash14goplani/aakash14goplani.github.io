@@ -1,6 +1,6 @@
 <section name="skills-page">
   <!-- Technical Skills -->
-  <mat-card class="skills-page-container">
+  <mat-card class="skills-page-container" role="main">
     <mat-card-title class="skills-page-container__contents--title">Tech Stack</mat-card-title>
     <mat-card-content class="skills-page-container__table">
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -18,8 +18,20 @@
       </table>
     </mat-card-content>
   </mat-card>
+  <!-- Soft Skills -->
+  <mat-card class="skills-page-container" role="main">
+    <mat-card-title class="skills-page-container__contents--title">Soft Skills</mat-card-title>
+    <mat-card-content class="skills-page-container__contents">
+      <mat-list role="list">
+        <mat-list-item role="listitem" *ngFor="let entry of softSkills">
+          <div mat-line class="wrap">{{ entry }}</div>
+          <mat-divider></mat-divider>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
   <!-- Learning Aspirations -->
-  <mat-card class="skills-page-container">
+  <mat-card class="skills-page-container" role="main">
     <mat-card-title class="skills-page-container__contents--title">Future Learning Aspirations</mat-card-title>
     <mat-card-content class="skills-page-container__contents">
       <mat-list role="list">
