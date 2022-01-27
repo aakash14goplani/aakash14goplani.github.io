@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { environment } from 'src/environments/environment';
-import { blogData } from '../shared/site-content/blogs';
+import { IBlog } from '../shared/global.model';
+import blogsData from '../shared/site-content/blogs';
 
 @Component({
   selector: 'app-blogs',
@@ -11,10 +11,8 @@ import { blogData } from '../shared/site-content/blogs';
 export class BlogsComponent {
 
   env: any;
-  blogData = blogData;
+  blogData: Array<IBlog> = blogsData;
 
-  constructor() {
-    this.env = environment;
-  }
+  constructor() { }
 
 }

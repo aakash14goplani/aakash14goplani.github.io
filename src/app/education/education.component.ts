@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ICertifications, IDegree } from '../shared/global.model';
 import { educationData } from '../shared/site-content/education';
 
 @Component({
   selector: 'app-education',
   templateUrl: './education.component.html',
-  styleUrls: ['./education.component.scss']
+  styleUrls: ['./education.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EducationComponent implements OnInit {
 

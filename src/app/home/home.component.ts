@@ -1,5 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { environment } from '../../environments/environment';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { ContentService } from '../shared/content-service/content.service';
+import { IHomePage } from '../shared/global.model';
+import { introduction } from '../shared/site-content/home';
 
 @Component({
   selector: 'app-home',
@@ -7,14 +10,19 @@ import { environment } from '../../environments/environment';
   styleUrls: ['./home.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
-  env: any;
-  yearsOfExperience: number;
+  introduction$: BehaviorSubject<IHomePage> = new BehaviorSubject<IHomePage>(introduction.en);
 
-  constructor() {
-    this.env = environment;
-    this.yearsOfExperience = new Date().getFullYear() - new Date('10/07/2015').getFullYear();
+  constructor(
+    private contentService: ContentService
+  ) { }
+
+  ngOnInit(): void {
+    type key = keyof typeof introduction;
+    this.contentService.getApplicationLocale().subscribe((locale) => {
+      this.introduction$.next(introduction[locale as key]);
+    });
   }
 
 }

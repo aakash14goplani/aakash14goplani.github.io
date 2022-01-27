@@ -6,7 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { ContentService } from './shared/content-service/content.service';
-import { INavigation, IThemes, PAGENAME, SessionKey } from './shared/global.model';
+import { INavigation, IThemes, Locale, PAGENAME, SessionKey } from './shared/global.model';
 import { ThemeService } from './shared/theme-service/theme.service';
 
 @Component({
@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
 
   @ViewChild('sidenav') sidenav!: MatSidenav;
   direction!: Direction;
-  language!: string;
+  language!: Locale;
   isMobile: boolean = true;
   navigationDetails$: Observable<Array<INavigation>> = this.helperService.getNavigationConfiguration();
   options$: Observable<Array<IThemes>> = this.themeService.getThemeOptions();
@@ -48,16 +48,20 @@ export class AppComponent implements OnInit {
     this.themeService.setTheme(themeFromsession ? themeFromsession : 'indigo-pink');
     this.activeTheme = themeFromsession ? themeFromsession : 'indigo-pink';
     this.themeType = this.getThemeType(this.activeTheme);
+    sessionStorage.setItem(SessionKey.THEME, this.activeTheme);
   }
 
   private configureDirectionOption(): void {
     const directionFromSession = sessionStorage.getItem(SessionKey.DIRECTION);
     this.direction = directionFromSession ? (directionFromSession as Direction) : 'ltr';
+    sessionStorage.setItem(SessionKey.DIRECTION, this.direction);
   }
 
   private configureLanguageOption(): void {
-    const languageFromSession = sessionStorage.getItem(SessionKey.LANGUAGE);
-    this.language = languageFromSession ? languageFromSession : 'en';
+    const languageFromSession: Locale = sessionStorage.getItem(SessionKey.LANGUAGE) as Locale;
+    this.language = languageFromSession ? languageFromSession : Locale.en;
+    sessionStorage.setItem(SessionKey.LANGUAGE, this.language);
+    this.helperService.updateContentLanguage(this.language);
   }
 
   close() {
@@ -65,8 +69,9 @@ export class AppComponent implements OnInit {
   }
 
   toggleLanguage() {
-    this.language = this.language === 'en' ? 'hi' : 'en';
+    this.language = this.language === Locale.en ? Locale.hi : Locale.en;
     sessionStorage.setItem(SessionKey.LANGUAGE, this.language);
+    this.helperService.updateContentLanguage(this.language);
   }
 
   changeTheme(themeToSet: string) {

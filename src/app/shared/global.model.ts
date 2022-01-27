@@ -66,6 +66,12 @@ export interface ICompanyExperience {
   id: string;
 }
 
+export interface IBlog {
+  blogTitle: string;
+  description: Array<string>;
+  blogURL: string;
+}
+
 export interface IProjects {
   title: string;
   content: Array<string>;
@@ -75,8 +81,29 @@ export interface IProjects {
   id: string;
 }
 
+export interface IHomePage {
+  imageURL: string;
+  title: string;
+  subtitle: string;
+  description: Array<string>;
+  socialHandles: Array<{
+    title: string;
+    url: string;
+  }>;
+}
+
+export interface ILocalization<T> {
+  en: T,
+  hi: T
+}
+
 export enum SessionKey {
   THEME = 'theme',
   DIRECTION = 'direction',
   LANGUAGE = 'language'
+}
+
+export enum Locale {
+  en = 'en',
+  hi = 'hi'
 }

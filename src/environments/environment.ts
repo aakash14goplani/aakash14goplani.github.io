@@ -1,5 +1,6 @@
 export const environment = {
   production: false,
+  profileImage: '../../assets/images/AakashImage.jpg',
   email: 'mailto:aakash.14.goplani@gmail.com',
   github: 'https://github.com/aakash14goplani',
   linkedin: 'https://www.linkedin.com/in/aakashgoplani/',
