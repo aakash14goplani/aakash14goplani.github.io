@@ -44,7 +44,7 @@ export interface IThemes {
 }
 
 export interface ISkills {
-  experteise: string;
+  expertise: string;
   skills: string;
 }
 

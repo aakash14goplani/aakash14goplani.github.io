@@ -78,10 +78,10 @@ const projects_en: Array<IProjectsPage> = [{
   id: '6',
   buttonText: 'GitHub'
 }, {
-  title: 'Web Hoisting Site: CSS and SCSS',
+  title: 'Web Hosting Site: CSS and SCSS',
   content: [
-    'Aim was to learn CSS in depth. Example practiced and concepts learn in this project were from udemy course by Maximilian Schwarzmüller',
-    'The learnig process was divided into threee sections: Basic Level, Intermediate Level and Advance Level',
+    'Aim was to learn CSS in depth. Example practiced and concepts learn in this project were from Udemy course by Maximilian Schwarzmüller',
+    'The learning process was divided into three sections: Basic Level, Intermediate Level and Advance Level',
     'Naming conventions followed in this tutorial is BEM model.',
     'Read more about this project on GitHub'
   ],
@@ -91,9 +91,9 @@ const projects_en: Array<IProjectsPage> = [{
   id: '7',
   buttonText: 'GitHub'
 }, {
-  title: 'Shooping Cart: Learning Node and GraphQL',
+  title: 'Shopping Cart: Learning Node and GraphQL',
   content: [
-    'Learning fundamentals of NodeJs (using ExpressJs) and GraphQL from udemy course by Maximilian Schwarzmüller',
+    'Learning fundamentals of NodeJs (using ExpressJs) and GraphQL from Udemy course by Maximilian Schwarzmüller',
     'Project covers how to use NodeJs, Configure project with ExpressJs, Using REST API and then using GraphQL',
     'Read more about this project on GitHub'
   ],
@@ -196,7 +196,7 @@ const projects_hi: Array<IProjectsPage> = [{
 }, {
   title: 'Shooping Cart: Learning Node and GraphQL',
   content: [
-    'Maximilian Schwarzmüller द्वारा udemy पाठ्यक्रम से NodeJs (ExpressJs का उपयोग करके) और GraphQL के मूल सिद्धांतों को सीखना',
+    'Maximilian Schwarzmüller द्वारा Udemy पाठ्यक्रम से NodeJs (ExpressJs का उपयोग करके) और GraphQL के मूल सिद्धांतों को सीखना',
     'प्रोजेक्ट कवर करता है कि NodeJs का उपयोग कैसे करें, ExpressJs के साथ प्रोजेक्ट को कॉन्फ़िगर करें, REST API का उपयोग करें और फिर GraphQL का उपयोग करें',
     'GitHub पर इस प्रोजेक्ट के बारे में और पढ़ें'
   ],

@@ -12,7 +12,7 @@ import { skillsPageData } from '../shared/site-content/skills';
 })
 export class SkillsComponent implements OnInit {
 
-  displayedColumns: Array<string> = ['experteise', 'skills'];
+  displayedColumns: Array<string> = ['expertise', 'skills'];
   skillsData$: BehaviorSubject<ISkillsPage> = new BehaviorSubject<ISkillsPage>(skillsPageData.en);
 
   constructor(

@@ -1,14 +1,14 @@
 import { ILocalization, ISkills, ISkillsPage, Locale } from '../global.model';
 
 const technicalSkills: Array<ISkills> = [
-  { experteise: 'Frontend', skills: 'JavaScript, Angular (2+), HTML, CSS, SCSS, jQuery' },
-  { experteise: 'Backend', skills: 'TypeScript, Node, Express.js, Nest.js, Firebase, Java' },
-  { experteise: 'Mobile', skills: 'Ionic' },
-  { experteise: 'Content Management Systems', skills: 'Oracle WebCenter Sites (11g), Wordpress' },
-  { experteise: 'Database', skills: 'MySQL, Firestore, MongoDB' },
-  { experteise: 'Devops', skills: 'GitHub CI-CD, Jenkins, uDeploy' },
-  { experteise: 'Cloud', skills: 'Fundamentals of AWS' },
-  { experteise: 'IDE', skills: 'VSCode, Eclipse' }
+  { expertise: 'Frontend', skills: 'JavaScript, Angular (2+), HTML, CSS, SCSS, jQuery' },
+  { expertise: 'Backend', skills: 'TypeScript, Node, Express.js, Nest.js, Firebase, Java' },
+  { expertise: 'Mobile', skills: 'Ionic' },
+  { expertise: 'Content Management Systems', skills: 'Oracle WebCenter Sites (11g), Wordpress' },
+  { expertise: 'Database', skills: 'MySQL, Firestore, MongoDB' },
+  { expertise: 'DevOps', skills: 'GitHub CI-CD, Jenkins, uDeploy' },
+  { expertise: 'Cloud', skills: 'Fundamentals of AWS' },
+  { expertise: 'IDE', skills: 'VSCode, Eclipse' }
 ];
 
 const softSkills: Array<string> = [
@@ -58,7 +58,7 @@ const futureLearningSkillsHi: Array<string> = [
 const skillsDataEn: ISkillsPage = {
   techSkillHeadline: 'Tech Stack',
   techContent: technicalSkills,
-  tableColumnA: 'Experteise',
+  tableColumnA: 'Expertise',
   tableColumnB: 'Skills',
   softSkillHeadline: 'Soft Skills',
   softContent: softSkills,

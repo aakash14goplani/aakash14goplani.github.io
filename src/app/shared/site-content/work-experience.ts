@@ -62,7 +62,7 @@ const workExperienceEn: Array<ICompanyExperience> = [{
     'Consulted client in revamping 6 sites from scratch and integrating them with OWCS.',
     'Worked on rendering assets in Oracle WebCenter Sites.',
     'Used OWCS recommendation Engage engine to display customize contents based on user attributes.',
-    'Created a utility to render assets (basic and flex) programatically.',
+    'Created a utility to render assets (basic and flex) programmatically.',
     'Participated in various assets publishing workflows.',
     'Conducted cross skill trainings in Accenture for OWCS.'
   ],
