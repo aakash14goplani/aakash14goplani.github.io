@@ -1,45 +1,47 @@
 <section name="skills-page">
-  <!-- Technical Skills -->
-  <mat-card class="skills-page-container" role="main">
-    <mat-card-title class="skills-page-container__contents--title">Tech Stack</mat-card-title>
-    <mat-card-content class="skills-page-container__table">
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-        <ng-container matColumnDef="experteise">
-          <th mat-header-cell *matHeaderCellDef> Experteise </th>
-          <td mat-cell *matCellDef="let element"> {{ element.experteise }} </td>
-        </ng-container>
-        <ng-container matColumnDef="skills">
-          <th mat-header-cell *matHeaderCellDef> Skills </th>
-          <td mat-cell *matCellDef="let element"> {{ element.skills }} </td>
-        </ng-container>
+  <ng-container *ngIf="(skillsData$ | async) as skillsData">
+    <!-- Technical Skills -->
+    <mat-card class="skills-page-container" role="main">
+      <mat-card-title class="skills-page-container__contents--title">{{ skillsData.techSkillHeadline }}</mat-card-title>
+      <mat-card-content class="skills-page-container__table">
+        <table mat-table [dataSource]="skillsData.techContent" class="mat-elevation-z8">
+          <ng-container matColumnDef="experteise">
+            <th mat-header-cell *matHeaderCellDef>{{ skillsData.tableColumnA }}</th>
+            <td mat-cell *matCellDef="let element"> {{ element.experteise }} </td>
+          </ng-container>
+          <ng-container matColumnDef="skills">
+            <th mat-header-cell *matHeaderCellDef>{{ skillsData.tableColumnB }}</th>
+            <td mat-cell *matCellDef="let element"> {{ element.skills }} </td>
+          </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-    </mat-card-content>
-  </mat-card>
-  <!-- Soft Skills -->
-  <mat-card class="skills-page-container" role="main">
-    <mat-card-title class="skills-page-container__contents--title">Soft Skills</mat-card-title>
-    <mat-card-content class="skills-page-container__contents">
-      <mat-list role="list">
-        <mat-list-item role="listitem" *ngFor="let entry of softSkills">
-          <div mat-line class="wrap">{{ entry }}</div>
-          <mat-divider></mat-divider>
-        </mat-list-item>
-      </mat-list>
-    </mat-card-content>
-  </mat-card>
-  <!-- Learning Aspirations -->
-  <mat-card class="skills-page-container" role="main">
-    <mat-card-title class="skills-page-container__contents--title">Future Learning Aspirations</mat-card-title>
-    <mat-card-content class="skills-page-container__contents">
-      <mat-list role="list">
-        <mat-list-item role="listitem" *ngFor="let entry of futureLearningSkills">
-          <div mat-line class="wrap">{{ entry }}</div>
-          <mat-divider></mat-divider>
-        </mat-list-item>
-      </mat-list>
-    </mat-card-content>
-  </mat-card>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+    <!-- Soft Skills -->
+    <mat-card class="skills-page-container" role="main">
+      <mat-card-title class="skills-page-container__contents--title">{{ skillsData.softSkillHeadline }}</mat-card-title>
+      <mat-card-content class="skills-page-container__contents">
+        <mat-list role="list">
+          <mat-list-item role="listitem" *ngFor="let entry of skillsData.softContent">
+            <div mat-line class="wrap">{{ entry }}</div>
+            <mat-divider></mat-divider>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+    <!-- Learning Aspirations -->
+    <mat-card class="skills-page-container" role="main">
+      <mat-card-title class="skills-page-container__contents--title">{{ skillsData.futureLearningHeadline }}</mat-card-title>
+      <mat-card-content class="skills-page-container__contents">
+        <mat-list role="list">
+          <mat-list-item role="listitem" *ngFor="let entry of skillsData.futureLearnContent">
+            <div mat-line class="wrap">{{ entry }}</div>
+            <mat-divider></mat-divider>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
 </section>

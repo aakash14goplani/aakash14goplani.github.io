@@ -14,6 +14,16 @@ export enum PAGENAME {
   RESUME = 'RESUME'
 }
 
+export enum PAGENAME_HI {
+  HOME = 'होमपेज',
+  SKILLS = 'कौशल',
+  EDUCATION = 'शिक्षा',
+  WORK_EXPERIENCE = 'कार्य अनुभव',
+  PROJECTS = 'परियोजनाओं',
+  BLOGS = 'ब्लॉग',
+  RESUME = 'संक्षिप्त विवरण'
+}
+
 export enum PAGEURL {
   HOME = '/home',
   SKILLS = '/skills',
@@ -66,21 +76,6 @@ export interface ICompanyExperience {
   id: string;
 }
 
-export interface IBlog {
-  blogTitle: string;
-  description: Array<string>;
-  blogURL: string;
-}
-
-export interface IProjects {
-  title: string;
-  content: Array<string>;
-  link: string;
-  tools: Array<string>;
-  showMoreContent: boolean;
-  id: string;
-}
-
 export interface IHomePage {
   imageURL: string;
   title: string;
@@ -90,6 +85,42 @@ export interface IHomePage {
     title: string;
     url: string;
   }>;
+}
+
+export interface ISkillsPage {
+  techSkillHeadline: string;
+  techContent: Array<ISkills>;
+  tableColumnA: string;
+  tableColumnB: string;
+  softSkillHeadline: string;
+  softContent: Array<string>;
+  futureLearningHeadline: string;
+  futureLearnContent: Array<string>;
+}
+
+export interface IEducationPage {
+  educationHeadline: string;
+  educationDetails: Array<IDegree>;
+  certificationHeadline: string;
+  certificationList: Array<ICertifications>;
+  buttonText: string;
+}
+
+export interface IProjectsPage {
+  title: string;
+  content: Array<string>;
+  link: string;
+  tools: Array<string>;
+  showMoreContent: boolean;
+  id: string;
+  buttonText: string;
+}
+
+export interface IBlogsPage {
+  blogTitle: string;
+  description: Array<string>;
+  blogURL: string;
+  blogButtonText: string;
 }
 
 export interface ILocalization<T> {

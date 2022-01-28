@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { ICertifications, IDegree } from '../shared/global.model';
+import { BehaviorSubject } from 'rxjs';
+import { ContentService } from '../shared/content-service/content.service';
+import { IEducationPage } from '../shared/global.model';
 import { educationData } from '../shared/site-content/education';
 
 @Component({
@@ -10,14 +12,17 @@ import { educationData } from '../shared/site-content/education';
 })
 export class EducationComponent implements OnInit {
 
-  educationDetails: Array<IDegree> = [];
-  certificationList: Array<ICertifications> = [];
+  educationData$: BehaviorSubject<IEducationPage> = new BehaviorSubject<IEducationPage>(educationData.en);
 
-  constructor() { }
+  constructor(
+    private contentService: ContentService
+  ) { }
 
   ngOnInit(): void {
-    this.certificationList = educationData.certificationList;
-    this.educationDetails = educationData.educationDetails;
+    type key = keyof typeof educationData;
+    this.contentService.getApplicationLocale().subscribe((locale) => {
+      this.educationData$.next(educationData[locale as key]);
+    });
   }
 
 }

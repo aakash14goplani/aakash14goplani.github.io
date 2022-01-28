@@ -1,6 +1,6 @@
-import { PAGEURL, PAGENAME } from '../global.model';
+import { PAGEURL, PAGENAME, PAGENAME_HI, ILocalization, INavigation, Locale } from '../global.model';
 
-const navigation = [{
+const navigation_en: Array<INavigation> = [{
   icon: 'home',
   url: PAGEURL.HOME,
   name: PAGENAME.HOME
@@ -30,4 +30,37 @@ const navigation = [{
   name: PAGENAME.RESUME + ' DOWNLOAD'
 }];
 
-export default navigation;
+const navigation_hi: Array<INavigation> = [{
+  icon: 'home',
+  url: PAGEURL.HOME,
+  name: PAGENAME_HI.HOME
+}, {
+  icon: 'skills',
+  url: PAGEURL.SKILLS,
+  name: PAGENAME_HI.SKILLS
+}, {
+  icon: 'education',
+  url: PAGEURL.EDUCATION,
+  name: PAGENAME_HI.EDUCATION
+}, {
+  icon: 'experience',
+  url: PAGEURL.WORK_EXPERIENCE,
+  name: PAGENAME_HI.WORK_EXPERIENCE
+}, {
+  icon: 'projects',
+  url: PAGEURL.PROJECTS,
+  name: PAGENAME_HI.PROJECTS
+}, {
+  icon: 'blogs',
+  url: PAGEURL.BLOGS,
+  name: PAGENAME_HI.BLOGS
+}, {
+  icon: 'resume',
+  url: PAGEURL.RESUME,
+  name: PAGENAME_HI.RESUME + ' डाउनलोड'
+}];
+
+export const navigation: ILocalization<Array<INavigation>> = {
+  [Locale.en]: navigation_en,
+  [Locale.hi]: navigation_hi
+};

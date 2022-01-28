@@ -19,7 +19,7 @@
       <!-- side navigation footer -->
       <mat-toolbar color="primary" class="app-sidenav-container__nav--footer">
         <span>
-          <mat-icon class="icon">copyright</mat-icon> {{ currentYear }} My Portfolio.
+          <mat-icon class="icon">copyright</mat-icon> {{ currentYear }} {{ locale === LocalEnum.en ? 'My Portfolio.' : 'मेरा संविभाग।' }}
         </span>
       </mat-toolbar>
     </aside>
@@ -67,7 +67,14 @@
     <!-- main footer navigation -->
     <footer>
       <mat-toolbar color="primary" class="footer">
-        <span>Handcrafted with <mat-icon class="icon">favorite</mat-icon> and <mat-icon class="icon" [svgIcon]="'angular'"></mat-icon></span>
+        <span *ngIf="locale === LocalEnum.en; else hindi">
+          Handcrafted with <mat-icon class="icon">favorite</mat-icon> and <mat-icon class="icon" [svgIcon]="'angular'"></mat-icon>
+        </span>
+        <ng-template #hindi>
+          <span>
+            <mat-icon class="icon">favorite</mat-icon> और <mat-icon class="icon" [svgIcon]="'angular'"></mat-icon> के साथ दस्तकारी
+          </span>
+        </ng-template>
       </mat-toolbar>
     </footer>
   </mat-sidenav-content>

@@ -1,12 +1,12 @@
 <section for="blogs">
-  <div class="blogs-container">
+  <div class="blogs-container" *ngIf="(blogData$ | async) as blogData">
     <mat-card class="blogs-container__blog" role="main" *ngFor="let blog of blogData">
-      <mat-card-title>{{ blog.blogTitle }}</mat-card-title>
+      <mat-card-title class="blogs-container__blog--title">{{ blog.blogTitle }}</mat-card-title>
       <mat-card-content class="blogs-container__blog--content">
         <div *ngFor="let content of blog.description">{{ content }}</div>
       </mat-card-content>
       <mat-card-actions>
-        <a [href]="blog.blogURL" target="_blank" mat-button>VISIT BLOG SITE</a>
+        <a [href]="blog.blogURL" target="_blank" mat-button>{{ blog.blogButtonText }}</a>
       </mat-card-actions>
     </mat-card>
   </div>

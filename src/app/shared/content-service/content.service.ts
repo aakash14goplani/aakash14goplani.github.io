@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { INavigation, Locale, PAGENAME } from '../global.model';
-import { introduction } from '../site-content/home';
-import navigation from '../site-content/navigation';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Locale, PAGENAME } from '../global.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +13,6 @@ export class ContentService {
 
   getContentForPage(pagename: PAGENAME) {
     // firebase service making call to retrieve content as per page
-  }
-
-  getNavigationConfiguration(): Observable<Array<INavigation>> {
-    return of(navigation);
   }
 
   updateContentLanguage(locale: Locale): void {

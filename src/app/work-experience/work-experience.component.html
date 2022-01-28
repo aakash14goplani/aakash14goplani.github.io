@@ -1,7 +1,7 @@
 <section name="work-experience-page">
   <mat-card class="work-experience-container" role="main">
-    <mat-card-content class="work-experience-container__contents">
-      <cdk-tree [dataSource]="dataSource" [treeControl]="treeControl" [trackBy]="trackByFn">
+    <mat-card-content class="work-experience-container__contents" *ngIf="(dataSource$ | async) as dataSource">
+      <cdk-tree [dataSource]="dataSource" [treeControl]="treeControl">
         <!-- This is the tree node template for leaf nodes -->
         <cdk-tree-node *cdkTreeNodeDef="let node" cdkTreeNodePadding [style.display]="shouldRender(node) ? 'flex' : 'none'" class="example-tree-node"
           [ngStyle]="{ 'flex-direction': treeControl.getLevel(node) === 2 ? 'column' : 'row' }">

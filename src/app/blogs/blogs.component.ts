@@ -1,6 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { IBlog } from '../shared/global.model';
-import blogsData from '../shared/site-content/blogs';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { ContentService } from '../shared/content-service/content.service';
+import { IBlogsPage } from '../shared/global.model';
+import { blogsData } from '../shared/site-content/blogs';
 
 @Component({
   selector: 'app-blogs',
@@ -8,11 +10,19 @@ import blogsData from '../shared/site-content/blogs';
   styleUrls: ['./blogs.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BlogsComponent {
+export class BlogsComponent implements OnInit {
 
-  env: any;
-  blogData: Array<IBlog> = blogsData;
+  blogData$: BehaviorSubject<Array<IBlogsPage>> = new BehaviorSubject<Array<IBlogsPage>>(blogsData.en);
 
-  constructor() { }
+  constructor(
+    private contentService: ContentService
+  ) { }
+
+  ngOnInit(): void {
+    type key = keyof typeof blogsData;
+    this.contentService.getApplicationLocale().subscribe((locale) => {
+      this.blogData$.next(blogsData[locale as key]);
+    });
+  }
 
 }

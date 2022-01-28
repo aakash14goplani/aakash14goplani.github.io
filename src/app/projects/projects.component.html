@@ -1,6 +1,6 @@
 <section for="projects">
   <div class="container">
-    <mat-card class="container__root" *ngFor="let project of projectContents; trackBy: trackById;" role="main">
+    <mat-card class="container__root" *ngFor="let project of (projectContents$ | async); trackBy: trackById;" role="main">
       <mat-card-title class="container__root__title">{{ project.title }}</mat-card-title>
       <mat-card-content class="container__root__contents">
         <div class="description" [ngStyle]="{ 'max-height': project.showMoreContent ? 'inherit' : '5rem' }">
@@ -14,7 +14,7 @@
       </mat-card-content>
       <mat-card-footer class="container__root__footer">
         <mat-card-actions class="container__root__footer--cta">
-          <a [href]="project.link" mat-button target="_blank">GitHub</a>
+          <a [href]="project.link" mat-button target="_blank">{{ project.buttonText }}</a>
         </mat-card-actions>
         <mat-chip-list aria-label="Tools Used" class="container__root__footer--chips">
           <mat-chip role="listbox" *ngFor="let chips of project.tools; let i = index"

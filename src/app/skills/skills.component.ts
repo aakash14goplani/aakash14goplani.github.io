@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { environment } from '../../environments/environment';
-import { ISkills } from '../shared/global.model';
-import { skillsData } from '../shared/site-content/skills';
+import { BehaviorSubject } from 'rxjs';
+import { ContentService } from '../shared/content-service/content.service';
+import { ISkillsPage } from '../shared/global.model';
+import { skillsPageData } from '../shared/site-content/skills';
 
 @Component({
   selector: 'app-skills',
@@ -11,19 +12,17 @@ import { skillsData } from '../shared/site-content/skills';
 })
 export class SkillsComponent implements OnInit {
 
-  env: any;
   displayedColumns: Array<string> = ['experteise', 'skills'];
-  dataSource: Array<ISkills> = [];
-  softSkills: Array<string> = [];
-  futureLearningSkills: Array<string> = [];
+  skillsData$: BehaviorSubject<ISkillsPage> = new BehaviorSubject<ISkillsPage>(skillsPageData.en);
 
-  constructor() {
-    this.env = environment;
-  }
+  constructor(
+    private contentService: ContentService
+  ) { }
 
   ngOnInit(): void {
-    this.dataSource = skillsData.technicalSkills;
-    this.softSkills = skillsData.softSkills;
-    this.futureLearningSkills = skillsData.futureLearningSkills;
+    type key = keyof typeof skillsPageData;
+    this.contentService.getApplicationLocale().subscribe((locale) => {
+      this.skillsData$.next(skillsPageData[locale as key]);
+    });
   }
 }

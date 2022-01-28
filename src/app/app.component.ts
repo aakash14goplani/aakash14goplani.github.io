@@ -4,9 +4,10 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { ContentService } from './shared/content-service/content.service';
-import { INavigation, IThemes, Locale, PAGENAME, SessionKey } from './shared/global.model';
+import { INavigation, IThemes, Locale, PAGENAME, PAGENAME_HI, SessionKey } from './shared/global.model';
+import { navigation } from './shared/site-content/navigation';
 import { ThemeService } from './shared/theme-service/theme.service';
 
 @Component({
@@ -21,11 +22,13 @@ export class AppComponent implements OnInit {
   direction!: Direction;
   language!: Locale;
   isMobile: boolean = true;
-  navigationDetails$: Observable<Array<INavigation>> = this.helperService.getNavigationConfiguration();
+  navigationDetails$: BehaviorSubject<Array<INavigation>> = new BehaviorSubject<Array<INavigation>>(navigation.en);
   options$: Observable<Array<IThemes>> = this.themeService.getThemeOptions();
   activeTheme: string = '';
   themeType: string = '';
   currentYear: number = new Date().getFullYear();
+  locale: Locale = Locale.en;
+  LocalEnum = Locale;
 
   constructor(
     private helperService: ContentService,
@@ -41,6 +44,11 @@ export class AppComponent implements OnInit {
     this.configureThemeOption();
     this.configureDirectionOption();
     this.configureLanguageOption();
+    type key = keyof typeof navigation;
+    this.helperService.getApplicationLocale().subscribe((locale) => {
+      this.navigationDetails$.next(navigation[locale as key]);
+      this.locale = locale;
+    });
   }
 
   private configureThemeOption(): void {
@@ -91,9 +99,13 @@ export class AppComponent implements OnInit {
   }
 
   downloadResume(navItem: INavigation, event: Event): void {
-    if (navItem.name.includes(PAGENAME.RESUME)) {
+    if (navItem.name.includes(PAGENAME.RESUME) || navItem.name.includes(PAGENAME_HI.RESUME)) {
       event.preventDefault();
-      this._snackBar.open('Feature still in progress', 'Close', {
+      const _snackBarText = {
+        content: this.locale === Locale.en ? 'Feature still in progress' : 'सुविधा अभी जारी है',
+        button: this.locale === Locale.en ? 'Close' : 'बंद करे'
+      };
+      this._snackBar.open(_snackBarText.content, _snackBarText.button, {
         duration: 6000,
         verticalPosition: 'top',
         horizontalPosition: 'center'
