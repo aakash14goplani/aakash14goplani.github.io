@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { environment } from 'src/environments/environment';
 import { IHomePage, ILocalization, Locale } from '../global.model';
 
@@ -8,7 +9,7 @@ const introduction_en: IHomePage = {
   title: 'Aakash Goplani',
   subtitle: 'Web and Hybrid Mobile App Dev',
   description: [
-    `I am a Full Stack JavaScript Developer with ${yearsOfExperience} years of rich experience in developing Web Applications using Node and Angular. I am also experience in developing Hybrid Mobile Applications using Ionic.`
+    `I am a Full Stack JavaScript Developer with ${yearsOfExperience} years of rich experience in developing Web Applications using Node and Angular. I am also experienced in developing Hybrid Mobile Applications using Ionic. Apart from Web development, I have also worked on Content Management Systems using Oracle WebCentere Sites.`
   ],
   socialHandles: [
     { title: 'E-Mail', url: environment.email },
@@ -25,7 +26,7 @@ const introduction_hi: IHomePage = {
   title: 'आकाश गोपलानी',
   subtitle: 'वेब और हाइब्रिड मोबाइल ऐप डेवलपर',
   description: [
-    `मैं एक Full Stack JavaScript डेवलपर हूं, जिसके पास Node और Angular का उपयोग करके वेब एप्लिकेशन विकसित करने का ${yearsOfExperience} वर्षों का समृद्ध अनुभव है। मुझे Ionic का उपयोग करके हाइब्रिड मोबाइल एप्लिकेशन विकसित करने का भी अनुभव है।`
+    `मैं एक Full Stack JavaScript डेवलपर हूं, जिसके पास Node और Angular का उपयोग करके वेब एप्लिकेशन विकसित करने का ${yearsOfExperience} वर्षों का समृद्ध अनुभव है। मुझे Ionic का उपयोग करके हाइब्रिड मोबाइल एप्लिकेशन विकसित करने का भी अनुभव है। वेब विकास के अलावा, मैंने Oracle WebCentere Sites का उपयोग करके Content Management पर भी काम किया है।`
   ],
   socialHandles: [
     { title: 'ईमेल', url: environment.email },

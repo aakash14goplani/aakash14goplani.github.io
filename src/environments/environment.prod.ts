@@ -1,5 +1,17 @@
+import secretKey from './secrets';
+
 export const environment = {
   production: true,
+  useEmulators: false,
+  firebase: {
+    apiKey: secretKey.firebase,
+    authDomain: secretKey.firebaseAuthDomain,
+    projectId: secretKey.firebaseProjectId,
+    storageBucket: secretKey.firebaseStorageBucket,
+    messagingSenderId: secretKey.firebaseMessagingSenderId,
+    appId: secretKey.firebaseAppId,
+    measurementId: secretKey.firebaseMeasurementId
+  },
   profileImage: '../../assets/images/AakashImage.jpg',
   email: 'mailto:aakash.14.goplani@gmail.com',
   github: 'https://github.com/aakash14goplani',
