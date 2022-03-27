@@ -13,7 +13,8 @@
     "empty-emulator": "firebase emulators:start",
     "emulator": "firebase emulators:start --import test-data",
     "emulator-firestore": "firebase emulators:start --only firestore --import test-data",
-    "export": "firebase emulators:export test-data"
+    "export": "firebase emulators:export test-data",
+    "local-dev": "firebase emulators:start --only firestore,auth,storage --import test-data"
   },
   "private": true,
   "dependencies": {
