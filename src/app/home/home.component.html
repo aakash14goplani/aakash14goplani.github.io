@@ -1,15 +1,36 @@
 <section name="home-page">
-  <mat-card class="home-container" role="main" *ngIf="(introduction$ | async) as introduction">
-    <div class="home-container__image">
-      <img mat-card-image [src]="introduction.imageURL" class="home-container__image--profile-picture" alt="Profile Picture">
+  <mat-card
+    class="home-container"
+    role="main"
+    *ngIf="introduction$ | async as introduction"
+  >
+    <div class="home-container__image" (click)="launchAuthScreen($event)">
+      <img
+        mat-card-image
+        [src]="introduction.imageURL"
+        class="home-container__image--profile-picture"
+        alt="Profile Picture"
+      />
     </div>
     <div class="home-container__contents">
-      <mat-card-title class="home-container__contents--title">{{ introduction.title }}</mat-card-title>
-      <mat-card-subtitle class="home-container__contents--subtitle">{{ introduction.subtitle }}</mat-card-subtitle>
+      <mat-card-title class="home-container__contents--title">{{
+        introduction.title
+      }}</mat-card-title>
+      <mat-card-subtitle class="home-container__contents--subtitle">{{
+        introduction.subtitle
+      }}</mat-card-subtitle>
       <mat-card-content class="home-container__contents--description">
-        <div *ngFor="let content of introduction.description">{{ content }}</div>
+        <div *ngFor="let content of introduction.description">
+          {{ content }}
+        </div>
         <div class="button-row">
-          <a mat-button *ngFor="let handle of introduction.socialHandles" [href]="handle.url" target="_blank">{{ handle.title }}</a>
+          <a
+            mat-button
+            *ngFor="let handle of introduction.socialHandles"
+            [href]="handle.url"
+            target="_blank"
+            >{{ handle.title }}</a
+          >
         </div>
       </mat-card-content>
     </div>

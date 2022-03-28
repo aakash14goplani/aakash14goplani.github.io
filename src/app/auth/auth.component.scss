@@ -1,0 +1,31 @@
+.auth-container {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  max-width: 30rem;
+
+  &__title {
+    display: flex;
+  }
+
+  &__signInWithGoogle,
+  &__signInWithEmailAndPassword {
+    display: flex;
+    margin: 1rem 0;
+
+    span {
+      margin-left: 1rem;
+    }
+  }
+
+  &__login-form {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+
+    .form-group {
+      margin: 1rem 0;
+    }
+  }
+}

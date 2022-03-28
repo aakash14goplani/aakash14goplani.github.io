@@ -1,0 +1,95 @@
+<section for="auth-wall">
+  <div class="auth-container">
+    <div class="auth-container__title">
+      <h2>Sign Up</h2>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="auth-container__signInWithGoogle">
+      <button
+        mat-icon-button
+        aria-label="Sign In With Google Button"
+        (click)="signInWithGoogle()"
+      >
+        <mat-icon>domain</mat-icon>
+        <span>Continue With Google</span>
+      </button>
+    </div>
+
+    <div class="auth-container__signInWithEmailAndPassword">
+      <button
+        mat-icon-button
+        aria-label="Sign In With Email And Password Button"
+        (click)="signInWithEmailAndPassword()"
+      >
+        <mat-icon>email</mat-icon>
+        <span>Continue With Email</span>
+      </button>
+    </div>
+
+    <mat-divider></mat-divider>
+    <div class="auth-container__login-form" *ngIf="displayLoginform">
+      <form
+        class="example-form"
+        [formGroup]="loginForm"
+        (ngSubmit)="validateUser()"
+      >
+        <!-- email -->
+        <div class="form-group">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Email</mat-label>
+            <input
+              type="email"
+              matInput
+              formControlName="email"
+              placeholder="Ex. pat@example.com"
+            />
+            <mat-icon matSuffix>email</mat-icon>
+            <mat-error *ngIf="loginForm?.get('email')?.errors">
+              Please enter a valid email address
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- password -->
+        <div class="form-group">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Password</mat-label>
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              matInput
+              formControlName="password"
+              placeholder="password"
+            />
+            <mat-icon
+              matSuffix
+              *ngIf="!showPassword"
+              (click)="showPassword = true"
+              >visibility_off</mat-icon
+            >
+            <mat-icon
+              matSuffix
+              *ngIf="showPassword"
+              (click)="showPassword = false"
+              >visibility</mat-icon
+            >
+            <mat-error *ngIf="loginForm?.get('password')?.errors">
+              Please enter a valid password
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- submit -->
+        <div class="form-group">
+          <button
+            mat-raised-button
+            color="primary"
+            [disabled]="!loginForm.valid"
+            type="submit"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
