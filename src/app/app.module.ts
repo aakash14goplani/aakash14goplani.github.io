@@ -15,7 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireAuthModule, USE_EMULATOR as USE_AUTH_EMULATOR } from '@angular/fire/compat/auth';
+import { AngularFireAuthModule, PERSISTENCE, USE_EMULATOR as USE_AUTH_EMULATOR } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule, USE_EMULATOR as USE_FIRESTORE_EMULATOR } from '@angular/fire/compat/firestore';
 import { AngularFireFunctionsModule, USE_EMULATOR as USE_FUNCTIONS_EMULATOR } from '@angular/fire/compat/functions';
 import { AngularFireStorageModule, USE_EMULATOR as USE_STORAGE_EMULATOR } from '@angular/fire/compat/storage';
@@ -53,7 +53,8 @@ import { AngularFireStorageModule, USE_EMULATOR as USE_STORAGE_EMULATOR } from '
     { provide: USE_AUTH_EMULATOR, useValue: environment.useEmulators ? ['http://localhost:9099', { disableWarnings: true }] : undefined },
     { provide: USE_FIRESTORE_EMULATOR, useValue: environment.useEmulators ? ['localhost', 4080] : undefined },
     { provide: USE_FUNCTIONS_EMULATOR, useValue: environment.useEmulators ? ['http://localhost:5001', { disableWarnings: true }] : undefined },
-    { provide: USE_STORAGE_EMULATOR, useValue: environment.useEmulators ? ['localhost', 9199] : undefined }
+    { provide: USE_STORAGE_EMULATOR, useValue: environment.useEmulators ? ['localhost', 9199] : undefined },
+    { provide: PERSISTENCE, useValue: 'session' }
     // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]

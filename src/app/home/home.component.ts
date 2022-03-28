@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { ContentService } from '../shared/content-service/content.service';
@@ -18,7 +19,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private contentService: ContentService,
-    private router: Router
+    private router: Router,
+    public firebaseAuth: AngularFireAuth
   ) { }
 
   ngOnInit(): void {
@@ -38,10 +40,15 @@ export class HomeComponent implements OnInit {
     event.preventDefault();
     this.clickCounter++;
 
-    if (this.clickCounter >= 10) {
+    if (this.clickCounter >= 2) {
       this.clickCounter = 0;
       this.router.navigate(['/auth']);
     }
   }
+
+  /**
+   * Edit home page content
+   */
+  editHomePageDetails(): void { }
 
 }

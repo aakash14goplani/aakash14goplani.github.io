@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { UserAuthService } from './auth.service';
 
 @Component({
@@ -13,10 +15,13 @@ export class AuthComponent {
   displayLoginform: boolean = false;
   showPassword: boolean = false;
   loginForm: FormGroup;
+  @ViewChild('emailInput') emailInput!: ElementRef;
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: UserAuthService
+    private authService: UserAuthService,
+    private router: Router,
+    private _snackBar: MatSnackBar
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -24,20 +29,46 @@ export class AuthComponent {
     });
   }
 
-  signInWithGoogle() {
-    this.displayLoginform = false;
-    this.showPassword = false;
-    this.authService.signInWithGoogle();
-  }
-
   signInWithEmailAndPassword() {
     this.displayLoginform = true;
+  }
+
+  forgotPassword(email: string | undefined) {
+    if (email) {
+      this.authService.resetPassword(email)
+        .subscribe({
+          next: (userData) => {
+            if (userData.errorMessage) {
+              this._snackBar.open(userData.errorMessage, 'X', {
+                duration: 3000,
+                verticalPosition: 'bottom',
+                horizontalPosition: 'center'
+              });
+            }
+          }
+        });
+    } else {
+      this.emailInput.nativeElement.focus();
+    }
   }
 
   validateUser() {
     this.loginForm.updateValueAndValidity();
     if (this.loginForm.valid && this.displayLoginform) {
-      this.authService.signInWithEmailAndPassword(this.loginForm.value.email, this.loginForm.value.password);
+      this.authService.signInWithEmailAndPassword(this.loginForm.value.email, this.loginForm.value.password)
+        .subscribe({
+          next: (userData) => {
+            if (userData.isValidUser) {
+              this.router.navigate(['/home']);
+            } else if (userData.errorMessage) {
+              this._snackBar.open(userData.errorMessage, 'X', {
+                duration: 3000,
+                verticalPosition: 'bottom',
+                horizontalPosition: 'center'
+              });
+            }
+          }
+        });
     }
   }
 

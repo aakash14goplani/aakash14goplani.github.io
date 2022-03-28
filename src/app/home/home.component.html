@@ -34,5 +34,15 @@
         </div>
       </mat-card-content>
     </div>
+    <mat-card-actions align="end">
+      <button
+        mat-raised-button
+        color="accent"
+        *ngIf="firebaseAuth.user | async"
+        (click)="editHomePageDetails()"
+      >
+        Edit
+      </button>
+    </mat-card-actions>
   </mat-card>
 </section>
