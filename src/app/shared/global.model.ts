@@ -80,7 +80,7 @@ export interface IHomePage {
   imageURL: string;
   title: string;
   subtitle: string;
-  description: Array<string>;
+  description: string;
   socialHandles: Array<{
     title: string;
     url: string;
@@ -124,8 +124,8 @@ export interface IBlogsPage {
 }
 
 export interface ILocalization<T> {
-  en: T,
-  hi: T
+  en: T;
+  hi: T;
 }
 
 export enum SessionKey {
@@ -137,4 +137,26 @@ export enum SessionKey {
 export enum Locale {
   en = 'en',
   hi = 'hi'
+}
+
+export enum Collections {
+  HOME_PAGE = 'home_page',
+  SKILLS_PAGE = 'skills_page',
+  EDUCATION_PAGE = 'education_page',
+  WORK_EXPERIENCE_PAGE = 'work_experience_page',
+  PROJECTS_PAGE = 'projects_page',
+  BLOGS_PAGE = 'blogs_page',
+  NAVIGATION = 'navigation',
+  THEME = 'theme'
+}
+
+export enum Documents {
+  HOME_PAGE_EN = 'home_page_en',
+  HOME_PAGE_HI = 'home_page_hi',
+  SKILLS_PAGE_EN = 'skills_page_en',
+  SKILLS_PAGE_HI = 'skills_page_hi',
+  EDUCATION_PAGE_EN = 'education_page_en',
+  EDUCATION_PAGE_HI = 'education_page_hi',
+  NAVIGATION_EN = 'navigation_en',
+  NAVIGATION_HI = 'navigation_hi'
 }

@@ -1,1 +1,53 @@
-<p>home-edit works!</p>
+<section name="home-edit-page">
+  <mat-card class="home-edit-container" role="main">
+    <!-- page-title -->
+    <mat-card-title class="home-edit-container__title">Edit Home Page Details</mat-card-title>
+    <!-- body -->
+    <mat-card-content class="home-edit-container__contents">
+      <form [formGroup]="homeEditForm" (ngSubmit)="onSubmit()" *ngIf="(displaySpinner | async) === false; else displayLoadingSpinner">
+        <!-- edit tile -->
+        <div class="form-group">
+          <mat-form-field appearance="standard">
+            <mat-label>Title</mat-label>
+            <input matInput placeholder="Title" formControlName="title">
+            <mat-error *ngIf="homeEditForm.get('title')?.errors">Please enter valid title</mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- edit subtile -->
+        <div class="form-group">
+          <mat-form-field appearance="standard">
+            <mat-label>Subtitle</mat-label>
+            <input matInput placeholder="Subtitle" formControlName="subtitle">
+            <mat-error *ngIf="homeEditForm.get('subtitle')?.errors">Please enter valid subtitle</mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- edit description -->
+        <div class="form-group">
+          <mat-form-field appearance="standard">
+            <mat-label>Description</mat-label>
+            <textarea matInput placeholder="Description" formControlName="description" rows="5"></textarea>
+            <mat-error *ngIf="homeEditForm.get('description')?.errors">Please enter valid description</mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- edit Image -->
+        <div class="form-group"></div>
+
+        <!-- edit social handles -->
+        <div class="form-group"></div>
+
+        <!-- submit / cancel buttons -->
+        <div class="home-edit-container__contents__cta">
+          <button mat-raised-button type="button" color="primary">Cancel</button>
+          <button mat-raised-button type="submit" color="accent" [disabled]="!homeEditForm.valid">Save</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</section>
+
+<ng-template #displayLoadingSpinner>
+  <mat-spinner class="home-edit-container__spinner" [diameter]="100"></mat-spinner>
+</ng-template>

@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AuthComponent } from './auth.component';
 
 const routes: Routes = [
@@ -25,6 +26,7 @@ const routes: Routes = [
     MatInputModule,
     MatDividerModule,
     MatSnackBarModule,
+    MatProgressSpinnerModule,
     ReactiveFormsModule
   ]
 })

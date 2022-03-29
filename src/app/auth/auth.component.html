@@ -6,34 +6,25 @@
     <mat-divider></mat-divider>
 
     <div class="auth-container__signInWithEmailAndPassword">
-      <button
-        mat-icon-button
-        aria-label="Sign In With Email And Password Button"
-        (click)="signInWithEmailAndPassword()"
-      >
+      <button mat-icon-button aria-label="Sign In With Email And Password Button" (click)="signInWithEmailAndPassword()">
         <mat-icon>email</mat-icon>
         <span>Continue With Email</span>
       </button>
     </div>
 
     <mat-divider></mat-divider>
+
+    <div class="auth-container__spinner" *ngIf="displaySpinner$ | async">
+      <mat-spinner aria-label="loading data"></mat-spinner>
+    </div>
+
     <div class="auth-container__login-form" *ngIf="displayLoginform">
-      <form
-        class="example-form"
-        [formGroup]="loginForm"
-        (ngSubmit)="validateUser()"
-      >
+      <form class="example-form" [formGroup]="loginForm" (ngSubmit)="validateUser()">
         <!-- email -->
         <div class="form-group">
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Email</mat-label>
-            <input
-              type="email"
-              matInput
-              #emailInput
-              formControlName="email"
-              placeholder="Ex. pat@example.com"
-            />
+            <input type="email" matInput #emailInput formControlName="email" placeholder="Ex. pat@example.com" />
             <mat-icon matSuffix>email</mat-icon>
             <mat-error *ngIf="loginForm?.get('email')?.errors">
               Please enter a valid email address
@@ -45,24 +36,9 @@
         <div class="form-group">
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Password</mat-label>
-            <input
-              [type]="showPassword ? 'text' : 'password'"
-              matInput
-              formControlName="password"
-              placeholder="password"
-            />
-            <mat-icon
-              matSuffix
-              *ngIf="!showPassword"
-              (click)="showPassword = true"
-              >visibility_off</mat-icon
-            >
-            <mat-icon
-              matSuffix
-              *ngIf="showPassword"
-              (click)="showPassword = false"
-              >visibility</mat-icon
-            >
+            <input [type]="showPassword ? 'text' : 'password'" matInput formControlName="password" placeholder="password" />
+            <mat-icon matSuffix *ngIf="!showPassword" (click)="showPassword = true">visibility_off</mat-icon>
+            <mat-icon matSuffix *ngIf="showPassword" (click)="showPassword = false">visibility</mat-icon>
             <mat-error *ngIf="loginForm?.get('password')?.errors">
               Please enter a valid password
             </mat-error>
@@ -70,23 +46,14 @@
         </div>
 
         <div class="form-group">
-          <a
-            (click)="forgotPassword(emailInput?.value)"
-            mat-button
-            color="primary"
-          >
+          <a (click)="forgotPassword(emailInput?.value)" mat-button color="primary">
             Forgot Password? Enter email and then click link!!
           </a>
         </div>
 
         <!-- submit -->
         <div class="form-group">
-          <button
-            mat-raised-button
-            color="primary"
-            [disabled]="!loginForm.valid"
-            type="submit"
-          >
+          <button mat-raised-button color="primary" [disabled]="!loginForm.valid" type="submit">
             Submit
           </button>
         </div>

@@ -1,9 +1,11 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, catchError, EMPTY, Observable, Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { ContentService } from '../shared/content-service/content.service';
-import { IHomePage } from '../shared/global.model';
+import { Collections, Documents, IHomePage, Locale } from '../shared/global.model';
 import { introduction } from '../shared/site-content/home';
 
 @Component({
@@ -14,21 +16,38 @@ import { introduction } from '../shared/site-content/home';
 })
 export class HomeComponent implements OnInit {
 
-  introduction$: BehaviorSubject<IHomePage> = new BehaviorSubject<IHomePage>(introduction.en);
+  introduction$!: Observable<IHomePage | undefined>;
+  displaySpinner$: Subject<boolean> = new Subject<boolean>();
   private clickCounter: number = 0;
 
   constructor(
     private contentService: ContentService,
     private router: Router,
-    public firebaseAuth: AngularFireAuth
+    public firebaseAuth: AngularFireAuth,
+    private datastore: AngularFirestore,
+    private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
     this.clickCounter = 0;
-    type key = keyof typeof introduction;
-    this.contentService.getApplicationLocale().subscribe((locale) => {
-      this.introduction$.next(introduction[locale as key]);
-    });
+
+    this.introduction$ = this.contentService.getApplicationLocale().pipe(
+      tap(_ => this.displaySpinner$.next(true)),
+      switchMap((locale) => {
+        const document = locale === Locale.en ? Documents.HOME_PAGE_EN : Documents.HOME_PAGE_HI;
+        return this.datastore.collection<IHomePage>(Collections.HOME_PAGE).doc(document).valueChanges();
+      }),
+      tap(_ => this.displaySpinner$.next(false)),
+      catchError((err) => {
+        this._snackBar.open(err, 'X', {
+          duration: 6000,
+          verticalPosition: 'bottom',
+          horizontalPosition: 'center'
+        });
+        this.displaySpinner$.next(false);
+        return EMPTY;
+      })
+    );
   }
 
   /**
@@ -49,6 +68,8 @@ export class HomeComponent implements OnInit {
   /**
    * Edit home page content
    */
-  editHomePageDetails(): void { }
+  editHomePageDetails(): void {
+    this.router.navigate(['/home-edit']);
+  }
 
 }

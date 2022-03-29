@@ -5,6 +5,7 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ContentService } from './shared/content-service/content.service';
 import { INavigation, IThemes, Locale, PAGENAME, PAGENAME_HI, SessionKey } from './shared/global.model';
@@ -37,7 +38,8 @@ export class AppComponent implements OnInit {
     private matIcon: MatIconRegistry,
     private sanitizer: DomSanitizer,
     private _snackBar: MatSnackBar,
-    public firebaseAuth: AngularFireAuth
+    public firebaseAuth: AngularFireAuth,
+    private router: Router
   ) {
     this.matIcon.addSvgIconSet(this.sanitizer.bypassSecurityTrustResourceUrl('assets/icons.svg'));
   }
@@ -156,20 +158,24 @@ export class AppComponent implements OnInit {
   logOut(): void {
     this.firebaseAuth.signOut()
       .then(() => {
-        this._snackBar.open('You have been successfully logged out as Admin.', 'X', {
-          duration: 3000,
-          verticalPosition: 'bottom',
-          horizontalPosition: 'center'
-        });
-        this.close();
+        this.performLogoutActions('You have been successfully logged out as Admin.');
       })
       .catch((error) => {
-        this._snackBar.open(error, 'X', {
-          duration: 3000,
-          verticalPosition: 'bottom',
-          horizontalPosition: 'center'
-        });
-        this.close();
+        this.performLogoutActions(error);
       });
+  }
+
+  /**
+   * Perform logout actions.
+   * @param message { string } error/success message
+   */
+  private performLogoutActions(message: string | any): void {
+    this._snackBar.open(message, 'X', {
+      duration: 6000,
+      verticalPosition: 'bottom',
+      horizontalPosition: 'center'
+    });
+    this.close();
+    this.router.navigate(['/home']);
   }
 }
