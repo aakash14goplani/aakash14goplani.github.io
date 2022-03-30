@@ -18,15 +18,15 @@
           <a mat-button *ngFor="let handle of introduction.socialHandles" [href]="handle.url" target="_blank">{{ handle.title }}</a>
         </div>
       </mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-raised-button color="accent" *ngIf="firebaseAuth.user | async" (click)="editHomePageDetails()">
+          Edit
+        </button>
+      </mat-card-actions>
     </div>
-    <mat-card-actions align="end">
-      <button mat-raised-button color="accent" *ngIf="firebaseAuth.user | async" (click)="editHomePageDetails()">
-        Edit
-      </button>
-    </mat-card-actions>
   </mat-card>
 </section>
 
 <ng-template #displayLoadingSpinner>
-  <mat-spinner class="home-edit-container__spinner" *ngIf="displaySpinner$ | async" [diameter]="100"></mat-spinner>
+  <mat-spinner class="home-edit-container__spinner" [diameter]="100"></mat-spinner>
 </ng-template>

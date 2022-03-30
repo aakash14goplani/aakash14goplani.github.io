@@ -33,14 +33,49 @@
         </div>
 
         <!-- edit Image -->
-        <div class="form-group"></div>
+        <mat-label class="custom-label">Upload Image</mat-label>
+        <div class="image-form-group">
+          <div>
+            <button type="button" mat-raised-button color="warn" (click)="imgFileInput.click()">
+              <mat-icon>add</mat-icon>
+              <span>Update Profile Picture</span>
+            </button>
+            <input hidden type="file" #imgFileInput (change)="previewImage($event)" />
+          </div>
+          <img [src]="imageUrl" alt="image">
+        </div>
 
         <!-- edit social handles -->
-        <div class="form-group"></div>
+        <div class="social-handles-form-group" formArrayName="socialHandles">
+          <mat-label class="custom-label">Update Social Handles</mat-label>
+          <div class="social-handles-form-group__border" *ngFor="let control of socialHandlesControlFn; let i=index" [formGroupName]="i">
+            <div class="label">
+              <mat-form-field appearance="standard">
+                <mat-label>Label Text</mat-label>
+                <input matInput placeholder="Label Text" formControlName="title">
+                <mat-error *ngIf="control.get('title')?.errors">Please enter valid label</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="url">
+              <mat-form-field appearance="standard">
+                <mat-label>URL</mat-label>
+                <input matInput placeholder="URL" formControlName="url">
+                <mat-error *ngIf="control.get('url')?.errors">Please enter valid url</mat-error>
+              </mat-form-field>
+            </div>
+            <!-- remove social handles -->
+            <button mat-raised-button type="button" color="warn" (click)="removeSocialHandle(i)">Delete</button>
+          </div>
+          <!-- add social handles -->
+          <button type="button" mat-button (click)="addNewSocialHandle()">
+            <mat-icon>add</mat-icon>
+            <span>Add New Social Handle</span>
+          </button>
+        </div>
 
         <!-- submit / cancel buttons -->
         <div class="home-edit-container__contents__cta">
-          <button mat-raised-button type="button" color="primary">Cancel</button>
+          <button mat-raised-button type="button" color="primary" (click)="backToHomePage()">Cancel</button>
           <button mat-raised-button type="submit" color="accent" [disabled]="!homeEditForm.valid">Save</button>
         </div>
       </form>

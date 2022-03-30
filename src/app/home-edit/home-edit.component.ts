@@ -1,44 +1,60 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Subject, switchMap, takeUntil, tap } from 'rxjs';
-import { ContentService } from '../shared/content-service/content.service';
-import { Collections, Documents, IHomePage, Locale } from '../shared/global.model';
+import { Router } from '@angular/router';
+import { catchError, EMPTY, Subject, takeUntil, tap } from 'rxjs';
+import { IHomePage } from '../shared/global.model';
+import { HomeEditService } from './services/home-edit.service';
 
 @Component({
   selector: 'app-home-edit',
   templateUrl: './home-edit.component.html',
-  styleUrls: ['./home-edit.component.scss']
+  styleUrls: ['./home-edit.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [HomeEditService]
 })
 export class HomeEditComponent implements OnInit, OnDestroy {
 
   homeEditForm: FormGroup;
+  imageUrl: string = '';
   displaySpinner: Subject<boolean> = new Subject<boolean>();
   unsubscriber$: Subject<void> = new Subject<void>();
+  private filePath: string = '';
+  private file!: File;
 
   constructor(
     private formBuilder: FormBuilder,
-    private datastore: AngularFirestore,
-    private contentService: ContentService,
+    private router: Router,
+    private cdr: ChangeDetectorRef,
+    private service: HomeEditService,
     private _snackBar: MatSnackBar
   ) {
-    this.homeEditForm = this.formBuilder.group({
+    this.homeEditForm = this.formConfiguration;
+  }
+
+  /**
+   * Initializes Form Configuration
+   */
+  private get formConfiguration(): FormGroup {
+    return this.formBuilder.group({
       title: ['', Validators.required],
       subtitle: ['', Validators.required],
-      description: ['', Validators.required]
-      // imageURL: '',
-      // socialHandles: ''
+      description: ['', Validators.required],
+      imageURL: '',
+      socialHandles: this.formBuilder.array([])
     });
   }
 
+  /**
+   * Return social handles array control
+   */
+  get socialHandlesControlFn() {
+    return (this.homeEditForm.get('socialHandles') as FormArray).controls;
+  }
+
   ngOnInit(): void {
-    this.contentService.getApplicationLocale().pipe(
+    this.service.initializeHomeEditPageContent().pipe(
       tap(_ => this.displaySpinner.next(true)),
-      switchMap((locale) => {
-        const document = locale === Locale.en ? Documents.HOME_PAGE_EN : Documents.HOME_PAGE_HI;
-        return this.datastore.collection<IHomePage>(Collections.HOME_PAGE).doc(document).valueChanges();
-      }),
       takeUntil(this.unsubscriber$)
     ).subscribe({
       next: (data) => {
@@ -52,17 +68,39 @@ export class HomeEditComponent implements OnInit, OnDestroy {
     });
   }
 
+  /**
+   * Prefill form with data
+   * @param data { IHomePage }
+   */
   private prefilForm(data: IHomePage) {
     this.homeEditForm.patchValue({
       title: data.title,
       subtitle: data.subtitle,
-      description: data.description
-      // imageURL: '',
-      // socialHandles: ''
+      description: data.description,
+      imageURL: data.imageURL,
+      socialHandles: this.getPrefilValueForSocialHandles(data.socialHandles)
     });
+    this.imageUrl = data.imageURL;
     this.displaySpinner.next(false);
   }
 
+  /**
+   * Prefill social handles array
+   * @param socialHandles { ISocialHandle[] }
+   */
+  private getPrefilValueForSocialHandles(socialHandles: Array<{ title: string; url: string; }>): void {
+    socialHandles.forEach((socialHandle) => {
+      (this.homeEditForm.get('socialHandles') as FormArray).push(this.formBuilder.group({
+        title: [socialHandle.title, Validators.required],
+        url: [socialHandle.url, Validators.required]
+      }));
+    });
+  }
+
+  /**
+   * Handle Firebase Error
+   * @param err { Error }
+   */
   private handleFirebaseError(err: any) {
     this._snackBar.open(err, 'X', {
       duration: 6000,
@@ -72,7 +110,76 @@ export class HomeEditComponent implements OnInit, OnDestroy {
     this.displaySpinner.next(false);
   }
 
-  onSubmit() { }
+  /**
+   * Upload image to firebase storage
+   * @param event { Event }
+   */
+  previewImage(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    this.file = (target.files as FileList)[0];
+    this.filePath = `profile-picture/${this.file.name}`;
+
+    this.service.uploadFileToFireStorage(this.filePath, this.file).pipe(
+      tap((url) => {
+        this.homeEditForm.patchValue({ imageURL: url });
+        this.imageUrl = url;
+        this.cdr.markForCheck();
+      }),
+      catchError((err) => {
+        this.handleFirebaseError(err);
+        return EMPTY;
+      }),
+      takeUntil(this.unsubscriber$)
+    ).subscribe();
+  }
+
+  /**
+   * Return back to home page when clicked on cancel button
+   */
+  backToHomePage() {
+    this.router.navigate(['/home']);
+  }
+
+  /**
+   * Remove social handle at index i
+   * @param index { number }
+   */
+  removeSocialHandle(index: number): void {
+    (this.homeEditForm.get('socialHandles') as FormArray).removeAt(index);
+  }
+
+  /**
+   * Add new social handle
+   */
+  addNewSocialHandle(): void {
+    (this.homeEditForm.get('socialHandles') as FormArray).push(
+      this.formBuilder.group({
+        title: ['', Validators.required],
+        url: ['', Validators.required]
+      })
+    );
+  }
+
+  /**
+   * Submit form and update content in firebase
+   */
+  onSubmit() {
+    this.homeEditForm.updateValueAndValidity();
+    if (this.homeEditForm.valid) {
+      this.service.onSubmit(this.homeEditForm.value).pipe(
+        tap(_ => this.displaySpinner.next(true)),
+        takeUntil(this.unsubscriber$)
+      ).subscribe({
+        next: () => {
+          this.displaySpinner.next(false);
+          this.router.navigate(['/home']);
+        },
+        error: (err) => {
+          this.handleFirebaseError(err);
+        }
+      });
+    }
+  }
 
   ngOnDestroy(): void {
     this.displaySpinner.complete();

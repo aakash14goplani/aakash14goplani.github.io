@@ -26,6 +26,43 @@
       .mat-form-field {
         width: 70%;
       }
+
+      .image-form-group {
+        display: flex;
+        width: 100%;
+        justify-content: space-evenly;
+        align-items: center;
+
+        img {
+          width: 20%;
+          height: auto;
+          min-width: 5rem;
+          min-height: 5rem;
+        }
+      }
+
+      .custom-label {
+        font-weight: 500;
+        font-size: 1.4rem;
+        text-align: center;
+        margin: 2rem auto;
+      }
+
+      .social-handles-form-group {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 1rem auto;
+        max-width: 50rem;
+
+        &__border {
+          border: 1px solid purple;
+          width: 70%;
+          padding: 1rem;
+          margin: 1rem;
+        }
+      }
     }
 
     &__cta {

@@ -3,10 +3,9 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { BehaviorSubject, catchError, EMPTY, Observable, Subject, switchMap, takeUntil, tap } from 'rxjs';
+import { catchError, EMPTY, Observable, Subject, switchMap, tap } from 'rxjs';
 import { ContentService } from '../shared/content-service/content.service';
 import { Collections, Documents, IHomePage, Locale } from '../shared/global.model';
-import { introduction } from '../shared/site-content/home';
 
 @Component({
   selector: 'app-home',
