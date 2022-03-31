@@ -140,12 +140,12 @@ export enum Locale {
 }
 
 export enum Collections {
-  HOME_PAGE = 'home_page',
-  SKILLS_PAGE = 'skills_page',
-  EDUCATION_PAGE = 'education_page',
-  WORK_EXPERIENCE_PAGE = 'work_experience_page',
-  PROJECTS_PAGE = 'projects_page',
-  BLOGS_PAGE = 'blogs_page',
+  HOME = 'home_page',
+  SKILLS = 'skills_page',
+  EDUCATION = 'education_page',
+  WORK_EXPERIENCE = 'work_experience_page',
+  PROJECTS = 'projects_page',
+  BLOGS = 'blogs_page',
   NAVIGATION = 'navigation',
   THEME = 'theme'
 }
@@ -158,5 +158,11 @@ export enum Documents {
   EDUCATION_PAGE_EN = 'education_page_en',
   EDUCATION_PAGE_HI = 'education_page_hi',
   NAVIGATION_EN = 'navigation_en',
-  NAVIGATION_HI = 'navigation_hi'
+  NAVIGATION_HI = 'navigation_hi',
+  PROJECTS_PAGE_EN = 'projects_page_en',
+  PROJECTS_PAGE_HI = 'projects_page_hi',
+  WORK_EXPERIENCE_PAGE_EN = 'work_experience_page_en',
+  WORK_EXPERIENCE_PAGE_HI = 'work_experience_page_hi',
+  BLOGS_PAGE_EN = 'blogs_page_en',
+  BLOGS_PAGE_HI = 'blogs_page_hi'
 }

@@ -1,8 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { catchError, EMPTY, Observable, Subject, tap } from 'rxjs';
 import { ContentService } from '../shared/content-service/content.service';
-import { ISkillsPage } from '../shared/global.model';
-import { skillsPageData } from '../shared/site-content/skills';
+import { ISkillsPage, PAGENAME } from '../shared/global.model';
 
 @Component({
   selector: 'app-skills',
@@ -13,16 +15,33 @@ import { skillsPageData } from '../shared/site-content/skills';
 export class SkillsComponent implements OnInit {
 
   displayedColumns: Array<string> = ['expertise', 'skills'];
-  skillsData$: BehaviorSubject<ISkillsPage> = new BehaviorSubject<ISkillsPage>(skillsPageData.en);
+  skillsData$!: Observable<ISkillsPage | undefined>;
+  displaySpinner$: Subject<boolean> = new Subject<boolean>();
 
   constructor(
-    private contentService: ContentService
+    private contentService: ContentService,
+    public firebaseAuth: AngularFireAuth,
+    private router: Router,
+    private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
-    type key = keyof typeof skillsPageData;
-    this.contentService.getApplicationLocale().subscribe((locale) => {
-      this.skillsData$.next(skillsPageData[locale as key]);
-    });
+    this.displaySpinner$.next(true);
+    this.skillsData$ = this.contentService.getContentForPage<ISkillsPage>(PAGENAME.SKILLS).pipe(
+      tap(_ => this.displaySpinner$.next(false)),
+      catchError((err) => {
+        this._snackBar.open(err, 'X', {
+          duration: 6000,
+          verticalPosition: 'bottom',
+          horizontalPosition: 'center'
+        });
+        this.displaySpinner$.next(false);
+        return EMPTY;
+      })
+    );
+  }
+
+  editSkillsPageDetails() {
+    this.router.navigate(['/skills-edit']);
   }
 }

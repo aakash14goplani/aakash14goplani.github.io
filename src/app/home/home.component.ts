@@ -1,11 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { catchError, EMPTY, Observable, Subject, switchMap, tap } from 'rxjs';
+import { catchError, EMPTY, Observable, Subject, tap } from 'rxjs';
 import { ContentService } from '../shared/content-service/content.service';
-import { Collections, Documents, IHomePage, Locale } from '../shared/global.model';
+import { IHomePage, PAGENAME } from '../shared/global.model';
 
 @Component({
   selector: 'app-home',
@@ -23,19 +22,13 @@ export class HomeComponent implements OnInit {
     private contentService: ContentService,
     private router: Router,
     public firebaseAuth: AngularFireAuth,
-    private datastore: AngularFirestore,
     private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
     this.clickCounter = 0;
-
-    this.introduction$ = this.contentService.getApplicationLocale().pipe(
-      tap(_ => this.displaySpinner$.next(true)),
-      switchMap((locale) => {
-        const document = locale === Locale.en ? Documents.HOME_PAGE_EN : Documents.HOME_PAGE_HI;
-        return this.datastore.collection<IHomePage>(Collections.HOME_PAGE).doc(document).valueChanges();
-      }),
+    this.displaySpinner$.next(true);
+    this.introduction$ = this.contentService.getContentForPage<IHomePage>(PAGENAME.HOME).pipe(
       tap(_ => this.displaySpinner$.next(false)),
       catchError((err) => {
         this._snackBar.open(err, 'X', {

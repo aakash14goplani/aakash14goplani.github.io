@@ -1,1 +1,52 @@
-<p>skills-edit works!</p>
+<section name="skills-edit-page">
+  <!-- edit soft skills -->
+  <mat-card class="soft-skills-edit-container" role="main">
+    <mat-card-title>Edit Soft Skills</mat-card-title>
+    <mat-card-content class="soft-skills-edit-container__contents">
+      <form [formGroup]="skillsEditForm" (ngSubmit)="onSubmit()" *ngIf="(displaySpinner | async) === false; else displayLoadingSpinner">
+        <!-- edit headline -->
+        <div class="form-group">
+          <mat-form-field appearance="standard">
+            <mat-label>Soft Skill Headline</mat-label>
+            <input matInput placeholder="Title" formControlName="softSkillHeadline">
+            <mat-error *ngIf="skillsEditForm.get('softSkillHeadline')?.errors">Please enter valid title</mat-error>
+          </mat-form-field>
+        </div>
+        <!-- edit soft skills -->
+        <div class="softContent-form-group" formArrayName="softContent">
+          <ng-container *ngFor="let control of softSkillsControlFn; let i = index" [formGroupName]="i">
+            <div class="soft-skill-entry">
+              <mat-form-field appearance="standard">
+                <mat-label>Soft Skill #{{i + 1}}</mat-label>
+                <input matInput placeholder="Soft Skill" [formControl]="getSoftSkillControlAt(i)">
+                <mat-error *ngIf="control?.errors">Please enter valid soft skill</mat-error>
+              </mat-form-field>
+              <!-- delete soft skills -->
+              <div>
+                <button mat-raised-button type="button" color="warn" (click)="removeSoftSkill(i)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+        <!-- add soft skills -->
+        <button type="button" mat-button (click)="addNewSoftSkill()">
+          <mat-icon>add</mat-icon>
+          <span>Add New Soft Skill</span>
+        </button>
+
+
+        <!-- submit / cancel buttons -->
+        <div class="soft-skills-edit-container__contents__cta">
+          <button mat-raised-button type="button" color="primary" (click)="backToHomePage()">Cancel</button>
+          <button mat-raised-button type="submit" color="accent" [disabled]="!skillsEditForm.valid">Save</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</section>
+
+<ng-template #displayLoadingSpinner>
+  <mat-spinner class="skills-edit-container__spinner" [diameter]="100"></mat-spinner>
+</ng-template>

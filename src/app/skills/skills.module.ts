@@ -6,6 +6,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const routes: Routes = [
   { path: '', component: SkillsComponent }
@@ -21,7 +23,9 @@ const routes: Routes = [
     MatCardModule,
     MatTableModule,
     MatListModule,
-    MatDividerModule
+    MatDividerModule,
+    MatButtonModule,
+    MatProgressSpinnerModule
   ]
 })
 export class SkillsModule { }

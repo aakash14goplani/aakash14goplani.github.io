@@ -1,5 +1,5 @@
 <section name="skills-page">
-  <ng-container *ngIf="(skillsData$ | async) as skillsData">
+  <ng-container *ngIf="(skillsData$ | async) as skillsData; else displayLoadingSpinner">
     <!-- Technical Skills -->
     <mat-card class="skills-page-container" role="main">
       <mat-card-title class="skills-page-container__contents--title">{{ skillsData.techSkillHeadline }}</mat-card-title>
@@ -43,5 +43,17 @@
         </mat-list>
       </mat-card-content>
     </mat-card>
+    <!-- edit -->
+    <mat-card class="skills-page-container" role="main" *ngIf="firebaseAuth.user | async">
+      <mat-card-content class="skills-page-container__contents">
+        <button mat-raised-button color="accent" (click)="editSkillsPageDetails()">
+          Edit
+        </button>
+      </mat-card-content>
+    </mat-card>
   </ng-container>
+
+  <ng-template #displayLoadingSpinner>
+    <mat-spinner class="skills-page-container__spinner" [diameter]="100"></mat-spinner>
+  </ng-template>
 </section>
