@@ -27,18 +27,19 @@ export class SkillsComponent implements OnInit {
 
   ngOnInit(): void {
     this.displaySpinner$.next(true);
-    this.skillsData$ = this.contentService.getContentForPage<ISkillsPage>(PAGENAME.SKILLS).pipe(
-      tap(_ => this.displaySpinner$.next(false)),
-      catchError((err) => {
-        this._snackBar.open(err, 'X', {
-          duration: 6000,
-          verticalPosition: 'bottom',
-          horizontalPosition: 'center'
-        });
-        this.displaySpinner$.next(false);
-        return EMPTY;
-      })
-    );
+    this.skillsData$ = (this.contentService.getContentForPage<ISkillsPage>(PAGENAME.SKILLS) as Observable<ISkillsPage>)
+      .pipe(
+        tap(_ => this.displaySpinner$.next(false)),
+        catchError((err) => {
+          this._snackBar.open(err, 'X', {
+            duration: 6000,
+            verticalPosition: 'bottom',
+            horizontalPosition: 'center'
+          });
+          this.displaySpinner$.next(false);
+          return EMPTY;
+        })
+      );
   }
 
   editSkillsPageDetails() {

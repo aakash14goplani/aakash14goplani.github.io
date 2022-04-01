@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { BehaviorSubject, concatMap, last, Observable, switchMap } from 'rxjs';
+import { BehaviorSubject, concatMap, last, map, Observable, switchMap } from 'rxjs';
 import { Collections, Documents, Locale, PAGENAME } from '../global.model';
 
 @Injectable({
@@ -10,6 +10,7 @@ import { Collections, Documents, Locale, PAGENAME } from '../global.model';
 export class ContentService {
 
   private locale$ = new BehaviorSubject<Locale>(Locale.en);
+  private pagesWithSnapshot: Array<PAGENAME> = [PAGENAME.BLOGS, PAGENAME.PROJECTS, PAGENAME.WORK_EXPERIENCE];
 
   constructor(
     private datastore: AngularFirestore,
@@ -19,14 +20,48 @@ export class ContentService {
   /**
    * Gets content of a page from firestore
    * @param pagename { PAGENAME } - Page Name
-   * @returns { Observable<PAGE> } - Observable of Page Content
+   * @returns { Observable<T | undefined> | Observable<T[]> } - Observable of Page Content
    */
-  getContentForPage<T>(pagename: PAGENAME): Observable<T | undefined> {
+  getContentForPage<T>(pagename: PAGENAME): Observable<T | undefined> | Observable<T[]> {
+    if (this.pagesWithSnapshot.includes(pagename)) {
+      return this.getContentWithIdForPage<T>(pagename);
+    }
     return this.getApplicationLocale().pipe(
       switchMap((locale) => {
         const document = this.fetchDocumentName(locale, pagename);
         return this.datastore.collection<T>(Collections[pagename]).doc(document).valueChanges();
       })
+    );
+  }
+
+  /**
+   * Returns content of a page from firestore that has auto-generated document name
+   * @param pagename { PAGENAME } - Page Name
+   * @returns { Observable<T[]> } - Observable of Page Content
+   */
+  private getContentWithIdForPage<T>(pagename: PAGENAME): Observable<T[]> {
+    return this.getApplicationLocale().pipe(
+      switchMap(locale => this.datastore
+        .collection<T>(Collections[pagename])
+        .snapshotChanges().pipe(
+          map((metadata) => {
+            const dataToReturn: T[] = [];
+            metadata.forEach((_data) => {
+              const id = _data.payload.doc.id;
+              const data = _data.payload.doc.data();
+              if (locale === Locale.en) {
+                if (id.endsWith('_en')) {
+                  dataToReturn.push(data);
+                }
+              } else {
+                if (id.endsWith('_hi')) {
+                  dataToReturn.push(data);
+                }
+              }
+            });
+            return dataToReturn;
+          })
+        ))
     );
   }
 
@@ -82,7 +117,7 @@ export class ContentService {
    * @returns { Documents } - Document Name
    */
   private fetchDocumentName(locale: Locale, pagename: PAGENAME): Documents {
-    const map = {
+    const mapper = {
       [PAGENAME.HOME]: {
         [Locale.en]: Documents.HOME_PAGE_EN,
         [Locale.hi]: Documents.HOME_PAGE_HI
@@ -109,6 +144,6 @@ export class ContentService {
       }
     };
 
-    return map[pagename][locale];
+    return mapper[pagename][locale];
   }
 }

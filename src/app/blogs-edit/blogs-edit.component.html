@@ -1,1 +1,53 @@
-<p>blogs-edit works!</p>
+<section for="blogs-edit-page">
+  <mat-card class="blogs-edit-page__container">
+    <mat-card-title class="blogs-edit-page__container__title">Edit Blog</mat-card-title>
+    <mat-card-content class="blogs-edit-page__container__contents">
+      <form [formGroup]="blogsEditForm" (ngSubmit)="onSubmit()">
+        <!-- edit title -->
+        <mat-form-field>
+          <mat-label>Blog Title</mat-label>
+          <input matInput placeholder="Blog Title" formControlName="blogTitle">
+          <mat-error *ngIf="blogsEditForm?.get('blogTitle')?.errors">Please enter valid title</mat-error>
+        </mat-form-field>
+        <!-- edit URL -->
+        <mat-form-field>
+          <mat-label>Blog URL</mat-label>
+          <input matInput placeholder="Blog URL" formControlName="blogURL">
+          <mat-error *ngIf="blogsEditForm?.get('blogURL')?.errors">Please enter valid URL</mat-error>
+        </mat-form-field>
+        <!-- edit button label text -->
+        <mat-form-field>
+          <mat-label>Blog Label Text</mat-label>
+          <input matInput placeholder="Blog Button Text" formControlName="blogButtonText">
+          <mat-error *ngIf="blogsEditForm?.get('blogButtonText')?.errors">Please enter valid label text</mat-error>
+        </mat-form-field>
+        <!-- edit description -->
+        <div class="blogs-edit-page__container__contents--description" formArrayName="description">
+          <ng-container *ngFor="let control of descriptionControlFn; let i = index" [formGroupName]="i">
+            <div>
+              <mat-form-field>
+                <mat-label>Blog Description #{{i + 1}}</mat-label>
+                <textarea matInput placeholder="Blog Description" [formControl]="getDescriptionControl(i)" rows="5"></textarea>
+                <mat-error *ngIf="control?.errors">Please enter valid description</mat-error>
+              </mat-form-field>
+              <!-- delete blog description -->
+              <button mat-raised-button type="button" color="warn" (click)="removeDescription(i)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </ng-container>
+        </div>
+        <!-- add new description -->
+        <button mat-raised-button type="button" (click)="addDescription()">
+          <mat-icon>add</mat-icon>
+          <span>Add New Description</span>
+        </button>
+        <!-- cta -->
+        <mat-card-actions class="blogs-edit-page__container__contents__cta">
+          <button mat-raised-button color="primary" type="button" (click)="backToBlogsPage()">Cancel</button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="!blogsEditForm.valid">Save</button>
+        </mat-card-actions>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</section>

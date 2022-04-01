@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { tap, takeUntil, Subject } from 'rxjs';
+import { tap, takeUntil, Subject, Observable } from 'rxjs';
 import { ContentService } from '../shared/content-service/content.service';
 import { ISkills, ISkillsPage, PAGENAME } from '../shared/global.model';
 
@@ -21,7 +21,6 @@ export class SkillsEditComponent implements OnInit, OnDestroy {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private cdr: ChangeDetectorRef,
     private service: ContentService,
     private _snackBar: MatSnackBar
   ) {
@@ -45,7 +44,7 @@ export class SkillsEditComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.service.getContentForPage<ISkillsPage>(PAGENAME.SKILLS).pipe(
+    (this.service.getContentForPage<ISkillsPage>(PAGENAME.SKILLS) as Observable<ISkillsPage>).pipe(
       tap(_ => this.displaySpinner.next(true)),
       takeUntil(this.unsubscriber$)
     ).subscribe({

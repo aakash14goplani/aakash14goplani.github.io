@@ -1,8 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { catchError, EMPTY, Observable, Subject, tap } from 'rxjs';
 import { ContentService } from '../shared/content-service/content.service';
-import { IBlogsPage } from '../shared/global.model';
-import { blogsData } from '../shared/site-content/blogs';
+import { IBlogsPage, PAGENAME } from '../shared/global.model';
 
 @Component({
   selector: 'app-blogs',
@@ -12,17 +14,35 @@ import { blogsData } from '../shared/site-content/blogs';
 })
 export class BlogsComponent implements OnInit {
 
-  blogData$: BehaviorSubject<Array<IBlogsPage>> = new BehaviorSubject<Array<IBlogsPage>>(blogsData.en);
+  blogData$!: Observable<IBlogsPage[]>;
+  displaySpinner$: Subject<boolean> = new Subject<boolean>();
 
   constructor(
-    private contentService: ContentService
+    private contentService: ContentService,
+    private router: Router,
+    public firebaseAuth: AngularFireAuth,
+    private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
-    type key = keyof typeof blogsData;
-    this.contentService.getApplicationLocale().subscribe((locale) => {
-      this.blogData$.next(blogsData[locale as key]);
-    });
+    this.displaySpinner$.next(true);
+    this.blogData$ = (this.contentService.getContentForPage<IBlogsPage>(PAGENAME.BLOGS) as Observable<IBlogsPage[]>)
+      .pipe(
+        tap(_ => this.displaySpinner$.next(false)),
+        catchError((err) => {
+          this._snackBar.open(err, 'X', {
+            duration: 6000,
+            verticalPosition: 'bottom',
+            horizontalPosition: 'center'
+          });
+          this.displaySpinner$.next(false);
+          return EMPTY;
+        })
+      );
+  }
+
+  editBlogsPageDetails(blogData: IBlogsPage): void {
+    this.router.navigate(['/blogs-edit'], { state: { data: blogData } });
   }
 
 }

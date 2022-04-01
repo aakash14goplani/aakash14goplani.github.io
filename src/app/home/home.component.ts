@@ -29,18 +29,19 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.clickCounter = 0;
     this.displaySpinner$.next(true);
-    this.introduction$ = this.contentService.getContentForPage<IHomePage>(PAGENAME.HOME).pipe(
-      tap(_ => this.displaySpinner$.next(false)),
-      catchError((err) => {
-        this._snackBar.open(err, 'X', {
-          duration: 6000,
-          verticalPosition: 'bottom',
-          horizontalPosition: 'center'
-        });
-        this.displaySpinner$.next(false);
-        return EMPTY;
-      })
-    );
+    this.introduction$ = (this.contentService.getContentForPage<IHomePage>(PAGENAME.HOME) as Observable<IHomePage>)
+      .pipe(
+        tap(_ => this.displaySpinner$.next(false)),
+        catchError((err) => {
+          this._snackBar.open(err, 'X', {
+            duration: 6000,
+            verticalPosition: 'bottom',
+            horizontalPosition: 'center'
+          });
+          this.displaySpinner$.next(false);
+          return EMPTY;
+        })
+      );
 
     this.firebaseAuth.authState.pipe(take(1)).subscribe(user => this.isAdmin = !!user);
   }

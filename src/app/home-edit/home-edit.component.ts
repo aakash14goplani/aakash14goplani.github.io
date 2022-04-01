@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnIni
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { catchError, EMPTY, Subject, takeUntil, tap } from 'rxjs';
+import { catchError, EMPTY, Observable, Subject, takeUntil, tap } from 'rxjs';
 import { ContentService } from '../shared/content-service/content.service';
 import { IHomePage, PAGENAME } from '../shared/global.model';
 
@@ -52,7 +52,7 @@ export class HomeEditComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.service.getContentForPage<IHomePage>(PAGENAME.HOME).pipe(
+    (this.service.getContentForPage<IHomePage>(PAGENAME.HOME) as Observable<IHomePage>).pipe(
       tap(_ => this.displaySpinner.next(true)),
       takeUntil(this.unsubscriber$)
     ).subscribe({
