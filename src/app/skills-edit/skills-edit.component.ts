@@ -1,17 +1,16 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { tap, takeUntil, Subject } from 'rxjs';
-import { ISkillsPage } from '../shared/global.model';
-import { SkillsEditService } from './service/skills-edit.service';
+import { ContentService } from '../shared/content-service/content.service';
+import { ISkills, ISkillsPage, PAGENAME } from '../shared/global.model';
 
 @Component({
   selector: 'app-skills-edit',
   templateUrl: './skills-edit.component.html',
   styleUrls: ['./skills-edit.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [SkillsEditService]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SkillsEditComponent implements OnInit, OnDestroy {
 
@@ -23,7 +22,7 @@ export class SkillsEditComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private router: Router,
     private cdr: ChangeDetectorRef,
-    private service: SkillsEditService,
+    private service: ContentService,
     private _snackBar: MatSnackBar
   ) {
     this.skillsEditForm = this.formConfiguration;
@@ -46,13 +45,13 @@ export class SkillsEditComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.service.initializeSkillsEditPageContent().pipe(
+    this.service.getContentForPage<ISkillsPage>(PAGENAME.SKILLS).pipe(
       tap(_ => this.displaySpinner.next(true)),
       takeUntil(this.unsubscriber$)
     ).subscribe({
       next: (data) => {
         if (data) {
-          this.prefilForm(data);
+          this.prefillForm(data);
           this.displaySpinner.next(false);
         }
       },
@@ -62,51 +61,98 @@ export class SkillsEditComponent implements OnInit, OnDestroy {
     });
   }
 
-  private prefilForm(data: ISkillsPage) {
+  /**
+   * Prefill form with data from firebase
+   * @param data { ISkillsPage } - data from firebase
+   */
+  private prefillForm(data: ISkillsPage) {
     this.skillsEditForm.patchValue({
+      techSkillHeadline: data.techSkillHeadline,
+      tableColumnA: data.tableColumnA,
+      tableColumnB: data.tableColumnB,
+      techContent: this.prefillContentForTechSkill(data.techContent),
       softSkillHeadline: data.softSkillHeadline,
-      softContent: this.prefilSoftContent(data.softContent)
+      softContent: this.prefillContentFor(data.softContent, 'softContent'),
+      futureLearningHeadline: data.futureLearningHeadline,
+      futureLearnContent: this.prefillContentFor(data.futureLearnContent, 'futureLearnContent')
     });
   }
 
-  private prefilSoftContent(softContent: string[]) {
-    softContent.forEach((content) => {
-      (this.skillsEditForm.get('softContent') as FormArray).push(
+  /**
+   * Prefill content for soft skills and future learning form array content
+   * @param contentArray { any[] } - array of content
+   * @param controlName { string } - name of the control
+   */
+  private prefillContentFor(contentArray: string[], controlName: string) {
+    contentArray.forEach((content) => {
+      (this.skillsEditForm.get(controlName) as FormArray).push(
         new FormControl(content, Validators.required)
       );
     });
   }
 
   /**
-   * Remove soft skill from form
-   * @param index { number } - index of the array
+   * Prefill content for soft skills and future learning form array content
+   * @param contentArray { any[] } - array of content
+   * @param controlName { string } - name of the control
    */
-  removeSoftSkill(index: number) {
-    (this.skillsEditForm.get('softContent') as FormArray).removeAt(index);
+  private prefillContentForTechSkill(techSkills: ISkills[]) {
+    techSkills.forEach((techSkill) => {
+      (this.skillsEditForm.get('techContent') as FormArray).push(
+        this.formBuilder.group({
+          expertise: [techSkill.expertise, Validators.required],
+          skills: [techSkill.skills, Validators.required]
+        })
+      );
+    });
   }
 
   /**
-   * Returns FormControl for the soft skill
+   * Remove soft skill / future learning from the form
+   * @param controlName { string } - name of the control
+   * @param index { number } - index of the array
+   */
+  removeContentFor(controlName: string, index: number) {
+    (this.skillsEditForm.get(controlName) as FormArray).removeAt(index);
+  }
+
+  /**
+   * Returns FormControl for the soft skill & future learning skills
    * @param index { number } - index of the array
    * @returns { FormControl } - FormControl
    */
-  getSoftSkillControlAt(index: number): FormControl {
-    return (this.skillsEditForm.get('softContent') as FormArray).controls[index] as FormControl;
+  getFormControlFor(controlName: string, index: number): FormControl {
+    return (this.skillsEditForm.get(controlName) as FormArray).controls[index] as FormControl;
   }
 
   /**
-   * Return social handles array control
+   * Returns AbstractControl for the future learning & soft skills
+   * @param controlName { string } - name of the control
+   * @returns { AbstractControl[] }
    */
-  get softSkillsControlFn() {
-    return (this.skillsEditForm.get('softContent') as FormArray).controls;
+  getAbstractControlFor(controlName: string): AbstractControl[] {
+    return (this.skillsEditForm.get(controlName) as FormArray).controls;
+  }
+
+  /**
+   * Add new soft skill to form
+   * @param controlName { string } - name of the control
+   */
+  addNewSkillFor(controlName: string): void {
+    (this.skillsEditForm.get(controlName) as FormArray).push(
+      new FormControl('', Validators.required)
+    );
   }
 
   /**
    * Add new soft skill to form
    */
-  addNewSoftSkill(): void {
-    (this.skillsEditForm.get('softContent') as FormArray).push(
-      new FormControl('', Validators.required)
+  addNewTechSkill(): void {
+    (this.skillsEditForm.get('techContent') as FormArray).push(
+      this.formBuilder.group({
+        expertise: ['', Validators.required],
+        skills: ['', Validators.required]
+      })
     );
   }
 
@@ -126,8 +172,8 @@ export class SkillsEditComponent implements OnInit, OnDestroy {
   /**
    * Return back to home page when clicked on cancel button
    */
-  backToHomePage() {
-    this.router.navigate(['/home']);
+  backToSkillsPage() {
+    this.router.navigate(['/skills']);
   }
 
   /**
@@ -135,20 +181,20 @@ export class SkillsEditComponent implements OnInit, OnDestroy {
    */
   onSubmit() {
     this.skillsEditForm.updateValueAndValidity();
-    /* if (this.skillsEditForm.valid) {
-      this.service.onSubmit(this.skillsEditForm.value).pipe(
+    if (this.skillsEditForm.valid) {
+      this.service.updatePageContent<ISkillsPage>(PAGENAME.SKILLS, this.skillsEditForm.value).pipe(
         tap(_ => this.displaySpinner.next(true)),
         takeUntil(this.unsubscriber$)
       ).subscribe({
         next: () => {
           this.displaySpinner.next(false);
-          this.router.navigate(['/home']);
+          this.router.navigate(['/skills']);
         },
         error: (err) => {
           this.handleFirebaseError(err);
         }
       });
-    } */
+    }
   }
 
   ngOnDestroy(): void {

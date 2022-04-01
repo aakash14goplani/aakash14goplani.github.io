@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { BehaviorSubject, Observable, switchMap } from 'rxjs';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { BehaviorSubject, concatMap, last, Observable, switchMap } from 'rxjs';
 import { Collections, Documents, Locale, PAGENAME } from '../global.model';
 
 @Injectable({
@@ -11,7 +12,8 @@ export class ContentService {
   private locale$ = new BehaviorSubject<Locale>(Locale.en);
 
   constructor(
-    private datastore: AngularFirestore
+    private datastore: AngularFirestore,
+    private storage: AngularFireStorage
   ) { }
 
   /**
@@ -33,7 +35,29 @@ export class ContentService {
    * @param pagename { PAGENAME } - Page Name
    * @returns { Observable<PAGE> } - Observable of Page Content
    */
-  // updatePageContent<T>(pagename: PAGENAME, content: T): Observable<void> {}
+  updatePageContent<T>(pagename: PAGENAME, content: T): Observable<void> {
+    return this.getApplicationLocale().pipe(
+      switchMap((locale) => {
+        const document = this.fetchDocumentName(locale, pagename);
+        return this.datastore.collection<T>(Collections[pagename]).doc(document).update(content);
+      })
+    );
+  }
+
+  /**
+   * Uploads image to firebase storage
+   * @param filePath { string } - File Path
+   * @param file { File } - File to upload
+   * @returns { Observable<string> } - Observable of File URL
+   */
+  uploadFileToFireStorage(filePath: string, file: File): Observable<string> {
+    return this.storage.upload(filePath, file, {
+      cacheControl: 'max-age=31536000, public'
+    }).snapshotChanges().pipe(
+      last(),
+      concatMap(() => this.storage.ref(filePath).getDownloadURL())
+    );
+  }
 
   /**
    * Update locale of application

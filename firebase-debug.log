@@ -54,3 +54,58 @@ Java HotSpot(TM) 64-Bit Server VM (build 17.0.2+8-LTS-86, mixed mode, sharing)
 
 Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
  
+[error] 
+[debug] [2022-04-01T05:02:36.356Z] ----------------------------------------------------------------------
+[debug] [2022-04-01T05:02:36.359Z] Command:       F:\Nodejs\node.exe F:\Angular\resume-angular\node_modules\firebase-tools\lib\bin\firebase.js emulators:start --only firestore,auth,storage --import test-data
+[debug] [2022-04-01T05:02:36.360Z] CLI Version:   10.5.0
+[debug] [2022-04-01T05:02:36.360Z] Platform:      win32
+[debug] [2022-04-01T05:02:36.360Z] Node Version:  v16.13.1
+[debug] [2022-04-01T05:02:36.362Z] Time:          Fri Apr 01 2022 10:32:36 GMT+0530 (India Standard Time)
+[debug] [2022-04-01T05:02:36.362Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-04-01T05:02:36.556Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-04-01T05:02:36.557Z] > authorizing via signed-in user (goplaniaakash14@gmail.com)
+[debug] [2022-04-01T05:02:37.663Z] java version "17.0.2" 2022-01-18 LTS
+
+[debug] [2022-04-01T05:02:37.664Z] Java(TM) SE Runtime Environment (build 17.0.2+8-LTS-86)
+Java HotSpot(TM) 64-Bit Server VM (build 17.0.2+8-LTS-86, mixed mode, sharing)
+
+[debug] [2022-04-01T05:02:37.794Z] Parsed Java major version: 17
+[info] i  emulators: Starting emulators: auth, firestore, storage {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: auth, firestore, storage"}}
+[warn] !  emulators: It seems that you are running multiple instances of the emulator suite for project resume-cms-958e7. This may result in unexpected behavior. 
+[debug] [2022-04-01T05:02:37.818Z] [hub] writing locator at C:\Users\hp\AppData\Local\Temp\hub-resume-cms-958e7.json
+[info] i  firestore: Importing data from F:\Angular\resume-angular\test-data\firestore_export\firestore_export.overall_export_metadata {"metadata":{"emulator":{"name":"firestore"},"message":"Importing data from F:\\Angular\\resume-angular\\test-data\\firestore_export\\firestore_export.overall_export_metadata"}}
+[debug] [2022-04-01T05:02:37.860Z] Ignoring unsupported arg: projectId {"metadata":{"emulator":{"name":"firestore"},"message":"Ignoring unsupported arg: projectId"}}
+[debug] [2022-04-01T05:02:37.861Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"firestore"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2022-04-01T05:02:37.861Z] Starting Firestore Emulator with command {"binary":"java","args":["-Dgoogle.cloud_firestore.debug_log_level=FINE","-Duser.language=en","-jar","C:\\Users\\hp\\.cache\\firebase\\emulators\\cloud-firestore-emulator-v1.14.1.jar","--host","localhost","--port",4080,"--seed_from_export","F:\\Angular\\resume-angular\\test-data\\firestore_export\\firestore_export.overall_export_metadata","--rules","F:\\Angular\\resume-angular\\firestore.rules"],"optionalArgs":["port","webchannel_port","host","rules","functions_emulator","seed_from_export"],"joinArgs":false} {"metadata":{"emulator":{"name":"firestore"},"message":"Starting Firestore Emulator with command {\"binary\":\"java\",\"args\":[\"-Dgoogle.cloud_firestore.debug_log_level=FINE\",\"-Duser.language=en\",\"-jar\",\"C:\\\\Users\\\\hp\\\\.cache\\\\firebase\\\\emulators\\\\cloud-firestore-emulator-v1.14.1.jar\",\"--host\",\"localhost\",\"--port\",4080,\"--seed_from_export\",\"F:\\\\Angular\\\\resume-angular\\\\test-data\\\\firestore_export\\\\firestore_export.overall_export_metadata\",\"--rules\",\"F:\\\\Angular\\\\resume-angular\\\\firestore.rules\"],\"optionalArgs\":[\"port\",\"webchannel_port\",\"host\",\"rules\",\"functions_emulator\",\"seed_from_export\"],\"joinArgs\":false}"}}
+[info] i  firestore: Firestore Emulator logging to firestore-debug.log {"metadata":{"emulator":{"name":"firestore"},"message":"Firestore Emulator logging to \u001b[1mfirestore-debug.log\u001b[22m"}}
+[info] i  auth: Importing config from F:\Angular\resume-angular\test-data\auth_export\config.json {"metadata":{"emulator":{"name":"database"},"message":"Importing config from F:\\Angular\\resume-angular\\test-data\\auth_export\\config.json"}}
+[info] i  auth: Importing accounts from F:\Angular\resume-angular\test-data\auth_export\accounts.json {"metadata":{"emulator":{"name":"database"},"message":"Importing accounts from F:\\Angular\\resume-angular\\test-data\\auth_export\\accounts.json"}}
+[debug] [2022-04-01T05:03:12.337Z] Ignoring unsupported arg: port {"metadata":{"emulator":{"name":"storage"},"message":"Ignoring unsupported arg: port"}}
+[debug] [2022-04-01T05:03:14.637Z] Temp file directory for storage emulator: C:\Users\hp\AppData\Local\Temp/firebase/storage/blobs {"metadata":{"emulator":{"name":"storage"},"message":"Temp file directory for storage emulator: C:\\Users\\hp\\AppData\\Local\\Temp/firebase/storage/blobs"}}
+[debug] [2022-04-01T05:03:14.661Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2022-04-01T05:03:14.661Z] Ignoring unsupported arg: port {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: port"}}
+[debug] [2022-04-01T05:03:14.661Z] Starting Emulator UI with command {"binary":"node","args":["C:\\Users\\hp\\.cache\\firebase\\emulators\\ui-v1.6.5\\server.bundle.js"],"optionalArgs":[],"joinArgs":false} {"metadata":{"emulator":{"name":"ui"},"message":"Starting Emulator UI with command {\"binary\":\"node\",\"args\":[\"C:\\\\Users\\\\hp\\\\.cache\\\\firebase\\\\emulators\\\\ui-v1.6.5\\\\server.bundle.js\"],\"optionalArgs\":[],\"joinArgs\":false}"}}
+[info] i  ui: Emulator UI logging to ui-debug.log {"metadata":{"emulator":{"name":"ui"},"message":"Emulator UI logging to \u001b[1mui-debug.log\u001b[22m"}}
+[debug] [2022-04-01T05:03:14.884Z] Web / API server started at localhost:4000
+ {"metadata":{"emulator":{"name":"ui"},"message":"Web / API server started at localhost:4000\n"}}
+[info] 
+┌─────────────────────────────────────────────────────────────┐
+│ ✔  All emulators ready! It is now safe to connect your app. │
+│ i  View Emulator UI at http://localhost:4000                │
+└─────────────────────────────────────────────────────────────┘
+
+┌────────────────┬────────────────┬─────────────────────────────────┐
+│ Emulator       │ Host:Port      │ View in Emulator UI             │
+├────────────────┼────────────────┼─────────────────────────────────┤
+│ Authentication │ localhost:9099 │ http://localhost:4000/auth      │
+├────────────────┼────────────────┼─────────────────────────────────┤
+│ Firestore      │ localhost:4080 │ http://localhost:4000/firestore │
+├────────────────┼────────────────┼─────────────────────────────────┤
+│ Storage        │ localhost:9199 │ http://localhost:4000/storage   │
+└────────────────┴────────────────┴─────────────────────────────────┘
+  Emulator Hub running at localhost:4400
+  Other reserved ports: 4500
+
+Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
+ 

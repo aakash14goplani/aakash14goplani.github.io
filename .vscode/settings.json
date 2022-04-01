@@ -1,5 +1,12 @@
 {
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"
-  }
+  },
+  "cSpell.words": [
+    "Firestore",
+    "PAGENAME",
+    "prefill",
+    "unsubscriber",
+    "लिखित"
+  ]
 }

@@ -1,9 +1,68 @@
 <section name="skills-edit-page">
-  <!-- edit soft skills -->
-  <mat-card class="soft-skills-edit-container" role="main">
-    <mat-card-title>Edit Soft Skills</mat-card-title>
-    <mat-card-content class="soft-skills-edit-container__contents">
-      <form [formGroup]="skillsEditForm" (ngSubmit)="onSubmit()" *ngIf="(displaySpinner | async) === false; else displayLoadingSpinner">
+  <form [formGroup]="skillsEditForm" (ngSubmit)="onSubmit()" *ngIf="(displaySpinner | async) === false; else displayLoadingSpinner">
+    <!-- edit technical skills -->
+    <mat-card class="technical-skills-edit-container" role="main">
+      <mat-card-title>Edit Technical Skills</mat-card-title>
+      <mat-card-content class="technical-skills-edit-container__contents">
+        <!-- edit headline -->
+        <div class="form-group">
+          <mat-form-field appearance="standard">
+            <mat-label>Tech Skill Headline</mat-label>
+            <input matInput placeholder="Title" formControlName="techSkillHeadline">
+            <mat-error *ngIf="skillsEditForm.get('techSkillHeadline')?.errors">Please enter valid title</mat-error>
+          </mat-form-field>
+        </div>
+        <!-- edit table column A -->
+        <div class="form-group">
+          <mat-form-field appearance="standard">
+            <mat-label>Tech Skill Headline</mat-label>
+            <input matInput placeholder="Column Title" formControlName="tableColumnA">
+            <mat-error *ngIf="skillsEditForm.get('tableColumnA')?.errors">Please enter valid column label</mat-error>
+          </mat-form-field>
+        </div>
+        <!-- edit table column B -->
+        <div class="form-group">
+          <mat-form-field appearance="standard">
+            <mat-label>Tech Skill Headline</mat-label>
+            <input matInput placeholder="Column Title" formControlName="tableColumnB">
+            <mat-error *ngIf="skillsEditForm.get('tableColumnB')?.errors">Please enter valid column label</mat-error>
+          </mat-form-field>
+        </div>
+        <!-- edit technical skills -->
+        <div class="techContent-form-group" formArrayName="techContent">
+          <ng-container *ngFor="let control of getAbstractControlFor('techContent'); let k = index" [formGroupName]="k">
+            <div class="tech-skill-entry">
+              <mat-form-field appearance="standard">
+                <mat-label>Expertise #{{k + 1}}</mat-label>
+                <input matInput placeholder="Expertise" formControlName="expertise">
+                <mat-error *ngIf="control?.errors">Please enter valid expertise</mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="standard">
+                <mat-label>Tech Skill #{{k + 1}}</mat-label>
+                <input matInput placeholder="Tech Skill" formControlName="skills">
+                <mat-error *ngIf="control?.errors">Please enter valid tech skill</mat-error>
+              </mat-form-field>
+              <!-- delete tech skills -->
+              <div>
+                <button mat-raised-button type="button" color="warn" (click)="removeContentFor('techContent', k)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+        <!-- add tech skills -->
+        <button type="button" mat-button (click)="addNewTechSkill()">
+          <mat-icon>add</mat-icon>
+          <span>Add New Skill</span>
+        </button>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- edit soft skills -->
+    <mat-card class="soft-skills-edit-container" role="main">
+      <mat-card-title>Edit Soft Skills</mat-card-title>
+      <mat-card-content class="soft-skills-edit-container__contents">
         <!-- edit headline -->
         <div class="form-group">
           <mat-form-field appearance="standard">
@@ -14,16 +73,16 @@
         </div>
         <!-- edit soft skills -->
         <div class="softContent-form-group" formArrayName="softContent">
-          <ng-container *ngFor="let control of softSkillsControlFn; let i = index" [formGroupName]="i">
+          <ng-container *ngFor="let control of getAbstractControlFor('softContent'); let i = index" [formGroupName]="i">
             <div class="soft-skill-entry">
               <mat-form-field appearance="standard">
                 <mat-label>Soft Skill #{{i + 1}}</mat-label>
-                <input matInput placeholder="Soft Skill" [formControl]="getSoftSkillControlAt(i)">
+                <input matInput placeholder="Soft Skill" [formControl]="getFormControlFor('softContent', i)">
                 <mat-error *ngIf="control?.errors">Please enter valid soft skill</mat-error>
               </mat-form-field>
               <!-- delete soft skills -->
               <div>
-                <button mat-raised-button type="button" color="warn" (click)="removeSoftSkill(i)">
+                <button mat-raised-button type="button" color="warn" (click)="removeContentFor('softContent', i)">
                   <mat-icon>delete</mat-icon>
                 </button>
               </div>
@@ -31,20 +90,61 @@
           </ng-container>
         </div>
         <!-- add soft skills -->
-        <button type="button" mat-button (click)="addNewSoftSkill()">
+        <button type="button" mat-button (click)="addNewSkillFor('softContent')">
           <mat-icon>add</mat-icon>
-          <span>Add New Soft Skill</span>
+          <span>Add New Skill</span>
         </button>
+      </mat-card-content>
+    </mat-card>
 
+    <!-- edit future learning aspirations -->
+    <mat-card class="future-learning-container" role="main">
+      <mat-card-title>Edit Future Learning Aspirations</mat-card-title>
+      <mat-card-content class="future-learning-container__contents">
+        <!-- edit headline -->
+        <div class="form-group">
+          <mat-form-field appearance="standard">
+            <mat-label>Future Learning Headline</mat-label>
+            <input matInput placeholder="Title" formControlName="futureLearningHeadline">
+            <mat-error *ngIf="skillsEditForm.get('futureLearningHeadline')?.errors">Please enter valid title</mat-error>
+          </mat-form-field>
+        </div>
+        <!-- edit future Learning skills -->
+        <div class="softContent-form-group" formArrayName="futureLearnContent">
+          <ng-container *ngFor="let control of getAbstractControlFor('futureLearnContent'); let j = index" [formGroupName]="j">
+            <div class="soft-skill-entry">
+              <mat-form-field appearance="standard">
+                <mat-label>Future Learning Skill #{{j + 1}}</mat-label>
+                <input matInput placeholder="Future Learning Skill" [formControl]="getFormControlFor('futureLearnContent', j)">
+                <mat-error *ngIf="control?.errors">Please enter valid future ready skill</mat-error>
+              </mat-form-field>
+              <!-- delete soft skills -->
+              <div>
+                <button mat-raised-button type="button" color="warn" (click)="removeContentFor('futureLearnContent', j)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+        <!-- add soft skills -->
+        <button type="button" mat-button (click)="addNewSkillFor('futureLearnContent')">
+          <mat-icon>add</mat-icon>
+          <span>Add New Skill</span>
+        </button>
+      </mat-card-content>
+    </mat-card>
 
-        <!-- submit / cancel buttons -->
-        <div class="soft-skills-edit-container__contents__cta">
-          <button mat-raised-button type="button" color="primary" (click)="backToHomePage()">Cancel</button>
+    <!-- submit / cancel buttons -->
+    <mat-card class="future-learning-container" role="main">
+      <mat-card-content class="future-learning-container__contents">
+        <div class="future-learning-container__contents__cta">
+          <button mat-raised-button type="button" color="primary" (click)="backToSkillsPage()">Cancel</button>
           <button mat-raised-button type="submit" color="accent" [disabled]="!skillsEditForm.valid">Save</button>
         </div>
-      </form>
-    </mat-card-content>
-  </mat-card>
+      </mat-card-content>
+    </mat-card>
+  </form>
 </section>
 
 <ng-template #displayLoadingSpinner>

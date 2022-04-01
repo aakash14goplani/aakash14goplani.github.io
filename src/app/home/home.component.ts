@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { catchError, EMPTY, Observable, Subject, tap } from 'rxjs';
+import { catchError, EMPTY, Observable, Subject, take, tap } from 'rxjs';
 import { ContentService } from '../shared/content-service/content.service';
 import { IHomePage, PAGENAME } from '../shared/global.model';
 
@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   introduction$!: Observable<IHomePage | undefined>;
   displaySpinner$: Subject<boolean> = new Subject<boolean>();
   private clickCounter: number = 0;
+  private isAdmin: boolean = false;
 
   constructor(
     private contentService: ContentService,
@@ -40,6 +41,8 @@ export class HomeComponent implements OnInit {
         return EMPTY;
       })
     );
+
+    this.firebaseAuth.authState.pipe(take(1)).subscribe(user => this.isAdmin = !!user);
   }
 
   /**
@@ -51,7 +54,7 @@ export class HomeComponent implements OnInit {
     event.preventDefault();
     this.clickCounter++;
 
-    if (this.clickCounter >= 2) {
+    if (this.clickCounter >= 2 && !this.isAdmin) {
       this.clickCounter = 0;
       this.router.navigate(['/auth']);
     }

@@ -27,7 +27,7 @@ const futureLearningSkills: Array<string> = [
   'Focusing more on Cloud',
   'Better at System Designing',
   'Better at DSA',
-  'Better at designing systems using Micro-frontends & Monorepos',
+  'Better at designing systems using Micro-frontend & Monorepos',
   'Time Management',
   'Patience',
   'Leadership'

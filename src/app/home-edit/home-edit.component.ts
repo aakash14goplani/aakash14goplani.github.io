@@ -3,15 +3,14 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { catchError, EMPTY, Subject, takeUntil, tap } from 'rxjs';
-import { IHomePage } from '../shared/global.model';
-import { HomeEditService } from './services/home-edit.service';
+import { ContentService } from '../shared/content-service/content.service';
+import { IHomePage, PAGENAME } from '../shared/global.model';
 
 @Component({
   selector: 'app-home-edit',
   templateUrl: './home-edit.component.html',
   styleUrls: ['./home-edit.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [HomeEditService]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeEditComponent implements OnInit, OnDestroy {
 
@@ -26,7 +25,7 @@ export class HomeEditComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private router: Router,
     private cdr: ChangeDetectorRef,
-    private service: HomeEditService,
+    private service: ContentService,
     private _snackBar: MatSnackBar
   ) {
     this.homeEditForm = this.formConfiguration;
@@ -53,13 +52,13 @@ export class HomeEditComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.service.initializeHomeEditPageContent().pipe(
+    this.service.getContentForPage<IHomePage>(PAGENAME.HOME).pipe(
       tap(_ => this.displaySpinner.next(true)),
       takeUntil(this.unsubscriber$)
     ).subscribe({
       next: (data) => {
         if (data) {
-          this.prefilForm(data);
+          this.prefillForm(data);
         }
       },
       error: (err) => {
@@ -72,13 +71,13 @@ export class HomeEditComponent implements OnInit, OnDestroy {
    * Prefill form with data
    * @param data { IHomePage }
    */
-  private prefilForm(data: IHomePage) {
+  private prefillForm(data: IHomePage) {
     this.homeEditForm.patchValue({
       title: data.title,
       subtitle: data.subtitle,
       description: data.description,
       imageURL: data.imageURL,
-      socialHandles: this.getPrefilValueForSocialHandles(data.socialHandles)
+      socialHandles: this.getPrefillValueForSocialHandles(data.socialHandles)
     });
     this.imageUrl = data.imageURL;
     this.displaySpinner.next(false);
@@ -88,7 +87,7 @@ export class HomeEditComponent implements OnInit, OnDestroy {
    * Prefill social handles array
    * @param socialHandles { ISocialHandle[] }
    */
-  private getPrefilValueForSocialHandles(socialHandles: Array<{ title: string; url: string; }>): void {
+  private getPrefillValueForSocialHandles(socialHandles: Array<{ title: string; url: string; }>): void {
     socialHandles.forEach((socialHandle) => {
       (this.homeEditForm.get('socialHandles') as FormArray).push(this.formBuilder.group({
         title: [socialHandle.title, Validators.required],
@@ -166,7 +165,7 @@ export class HomeEditComponent implements OnInit, OnDestroy {
   onSubmit() {
     this.homeEditForm.updateValueAndValidity();
     if (this.homeEditForm.valid) {
-      this.service.onSubmit(this.homeEditForm.value).pipe(
+      this.service.updatePageContent<IHomePage>(PAGENAME.HOME, this.homeEditForm.value).pipe(
         tap(_ => this.displaySpinner.next(true)),
         takeUntil(this.unsubscriber$)
       ).subscribe({
