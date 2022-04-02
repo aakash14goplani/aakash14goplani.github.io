@@ -1,1 +1,141 @@
-<p>education-edit works!</p>
+<section for="education-edit-page">
+  <form [formGroup]="educationEditForm" (ngSubmit)="onSubmit()" *ngIf="(displaySpinner | async) === false; else displayLoadingSpinner">
+    <!-- edit education -->
+    <mat-card class="education-edit-container" role="main">
+      <mat-card-title>Edit Education</mat-card-title>
+      <mat-card-content class="education-edit-container__contents">
+        <!-- edit headline -->
+        <div class="form-group">
+          <mat-form-field appearance="standard">
+            <mat-label>Education Headline</mat-label>
+            <input matInput placeholder="Title" formControlName="educationHeadline">
+            <mat-error *ngIf="educationEditForm.get('educationHeadline')?.errors">Please enter valid title</mat-error>
+          </mat-form-field>
+        </div>
+        <!-- edit education details -->
+        <div class="education-details-form-group" formArrayName="educationDetails">
+          <ng-container *ngFor="let control of getAbstractControlFor('educationDetails'); let i = index" [formGroupName]="i">
+            <div class="education-details-entry">
+              <!-- degree -->
+              <mat-form-field appearance="standard">
+                <mat-label>Degree</mat-label>
+                <input matInput placeholder="Degree" formControlName="degree">
+                <mat-error *ngIf="control?.errors">Please enter valid degree</mat-error>
+              </mat-form-field>
+              <!-- institute -->
+              <mat-form-field appearance="standard">
+                <mat-label>Institute</mat-label>
+                <input matInput placeholder="Institute" formControlName="institute">
+                <mat-error *ngIf="control?.errors">Please enter valid institute name</mat-error>
+              </mat-form-field>
+              <!-- duration -->
+              <mat-form-field appearance="standard">
+                <mat-label>Duration</mat-label>
+                <input matInput placeholder="Duration" formControlName="duration">
+                <mat-error *ngIf="control?.errors">Please enter valid duration</mat-error>
+              </mat-form-field>
+              <!-- specialty -->
+              <mat-form-field appearance="standard">
+                <mat-label>Specialty</mat-label>
+                <input matInput placeholder="Specialty" formControlName="specialty">
+                <mat-error *ngIf="control?.errors">Please enter valid specialty</mat-error>
+              </mat-form-field>
+              <!-- percentage -->
+              <mat-form-field appearance="standard">
+                <mat-label>Percentage</mat-label>
+                <input matInput placeholder="Percentage" formControlName="percentage">
+                <mat-error *ngIf="control?.errors">Please enter valid percentage</mat-error>
+              </mat-form-field>
+              <!-- delete education entry -->
+              <button mat-icon-button type="button" color="warn" (click)="deleteEntryFor('educationDetails', i)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </ng-container>
+          <!--- add new education details -->
+          <button mat-raised-button color="primary" (click)="addEducationDetails()">
+            <mat-icon>add</mat-icon>
+            <span>New Education Entry</span>
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- edit certifications -->
+    <mat-card class="certifications-edit-container" role="main">
+      <mat-card-title>Edit Certifications</mat-card-title>
+      <mat-card-content class="certifications-edit-container__contents">
+        <!-- edit headline -->
+        <div class="form-group">
+          <mat-form-field appearance="standard">
+            <mat-label>Certifications Headline</mat-label>
+            <input matInput placeholder="Title" formControlName="certificationHeadline">
+            <mat-error *ngIf="educationEditForm.get('certificationHeadline')?.errors">Please enter valid title</mat-error>
+          </mat-form-field>
+        </div>
+        <!-- edit button label -->
+        <div class="form-group">
+          <mat-form-field appearance="standard">
+            <mat-label>Button Label Text</mat-label>
+            <input matInput placeholder="Title" formControlName="buttonText">
+            <mat-error *ngIf="educationEditForm.get('buttonText')?.errors">Please enter valid label</mat-error>
+          </mat-form-field>
+        </div>
+        <!-- edit certifications -->
+        <div class="certifications-form-group" formArrayName="certificationList">
+          <ng-container *ngFor="let control of getAbstractControlFor('certificationList'); let k = index" [formGroupName]="k">
+            <div class="certification-entry">
+              <!-- name -->
+              <mat-form-field appearance="standard">
+                <mat-label>Certification name</mat-label>
+                <input matInput placeholder="Certification name" formControlName="name">
+                <mat-error *ngIf="control?.errors">Please enter valid certification name</mat-error>
+              </mat-form-field>
+              <!-- organization -->
+              <mat-form-field appearance="standard">
+                <mat-label>Certification issuing organization</mat-label>
+                <input matInput placeholder="Certification issuing organization" formControlName="organization">
+                <mat-error *ngIf="control?.errors">Please enter valid certification issuing organization</mat-error>
+              </mat-form-field>
+              <!-- issued -->
+              <mat-form-field appearance="standard">
+                <mat-label>Certification issued data</mat-label>
+                <input matInput placeholder="Certification issued date" formControlName="issued">
+                <mat-error *ngIf="control?.errors">Please enter valid certification issued date</mat-error>
+              </mat-form-field>
+              <!-- url -->
+              <mat-form-field appearance="standard">
+                <mat-label>Certification URL</mat-label>
+                <input matInput placeholder="Certification URL" formControlName="url">
+                <mat-error *ngIf="control?.errors">Please enter valid certification url</mat-error>
+              </mat-form-field>
+              <!-- delete certifications -->
+              <button mat-icon-button type="button" color="warn" (click)="deleteEntryFor('certificationList', k)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </ng-container>
+        </div>
+        <!--- add new certification details -->
+        <button mat-raised-button color="primary" (click)="addCertificationDetails()">
+          <mat-icon>add</mat-icon>
+          <span>New Certification Entry</span>
+        </button>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- submit / cancel buttons -->
+    <mat-card class="certifications-edit-container" role="main">
+      <mat-card-content class="certifications-edit-container__contents">
+        <div class="certifications-edit-container__contents__cta">
+          <button mat-raised-button type="button" color="primary" (click)="backToEducationPage()">Cancel</button>
+          <button mat-raised-button type="submit" color="accent" [disabled]="!educationEditForm.valid">Save</button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </form>
+</section>
+
+<ng-template #displayLoadingSpinner>
+  <mat-spinner class="skills-edit-container__spinner" [diameter]="100"></mat-spinner>
+</ng-template>

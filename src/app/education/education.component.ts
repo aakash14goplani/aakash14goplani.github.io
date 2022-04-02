@@ -1,8 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { catchError, EMPTY, Observable, Subject, tap } from 'rxjs';
 import { ContentService } from '../shared/content-service/content.service';
-import { IEducationPage } from '../shared/global.model';
-import { educationData } from '../shared/site-content/education';
+import { IEducationPage, PAGENAME } from '../shared/global.model';
 
 @Component({
   selector: 'app-education',
@@ -10,19 +12,45 @@ import { educationData } from '../shared/site-content/education';
   styleUrls: ['./education.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class EducationComponent implements OnInit {
+export class EducationComponent implements OnInit, OnDestroy {
 
-  educationData$: BehaviorSubject<IEducationPage> = new BehaviorSubject<IEducationPage>(educationData.en);
+  educationData$!: Observable<IEducationPage>;
+  displaySpinner$: Subject<boolean> = new Subject<boolean>();
+  unsubscriber$: Subject<void> = new Subject<void>();
 
   constructor(
-    private contentService: ContentService
+    private contentService: ContentService,
+    private router: Router,
+    public firebaseAuth: AngularFireAuth,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
-    type key = keyof typeof educationData;
-    this.contentService.getApplicationLocale().subscribe((locale) => {
-      this.educationData$.next(educationData[locale as key]);
-    });
+    this.displaySpinner$.next(true);
+    this.educationData$ = (this.contentService.getContentForPage<IEducationPage>(PAGENAME.EDUCATION) as Observable<IEducationPage>)
+      .pipe(
+        tap(_ => this.displaySpinner$.next(false)),
+        catchError((err) => {
+          this.snackBar.open(err, 'X', {
+            duration: 6000,
+            verticalPosition: 'bottom',
+            horizontalPosition: 'center'
+          });
+          this.displaySpinner$.next(false);
+          return EMPTY;
+        })
+      );
+  }
+
+  /**
+   * Edit editEducation entry
+   */
+  editEducationPageDetails(): void {
+    this.router.navigate(['/education-edit']);
+  }
+
+  ngOnDestroy(): void {
+    this.displaySpinner$.complete();
   }
 
 }

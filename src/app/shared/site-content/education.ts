@@ -5,27 +5,39 @@ const educationDetails: Array<IDegree> = [
   {
     institute: 'Vivekanand Education Society\'s Institute Of Technology',
     degree: 'Bachelor of Engineering (B.E.)',
-    speciality: 'Computer',
+    specialty: 'Computer',
     duration: '2011 - 2015',
     percentage: '73%'
   },
   {
-    institute: 'Smt. Chandibai Himatlal Mansukhani College',
+    institute: 'Smt. Chandibai Himatmal Mansukhani College',
     degree: 'High School Degree in Science',
-    speciality: 'Science',
+    specialty: 'Science',
     duration: '2009 - 2011',
     percentage: '86%'
   },
   {
     institute: 'St. Thomas English School',
     degree: 'SSC Degree',
-    speciality: 'School/Secondary Certificate Programs',
+    specialty: 'School/Secondary Certificate Programs',
     duration: '1997 - 2009',
     percentage: '89%'
   }
 ];
 
 const certificationList: Array<ICertifications> = [
+  {
+    name: 'Firebase & AngularFire In Depth',
+    organization: 'Udemy',
+    issued: 'March 2022',
+    url: environment.firebase_certificate
+  },
+  {
+    name: 'Progressive Web Apps (PWA) - The Complete Guide',
+    organization: 'Udemy',
+    issued: 'February 2022',
+    url: environment.pwa_certificate
+  },
   {
     name: 'CSS - The Complete Guide',
     organization: 'Udemy',
@@ -68,27 +80,39 @@ const educationDetailsHi: Array<IDegree> = [
   {
     institute: 'विवेकानंद एजुकेशन सोसाइटी इंस्टीट्यूट ऑफ टेक्नोलॉजी',
     degree: 'बैचलर ऑफ इंजीनियरिंग (बी.ई.)',
-    speciality: 'संगणक',
+    specialty: 'संगणक',
     duration: '2011 - 2015',
     percentage: '73%'
   },
   {
     institute: 'श्रीमती चंडीबाई हिम्मतलाल मनसुखानी कॉलेज',
     degree: 'विज्ञान में हाई स्कूल की डिग्री',
-    speciality: 'विज्ञान',
+    specialty: 'विज्ञान',
     duration: '2009 - 2011',
     percentage: '86%'
   },
   {
     institute: 'सेंट थॉमस इंग्लिश स्कूल',
     degree: 'एस.एस.सी. डिग्री',
-    speciality: 'स्कूल/माध्यमिक प्रमाणपत्र कार्यक्रम',
+    specialty: 'स्कूल/माध्यमिक प्रमाणपत्र कार्यक्रम',
     duration: '1997 - 2009',
     percentage: '89%'
   }
 ];
 
 const certificationListHi: Array<ICertifications> = [
+  {
+    name: 'Firebase & AngularFire In Depth',
+    organization: 'Udemy',
+    issued: 'मार्च 2022',
+    url: environment.firebase_certificate
+  },
+  {
+    name: 'Progressive Web Apps (PWA) - The Complete Guide',
+    organization: 'Udemy',
+    issued: 'फ़रवरी 2022',
+    url: environment.pwa_certificate
+  },
   {
     name: 'CSS - The Complete Guide',
     organization: 'Udemy',

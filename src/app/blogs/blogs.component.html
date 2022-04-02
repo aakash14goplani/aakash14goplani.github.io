@@ -16,7 +16,7 @@
     </mat-card>
   </div>
   <!-- add new blog -->
-  <div class="add-new-blog-cta">
+  <div class="add-new-blog-cta" *ngIf="firebaseAuth.user | async">
     <button mat-raised-button color="primary" (click)="addNewBlog()">
       <mat-icon>add</mat-icon>
       Add New Blog

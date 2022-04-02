@@ -19,7 +19,7 @@
       height: 10rem;
     }
 
-    .dot-seperator {
+    .dot-separator {
       font-weight: bolder;
       font-size: 1.2rem;
       vertical-align: text-bottom;
@@ -34,6 +34,11 @@
       margin: 1rem 0 !important;
     }
   }
+}
+
+button[mat-raised-button] {
+  display: flex;
+  margin: auto;
 }
 
 @media screen and (min-width: $small_desktop_screens) {

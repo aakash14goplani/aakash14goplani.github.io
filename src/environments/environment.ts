@@ -26,6 +26,8 @@ export const environment = {
   angular_certificate: 'https://www.udemy.com/certificate/UC-7c1f5bd9-7d54-4a51-978e-182034af0a4d/',
   ocpjp_certificate: 'https://www.youracclaim.com/badges/0ad13351-cdbd-4bcd-b1a5-299123e4c38a/linked_in_profile',
   ocajp_certificate: 'https://www.youracclaim.com/badges/42443813-d280-4af5-8a5b-acabf7d64694/linked_in_profile',
+  firebase_certificate: 'https://www.udemy.com/certificate/UC-af643882-1fc5-4b3e-86e4-40f37b0ae6c6/',
+  pwa_certificate: 'https://www.udemy.com/certificate/UC-7d2222af-ddd8-4743-9899-4d5a74945356/',
   project_angular_snippet: 'https://github.com/aakash14goplani/AngularAwesomeSnippets',
   project_angular_ngrx: 'https://github.com/aakash14goplani/Angular-NgRx',
   project_angular_reactive: 'https://github.com/aakash14goplani/angular-reactive',

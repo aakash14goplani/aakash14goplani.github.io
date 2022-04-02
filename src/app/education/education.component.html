@@ -1,5 +1,5 @@
 <section for="education-page">
-  <ng-container *ngIf="(educationData$ | async) as educationData; else test">
+  <ng-container *ngIf="(educationData$ | async) as educationData; else displayLoadingSpinner">
     <!-- Education -->
     <mat-card class="education-page-container" role="main">
       <mat-card-title class="education-page-container__contents--title">{{ educationData.educationHeadline }}</mat-card-title>
@@ -7,8 +7,8 @@
         <mat-list role="list">
           <mat-list-item role="listitem" *ngFor="let entry of educationData.educationDetails">
             <div mat-line class="wrap">{{ entry.institute }}</div>
-            <div mat-line class="wrap">{{ entry.degree }} <span class="dot-seperator"> . </span> {{ entry.speciality }}</div>
-            <div mat-line>{{ entry.percentage }} <span class="dot-seperator"> . </span> ({{ entry.duration }})</div>
+            <div mat-line class="wrap">{{ entry.degree }} <span class="dot-separator"> . </span> {{ entry.specialty }}</div>
+            <div mat-line>{{ entry.percentage }} <span class="dot-separator"> . </span> ({{ entry.duration }})</div>
             <mat-divider></mat-divider>
           </mat-list-item>
         </mat-list>
@@ -31,8 +31,16 @@
         </mat-list>
       </mat-card-content>
     </mat-card>
+    <!-- Edit Details -->
+    <ng-container *ngIf="firebaseAuth.user | async">
+      <button mat-raised-button color="primary" (click)="editEducationPageDetails()">
+        <mat-icon>edit</mat-icon>
+        Edit Details
+      </button>
+    </ng-container>
   </ng-container>
-  <ng-template #test>
-    <p>LOADING...</p>
-  </ng-template>
 </section>
+
+<ng-template #displayLoadingSpinner>
+  <mat-spinner class="skills-page-container__spinner" [diameter]="100"></mat-spinner>
+</ng-template>
