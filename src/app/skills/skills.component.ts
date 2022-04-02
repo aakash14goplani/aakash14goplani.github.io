@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -12,7 +12,7 @@ import { ISkillsPage, PAGENAME } from '../shared/global.model';
   styleUrls: ['./skills.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SkillsComponent implements OnInit {
+export class SkillsComponent implements OnInit, OnDestroy {
 
   displayedColumns: Array<string> = ['expertise', 'skills'];
   skillsData$!: Observable<ISkillsPage | undefined>;
@@ -44,5 +44,9 @@ export class SkillsComponent implements OnInit {
 
   editSkillsPageDetails() {
     this.router.navigate(['/skills-edit']);
+  }
+
+  ngOnDestroy(): void {
+    this.displaySpinner$.complete();
   }
 }

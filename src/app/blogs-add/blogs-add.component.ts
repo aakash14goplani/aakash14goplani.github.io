@@ -1,23 +1,21 @@
-import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnDestroy } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, FormArray, FormControl, AbstractControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { Subject, takeUntil, tap } from 'rxjs';
+import { Subject, tap, takeUntil } from 'rxjs';
 import { ContentService } from '../shared/content-service/content.service';
 import { IBlogsPage, PAGENAME } from '../shared/global.model';
 
 @Component({
-  selector: 'app-blogs-edit',
-  templateUrl: './blogs-edit.component.html',
-  styleUrls: ['./blogs-edit.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'app-blogs-add',
+  templateUrl: './blogs-add.component.html',
+  styleUrls: ['./blogs-add.component.scss']
 })
-export class BlogsEditComponent implements OnDestroy {
+export class BlogsAddComponent implements OnDestroy {
 
-  blogsEditForm: FormGroup;
+  blogsAddForm: FormGroup;
   displaySpinner: Subject<boolean> = new Subject<boolean>();
   unsubscriber$: Subject<void> = new Subject<void>();
-  private dataToEdit: IBlogsPage;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -25,14 +23,7 @@ export class BlogsEditComponent implements OnDestroy {
     private contentService: ContentService,
     private _snackBar: MatSnackBar
   ) {
-    this.blogsEditForm = this.formConfiguration;
-    this.dataToEdit = this.router.getCurrentNavigation()?.extras?.state?.['data'] || window.history.state?.data;
-    // route back on page reload
-    if (!this.dataToEdit) {
-      this.router.navigate(['/blogs']);
-    } else {
-      this.prefillForm();
-    }
+    this.blogsAddForm = this.formConfiguration;
   }
 
   /**
@@ -43,31 +34,9 @@ export class BlogsEditComponent implements OnDestroy {
       blogTitle: ['', Validators.required],
       blogURL: ['', Validators.required],
       blogButtonText: ['', Validators.required],
-      description: this.formBuilder.array([])
-    });
-  }
-
-  /**
-   * Prefill form with data from firebase
-   */
-  private prefillForm() {
-    this.blogsEditForm.patchValue({
-      blogTitle: this.dataToEdit.blogTitle,
-      blogURL: this.dataToEdit.blogURL,
-      blogButtonText: this.dataToEdit.blogButtonText,
-      description: this.prefillBlogDescription(this.dataToEdit.description)
-    });
-  }
-
-  /**
-   * Prefill blog description
-   * @param descriptionData { string[] } - array of description data
-   */
-  private prefillBlogDescription(descriptionData: string[]) {
-    descriptionData.forEach((content) => {
-      (this.blogsEditForm.get('description') as FormArray).push(
-        new FormControl(content, Validators.required)
-      );
+      description: this.formBuilder.array([
+        this.formBuilder.control('', Validators.required)
+      ])
     });
   }
 
@@ -75,7 +44,7 @@ export class BlogsEditComponent implements OnDestroy {
    * Returns AbstractControl array for description property
    */
   get descriptionControlFn(): AbstractControl[] {
-    return (this.blogsEditForm.get('description') as FormArray).controls;
+    return (this.blogsAddForm.get('description') as FormArray).controls;
   }
 
   /**
@@ -84,7 +53,7 @@ export class BlogsEditComponent implements OnDestroy {
    * @returns { FormControl } - FormControl for description
    */
   getDescriptionControl(index: number): FormControl {
-    return (this.blogsEditForm.get('description') as FormArray).controls[index] as FormControl;
+    return (this.blogsAddForm.get('description') as FormArray).controls[index] as FormControl;
   }
 
   /**
@@ -92,14 +61,14 @@ export class BlogsEditComponent implements OnDestroy {
    * @param index { number } - index of the description
    */
   removeDescription(index: number): void {
-    (this.blogsEditForm.get('description') as FormArray).removeAt(index);
+    (this.blogsAddForm.get('description') as FormArray).removeAt(index);
   }
 
   /**
    * Add new description to form
    */
   addDescription(): void {
-    (this.blogsEditForm.get('description') as FormArray).push(
+    (this.blogsAddForm.get('description') as FormArray).push(
       new FormControl('', Validators.required)
     );
   }
@@ -128,13 +97,9 @@ export class BlogsEditComponent implements OnDestroy {
    * Submit form and update content in firebase
    */
   onSubmit() {
-    this.blogsEditForm.updateValueAndValidity();
-    if (this.blogsEditForm.valid) {
-      const editedData = {
-        id: this.dataToEdit.id,
-        ...this.blogsEditForm.value
-      };
-      this.contentService.updatePageContent<IBlogsPage>(PAGENAME.BLOGS, editedData).pipe(
+    this.blogsAddForm.updateValueAndValidity();
+    if (this.blogsAddForm.valid) {
+      this.contentService.addPageContent<IBlogsPage>(PAGENAME.BLOGS, this.blogsAddForm.value).pipe(
         tap(_ => this.displaySpinner.next(true)),
         takeUntil(this.unsubscriber$)
       ).subscribe({

@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'projects-edit', loadChildren: () => import('./projects-edit/projects-edit.module').then(m => m.ProjectsEditModule) },
   { path: 'blogs', loadChildren: () => import('./blogs/blogs.module').then(m => m.BlogsModule) },
   { path: 'blogs-edit', loadChildren: () => import('./blogs-edit/blogs-edit.module').then(m => m.BlogsEditModule) },
+  { path: 'blogs-add', loadChildren: () => import('./blogs-add/blogs-add.module').then(m => m.BlogsAddModule) },
   { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
   { path: '**', redirectTo: '/home' }
 ];

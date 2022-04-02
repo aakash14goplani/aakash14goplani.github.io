@@ -1,28 +1,28 @@
-<section for="blogs-edit-page">
-  <mat-card class="blogs-edit-page__container">
-    <mat-card-title class="blogs-edit-page__container__title">Edit Blog</mat-card-title>
-    <mat-card-content class="blogs-edit-page__container__contents">
-      <form [formGroup]="blogsEditForm" (ngSubmit)="onSubmit()">
+<section for="blogs-add-page">
+  <mat-card class="blogs-add-page__container">
+    <mat-card-title class="blogs-add-page__container__title">Add New Blog</mat-card-title>
+    <mat-card-content class="blogs-add-page__container__contents">
+      <form [formGroup]="blogsAddForm" (ngSubmit)="onSubmit()">
         <!-- edit title -->
         <mat-form-field>
           <mat-label>Blog Title</mat-label>
-          <input matInput placeholder="Blog Title" formControlName="blogTitle">
-          <mat-error *ngIf="blogsEditForm?.get('blogTitle')?.errors">Please enter valid title</mat-error>
+          <input type="text" matInput placeholder="Blog Title" formControlName="blogTitle">
+          <mat-error *ngIf="blogsAddForm?.get('blogTitle')?.errors">Please enter valid title</mat-error>
         </mat-form-field>
         <!-- edit URL -->
         <mat-form-field>
           <mat-label>Blog URL</mat-label>
-          <input matInput placeholder="Blog URL" formControlName="blogURL">
-          <mat-error *ngIf="blogsEditForm?.get('blogURL')?.errors">Please enter valid URL</mat-error>
+          <input type="text" matInput placeholder="Blog URL" formControlName="blogURL">
+          <mat-error *ngIf="blogsAddForm?.get('blogURL')?.errors">Please enter valid URL</mat-error>
         </mat-form-field>
         <!-- edit button label text -->
         <mat-form-field>
           <mat-label>Blog Label Text</mat-label>
-          <input matInput placeholder="Blog Button Text" formControlName="blogButtonText">
-          <mat-error *ngIf="blogsEditForm?.get('blogButtonText')?.errors">Please enter valid label text</mat-error>
+          <input type="text" matInput placeholder="Blog Button Text" formControlName="blogButtonText">
+          <mat-error *ngIf="blogsAddForm?.get('blogButtonText')?.errors">Please enter valid label text</mat-error>
         </mat-form-field>
         <!-- edit description -->
-        <div class="blogs-edit-page__container__contents--description" formArrayName="description">
+        <div class="blogs-add-page__container__contents--description" formArrayName="description">
           <ng-container *ngFor="let control of descriptionControlFn; let i = index" [formGroupName]="i">
             <div>
               <mat-form-field>
@@ -43,9 +43,9 @@
           <span>Add New Description</span>
         </button>
         <!-- cta -->
-        <mat-card-actions class="blogs-edit-page__container__contents__cta">
+        <mat-card-actions class="blogs-add-page__container__contents__cta">
           <button mat-raised-button color="primary" type="button" (click)="backToBlogsPage()">Cancel</button>
-          <button mat-raised-button color="primary" type="submit" [disabled]="!blogsEditForm.valid">Save</button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="!blogsAddForm.valid">Save</button>
         </mat-card-actions>
       </form>
     </mat-card-content>

@@ -117,6 +117,7 @@ export interface IProjectsPage {
 }
 
 export interface IBlogsPage {
+  id?: string;
   blogTitle: string;
   description: Array<string>;
   blogURL: string;

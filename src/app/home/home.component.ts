@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -12,7 +12,7 @@ import { IHomePage, PAGENAME } from '../shared/global.model';
   styleUrls: ['./home.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
   introduction$!: Observable<IHomePage | undefined>;
   displaySpinner$: Subject<boolean> = new Subject<boolean>();
@@ -66,6 +66,10 @@ export class HomeComponent implements OnInit {
    */
   editHomePageDetails(): void {
     this.router.navigate(['/home-edit']);
+  }
+
+  ngOnDestroy(): void {
+    this.displaySpinner$.complete();
   }
 
 }

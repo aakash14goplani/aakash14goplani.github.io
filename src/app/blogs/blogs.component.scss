@@ -24,10 +24,14 @@
 
     &--cta {
       display: flex;
-      justify-content: space-between;
-      margin: 1rem;
+      justify-content: space-evenly;
     }
   }
+}
+
+.add-new-blog-cta {
+  display: flex;
+  justify-content: center;
 }
 
 @media screen and (min-width: $small_desktop_screens) {

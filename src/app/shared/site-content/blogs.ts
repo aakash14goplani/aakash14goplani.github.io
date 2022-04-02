@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 
 /* eslint-disable max-len */
 const blogsDataEn: Array<IBlogsPage> = [{
+  id: '',
   blogTitle: 'Oracle WebCenter Sites',
   description: [
     'For about 3 years (2016 - 2019) I got an opportunity to work on Content Management System using Oracle WebCenter Sites 11g.',
@@ -11,6 +12,7 @@ const blogsDataEn: Array<IBlogsPage> = [{
   blogURL: environment.owcs_blog,
   blogButtonText: 'VISIT BLOG SITE'
 }, {
+  id: '',
   blogTitle: 'Web Dev',
   description: [
     'I started working on JavaScript since early 2019. My first assignment was with Angular and ever since then I have been a huge fan of Angular. Over the time, I have also had an opportunity to work on Node.js (using Express.js and Nest.js), Ionic and Firebase.',
@@ -21,6 +23,7 @@ const blogsDataEn: Array<IBlogsPage> = [{
 }];
 
 const blogsDataHi: Array<IBlogsPage> = [{
+  id: '',
   blogTitle: 'Oracle WebCenter Sites',
   description: [
     'लगभग 3 वर्षों (2016 - 2019) के लिए मुझे Oracle WebCenter Sites 11g का उपयोग करके material प्रबंधन प्रणाली पर काम करने का अवसर मिला।',
@@ -29,6 +32,7 @@ const blogsDataHi: Array<IBlogsPage> = [{
   blogURL: environment.owcs_blog,
   blogButtonText: 'ब्लॉग साइट पर जाएँ'
 }, {
+  id: '',
   blogTitle: 'वेब देव',
   description: [
     'मैंने 2019 की शुरुआत से JavaScript पर काम करना शुरू कर दिया था। मेरा पहला असाइनमेंट Angular के साथ था और तब से मैं Angular का बहुत बड़ा प्रशंसक रहा हूं। समय के साथ, मुझे Node.js (Express.js और Nest.js का उपयोग करके), Ionic और Firebase पर भी काम करने का अवसर मिला है।',
