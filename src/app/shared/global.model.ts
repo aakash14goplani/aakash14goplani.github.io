@@ -112,8 +112,9 @@ export interface IProjectsPage {
   link: string;
   tools: Array<string>;
   showMoreContent: boolean;
-  id: string;
+  pid: string;
   buttonText: string;
+  id?: string;
 }
 
 export interface IBlogsPage {

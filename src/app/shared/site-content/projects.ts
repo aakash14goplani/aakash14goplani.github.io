@@ -14,7 +14,7 @@ const projects_en: Array<IProjectsPage> = [{
   link: environment.project_angular_snippet,
   tools: ['Angular'],
   showMoreContent: false,
-  id: '1',
+  pid: '1',
   buttonText: 'GitHub'
 }, {
   title: 'Books Management: Angular NgRx',
@@ -26,7 +26,7 @@ const projects_en: Array<IProjectsPage> = [{
   link: environment.project_angular_ngrx,
   tools: ['Angular', 'NgRx', 'immer'],
   showMoreContent: false,
-  id: '2',
+  pid: '2',
   buttonText: 'GitHub'
 }, {
   title: 'Post Management: Reactive Angular',
@@ -38,7 +38,7 @@ const projects_en: Array<IProjectsPage> = [{
   link: environment.project_angular_reactive,
   tools: ['Angular', 'RxJs'],
   showMoreContent: false,
-  id: '3',
+  pid: '3',
   buttonText: 'GitHub'
 }, {
   title: 'Recipe: Learning Angular',
@@ -50,7 +50,7 @@ const projects_en: Array<IProjectsPage> = [{
   link: environment.project_angular_practice,
   tools: ['Angular'],
   showMoreContent: false,
-  id: '4',
+  pid: '4',
   buttonText: 'GitHub'
 }, {
   title: 'Unit Testing in Angular',
@@ -63,7 +63,7 @@ const projects_en: Array<IProjectsPage> = [{
   link: environment.project_angular_testing,
   tools: ['Angular', 'Jasmine', 'Karma'],
   showMoreContent: false,
-  id: '5',
+  pid: '5',
   buttonText: 'GitHub'
 }, {
   title: 'Contact Book: Angular Material',
@@ -75,7 +75,7 @@ const projects_en: Array<IProjectsPage> = [{
   link: environment.project_angular_material,
   tools: ['Angular', 'Material'],
   showMoreContent: false,
-  id: '6',
+  pid: '6',
   buttonText: 'GitHub'
 }, {
   title: 'Web Hosting Site: CSS and SCSS',
@@ -88,7 +88,7 @@ const projects_en: Array<IProjectsPage> = [{
   link: environment.project_css,
   tools: ['CSS', 'SCSS', 'Flexbox', 'Grid'],
   showMoreContent: false,
-  id: '7',
+  pid: '7',
   buttonText: 'GitHub'
 }, {
   title: 'Shopping Cart: Learning Node and GraphQL',
@@ -100,7 +100,7 @@ const projects_en: Array<IProjectsPage> = [{
   link: environment.project_nodejs,
   tools: ['NodeJs', 'ExpressJs', 'REST', 'GraphQL'],
   showMoreContent: false,
-  id: '8',
+  pid: '8',
   buttonText: 'GitHub'
 }];
 
@@ -117,7 +117,7 @@ const projects_hi: Array<IProjectsPage> = [{
   link: environment.project_angular_snippet,
   tools: ['Angular'],
   showMoreContent: false,
-  id: '1',
+  pid: '1',
   buttonText: 'GitHub'
 }, {
   title: 'Books Management: Angular NgRx',
@@ -129,7 +129,7 @@ const projects_hi: Array<IProjectsPage> = [{
   link: environment.project_angular_ngrx,
   tools: ['Angular', 'NgRx', 'immer'],
   showMoreContent: false,
-  id: '2',
+  pid: '2',
   buttonText: 'GitHub'
 }, {
   title: 'Post Management: Reactive Angular',
@@ -141,7 +141,7 @@ const projects_hi: Array<IProjectsPage> = [{
   link: environment.project_angular_reactive,
   tools: ['Angular', 'RxJs'],
   showMoreContent: false,
-  id: '3',
+  pid: '3',
   buttonText: 'GitHub'
 }, {
   title: 'Recipe: Learning Angular',
@@ -153,7 +153,7 @@ const projects_hi: Array<IProjectsPage> = [{
   link: environment.project_angular_practice,
   tools: ['Angular'],
   showMoreContent: false,
-  id: '4',
+  pid: '4',
   buttonText: 'GitHub'
 }, {
   title: 'Unit Testing in Angular',
@@ -166,7 +166,7 @@ const projects_hi: Array<IProjectsPage> = [{
   link: environment.project_angular_testing,
   tools: ['Angular', 'Jasmine', 'Karma'],
   showMoreContent: false,
-  id: '5',
+  pid: '5',
   buttonText: 'GitHub'
 }, {
   title: 'Contact Book: Angular Material',
@@ -178,7 +178,7 @@ const projects_hi: Array<IProjectsPage> = [{
   link: environment.project_angular_material,
   tools: ['Angular', 'Material'],
   showMoreContent: false,
-  id: '6',
+  pid: '6',
   buttonText: 'GitHub'
 }, {
   title: 'Web Hoisting Site: CSS and SCSS',
@@ -191,7 +191,7 @@ const projects_hi: Array<IProjectsPage> = [{
   link: environment.project_css,
   tools: ['CSS', 'SCSS', 'Flexbox', 'Grid'],
   showMoreContent: false,
-  id: '7',
+  pid: '7',
   buttonText: 'GitHub'
 }, {
   title: 'Shooping Cart: Learning Node and GraphQL',
@@ -203,7 +203,7 @@ const projects_hi: Array<IProjectsPage> = [{
   link: environment.project_nodejs,
   tools: ['NodeJs', 'ExpressJs', 'REST', 'GraphQL'],
   showMoreContent: false,
-  id: '8',
+  pid: '8',
   buttonText: 'GitHub'
 }];
 

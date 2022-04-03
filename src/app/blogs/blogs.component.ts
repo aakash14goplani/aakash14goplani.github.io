@@ -3,7 +3,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { catchError, EMPTY, map, Observable, Subject, takeUntil, tap } from 'rxjs';
+import { catchError, combineLatest, EMPTY, map, Observable, Subject, takeUntil, tap } from 'rxjs';
 import { ContentService } from '../shared/content-service/content.service';
 import { IBlogsPage, PAGENAME } from '../shared/global.model';
 
@@ -18,17 +18,25 @@ export class BlogsComponent implements OnInit, OnDestroy {
   blogData$!: Observable<IBlogsPage[]>;
   displaySpinner$: Subject<boolean> = new Subject<boolean>();
   unsubscriber$: Subject<void> = new Subject<void>();
+  isAdmin$!: Observable<boolean>;
   @ViewChild('deleteConfirmationModal', { static: true }) dialogContent!: TemplateRef<any>;
 
   constructor(
-    public contentService: ContentService,
+    private contentService: ContentService,
     private router: Router,
-    public firebaseAuth: AngularFireAuth,
+    private firebaseAuth: AngularFireAuth,
     private snackBar: MatSnackBar,
     private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
+    this.isAdmin$ = combineLatest([
+      this.firebaseAuth.user,
+      this.contentService.isDatabaseOnline
+    ]).pipe(
+      map(([user, isOnline]) => !!user && !!isOnline)
+    );
+
     this.displaySpinner$.next(true);
     this.blogData$ = (this.contentService.getContentForPage<IBlogsPage>(PAGENAME.BLOGS) as Observable<Array<{ id: string, data: IBlogsPage }>>)
       .pipe(

@@ -46,7 +46,19 @@
         justify-content: flex-end;
       }
     }
+
+    &__footer-admin-actions {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+    }
   }
+}
+
+.admin-actions-add-cta {
+  display: flex;
+  margin: auto;
+  justify-content: center;
 }
 
 @media screen and (min-width: $small_tablets) {

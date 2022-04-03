@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'work-experience-edit', loadChildren: () => import('./work-experience-edit/work-experience-edit.module').then(m => m.WorkExperienceEditModule) },
   { path: 'projects', loadChildren: () => import('./projects/projects.module').then(m => m.ProjectsModule) },
   { path: 'projects-edit', loadChildren: () => import('./projects-edit/projects-edit.module').then(m => m.ProjectsEditModule) },
+  { path: 'projects-add', loadChildren: () => import('./projects-add/projects-add.module').then(m => m.ProjectsAddModule) },
   { path: 'blogs', loadChildren: () => import('./blogs/blogs.module').then(m => m.BlogsModule) },
   { path: 'blogs-edit', loadChildren: () => import('./blogs-edit/blogs-edit.module').then(m => m.BlogsEditModule) },
   { path: 'blogs-add', loadChildren: () => import('./blogs-add/blogs-add.module').then(m => m.BlogsAddModule) },

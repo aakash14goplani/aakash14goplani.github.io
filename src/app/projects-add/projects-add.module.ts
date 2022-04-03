@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProjectsEditComponent } from './projects-edit.component';
+import { ProjectsAddComponent } from './projects-add.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -12,12 +12,12 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', component: ProjectsEditComponent }
+  { path: '', component: ProjectsAddComponent }
 ];
 
 @NgModule({
   declarations: [
-    ProjectsEditComponent
+    ProjectsAddComponent
   ],
   imports: [
     CommonModule,
@@ -32,4 +32,4 @@ const routes: Routes = [
     MatIconModule
   ]
 })
-export class ProjectsEditModule { }
+export class ProjectsAddModule { }

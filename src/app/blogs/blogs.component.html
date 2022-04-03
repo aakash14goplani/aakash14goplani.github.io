@@ -8,7 +8,7 @@
       <mat-card-actions class="blogs-container__blog--cta">
         <a [href]="blog.blogURL" target="_blank" mat-raised-button color="primary">{{ blog.blogButtonText }}</a>
         <!-- update and delete entry -->
-        <ng-container *ngIf="(firebaseAuth.user | async) && (contentService.isDatabaseOnline | async)">
+        <ng-container *ngIf="(isAdmin$ | async)">
           <a (click)="launchDeleteConfirmationModal(blog, deleteConfirmationModal)" mat-raised-button color="accent">Delete</a>
           <a (click)="editBlogsPageDetails(blog)" mat-raised-button color="accent">Edit</a>
         </ng-container>
@@ -16,7 +16,7 @@
     </mat-card>
   </div>
   <!-- add new blog -->
-  <div class="add-new-blog-cta" *ngIf="(firebaseAuth.user | async) && (contentService.isDatabaseOnline | async)">
+  <div class="add-new-blog-cta" *ngIf="(isAdmin$ | async)">
     <button mat-raised-button color="primary" (click)="addNewBlog()">
       <mat-icon>add</mat-icon>
       Add New Blog
