@@ -10,7 +10,7 @@ describe('SkillsEditComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ SkillsEditComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

@@ -10,7 +10,7 @@ describe('HomeEditComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ HomeEditComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

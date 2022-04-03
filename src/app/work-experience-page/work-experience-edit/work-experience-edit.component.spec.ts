@@ -10,7 +10,7 @@ describe('WorkExperienceEditComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ WorkExperienceEditComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

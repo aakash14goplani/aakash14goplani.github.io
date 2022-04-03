@@ -116,7 +116,7 @@ export class HomeEditComponent implements OnInit, OnDestroy {
   previewImage(event: Event): void {
     const target = event.target as HTMLInputElement;
     this.file = (target.files as FileList)[0];
-    this.filePath = `profile-picture/${this.file.name}`;
+    this.filePath = `profile_picture/${this.file.name}`;
 
     this.service.uploadFileToFireStorage(this.filePath, this.file).pipe(
       tap((url) => {
