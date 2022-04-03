@@ -7,7 +7,7 @@
         <mat-list role="list">
           <mat-list-item role="listitem" *ngFor="let entry of educationData.educationDetails">
             <div mat-line class="wrap">{{ entry.institute }}</div>
-            <div mat-line class="wrap">{{ entry.degree }} <span class="dot-separator"> . </span> {{ entry.specialty }}</div>
+            <div mat-line class="wrap">{{ entry.degree }} <span class="dot-separator"> . </span> {{ entry.speciality }}</div>
             <div mat-line>{{ entry.percentage }} <span class="dot-separator"> . </span> ({{ entry.duration }})</div>
             <mat-divider></mat-divider>
           </mat-list-item>
@@ -32,7 +32,7 @@
       </mat-card-content>
     </mat-card>
     <!-- Edit Details -->
-    <ng-container *ngIf="firebaseAuth.user | async">
+    <ng-container *ngIf="(firebaseAuth.user | async) && (contentService.isDatabaseOnline | async)">
       <button mat-raised-button color="primary" (click)="editEducationPageDetails()">
         <mat-icon>edit</mat-icon>
         Edit Details

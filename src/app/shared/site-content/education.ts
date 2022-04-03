@@ -5,21 +5,21 @@ const educationDetails: Array<IDegree> = [
   {
     institute: 'Vivekanand Education Society\'s Institute Of Technology',
     degree: 'Bachelor of Engineering (B.E.)',
-    specialty: 'Computer',
+    speciality: 'Computer',
     duration: '2011 - 2015',
     percentage: '73%'
   },
   {
     institute: 'Smt. Chandibai Himatmal Mansukhani College',
     degree: 'High School Degree in Science',
-    specialty: 'Science',
+    speciality: 'Science',
     duration: '2009 - 2011',
     percentage: '86%'
   },
   {
     institute: 'St. Thomas English School',
     degree: 'SSC Degree',
-    specialty: 'School/Secondary Certificate Programs',
+    speciality: 'School/Secondary Certificate Programs',
     duration: '1997 - 2009',
     percentage: '89%'
   }
@@ -80,21 +80,21 @@ const educationDetailsHi: Array<IDegree> = [
   {
     institute: 'विवेकानंद एजुकेशन सोसाइटी इंस्टीट्यूट ऑफ टेक्नोलॉजी',
     degree: 'बैचलर ऑफ इंजीनियरिंग (बी.ई.)',
-    specialty: 'संगणक',
+    speciality: 'संगणक',
     duration: '2011 - 2015',
     percentage: '73%'
   },
   {
     institute: 'श्रीमती चंडीबाई हिम्मतलाल मनसुखानी कॉलेज',
     degree: 'विज्ञान में हाई स्कूल की डिग्री',
-    specialty: 'विज्ञान',
+    speciality: 'विज्ञान',
     duration: '2009 - 2011',
     percentage: '86%'
   },
   {
     institute: 'सेंट थॉमस इंग्लिश स्कूल',
     degree: 'एस.एस.सी. डिग्री',
-    specialty: 'स्कूल/माध्यमिक प्रमाणपत्र कार्यक्रम',
+    speciality: 'स्कूल/माध्यमिक प्रमाणपत्र कार्यक्रम',
     duration: '1997 - 2009',
     percentage: '89%'
   }

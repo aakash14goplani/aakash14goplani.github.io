@@ -1,18 +1,6 @@
-<mat-sidenav-container
-  class="app-sidenav-container"
-  (backdropClick)="close()"
-  [dir]="direction"
-  role="main"
->
+<mat-sidenav-container class="app-sidenav-container" (backdropClick)="close()" [dir]="direction" role="main">
   <!-- side navigation list options -->
-  <mat-sidenav
-    #sidenav
-    (keydown.escape)="close()"
-    disableClose
-    class="app-sidenav-container__nav mat-elevation-z10"
-    [mode]="isMobile ? 'over' : 'side'"
-    role="navigation"
-  >
+  <mat-sidenav #sidenav (keydown.escape)="close()" disableClose class="app-sidenav-container__nav mat-elevation-z10" [mode]="isMobile ? 'over' : 'side'" role="navigation">
     <aside>
       <!-- side navigation header -->
       <mat-toolbar color="primary">
@@ -21,26 +9,15 @@
       <!-- side navigation list -->
       <mat-nav-list>
         <mat-list-item *ngFor="let navItem of navigationDetails$ | async">
-          <a
-            matLine
-            [routerLink]="[navItem.url]"
-            routerLinkActive
-            #link="routerLinkActive"
-            (click)="sidenav.close(); downloadResume(navItem, $event)"
-            [ngClass]="{
+          <a matLine [routerLink]="[navItem.url]" routerLinkActive #link="routerLinkActive" (click)="sidenav.close(); downloadResume(navItem, $event)" [ngClass]="{
               active: themeType === 'light' && link.isActive,
               dark: themeType === 'dark' && link.isActive
-            }"
-          >
-            <mat-icon
-              aria-hidden="false"
-              [svgIcon]="navItem.icon"
-              aria-label="Navigation Icon"
-            ></mat-icon>
+            }">
+            <mat-icon aria-hidden="false" [svgIcon]="navItem.icon" aria-label="Navigation Icon"></mat-icon>
             <span>{{ navItem.name }}</span>
           </a>
         </mat-list-item>
-        <mat-list-item *ngIf="firebaseAuth.user | async">
+        <mat-list-item *ngIf="(firebaseAuth.user | async) && (helperService.isDatabaseOnline | async)">
           <a matLine (click)="logOut()">
             <mat-icon>power_settings_new</mat-icon>
             <span>{{ locale === LocalEnum.en ? "Logout" : "लॉग आउट" }}</span>
@@ -62,62 +39,33 @@
     <header>
       <mat-toolbar color="primary">
         <!-- menu button to trigger side nav -->
-        <button
-          mat-icon-button
-          aria-label="Menu Button"
-          (click)="sidenav.toggle()"
-        >
+        <button mat-icon-button aria-label="Menu Button" (click)="sidenav.toggle()">
           <mat-icon>menu</mat-icon>
         </button>
         <span class="example-spacer"></span>
         <div class="app-sidenav-container__content--action-items">
           <!-- language translation button -->
-          <button
-            mat-icon-button
-            class="translate-icon"
-            aria-label="Toggle Language"
-            (click)="toggleLanguage()"
-          >
+          <button mat-icon-button class="translate-icon" aria-label="Toggle Language" (click)="toggleLanguage()">
             <mat-icon>translate</mat-icon>
           </button>
           <!-- toggle theme option -->
-          <button
-            mat-icon-button
-            class="palette-icon"
-            aria-label="Toggle Theme"
-          >
+          <button mat-icon-button class="palette-icon" aria-label="Toggle Theme">
             <mat-icon class="icon" [matMenuTriggerFor]="menu">palette</mat-icon>
           </button>
           <mat-menu #menu="matMenu">
-            <button
-              *ngFor="let option of options$ | async"
-              mat-menu-item
-              (click)="changeTheme(option.value)"
-            >
+            <button *ngFor="let option of options$ | async" mat-menu-item (click)="changeTheme(option.value)">
               <mat-icon role="img" svgicon="theme-example" aria-hidden="true">
-                <ng-container
-                  *ngTemplateOutlet="themeSvg; context: { option: this.option }"
-                  context
-                ></ng-container>
+                <ng-container *ngTemplateOutlet="themeSvg; context: { option: this.option }" context></ng-container>
               </mat-icon>
-              <span
-                [ngClass]="{
+              <span [ngClass]="{
                   active: activeTheme === option.value,
                   dark: activeTheme === option.value && option.type === 'dark'
-                }"
-                >{{ option.label }}</span
-              >
+                }">{{ option.label }}</span>
             </button>
           </mat-menu>
           <!-- toggle button button -->
-          <button
-            mat-icon-button
-            (click)="toggleDirection()"
-            aria-label="Toggle Direction"
-          >
-            <mat-icon aria-hidden="false" aria-label="Toggle Sidenav Direction"
-              >directions</mat-icon
-            >
+          <button mat-icon-button (click)="toggleDirection()" aria-label="Toggle Direction">
+            <mat-icon aria-hidden="false" aria-label="Toggle Sidenav Direction">directions</mat-icon>
           </button>
         </div>
       </mat-toolbar>
@@ -149,25 +97,10 @@
 
 <!-- themes svgs -->
 <ng-template #themeSvg let-option="option">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    xmlns:xlink="http://www.w3.org/1999/xlink"
-    width="100%"
-    height="100%"
-    viewBox="0 0 80 80"
-    fit=""
-    preserveAspectRatio="xMidYMid meet"
-    focusable="false"
-  >
+  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="0 0 80 80" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
     <defs>
-      <path
-        d="M77.87 0C79.05 0 80 .95 80 2.13v75.74c0 1.17-.95 2.13-2.13 2.13H2.13C.96 80 0 79.04 0 77.87V2.13C0 .95.96 0 2.13 0h75.74z"
-        id="a"
-      ></path>
-      <path
-        d="M54 40c3.32 0 6 2.69 6 6 0 1.2 0-1.2 0 0 0 3.31-2.68 6-6 6H26c-3.31 0-6-2.69-6-6 0-1.2 0 1.2 0 0 0-3.31 2.69-6 6-6h28z"
-        id="b"
-      ></path>
+      <path d="M77.87 0C79.05 0 80 .95 80 2.13v75.74c0 1.17-.95 2.13-2.13 2.13H2.13C.96 80 0 79.04 0 77.87V2.13C0 .95.96 0 2.13 0h75.74z" id="a"></path>
+      <path d="M54 40c3.32 0 6 2.69 6 6 0 1.2 0-1.2 0 0 0 3.31-2.68 6-6 6H26c-3.31 0-6-2.69-6-6 0-1.2 0 1.2 0 0 0-3.31 2.69-6 6-6h28z" id="b"></path>
       <path d="M0 0h80v17.24H0V0z" id="c"></path>
     </defs>
     <use xlink:href="#a" [attr.fill]="option.backgroundColor"></use>

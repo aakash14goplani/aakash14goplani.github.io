@@ -81,7 +81,7 @@ export class EducationEditComponent implements OnInit, OnDestroy {
         degree: [element.degree, Validators.required],
         institute: [element.institute, Validators.required],
         duration: [element.duration, Validators.required],
-        specialty: [element.specialty, Validators.required],
+        speciality: [element.speciality, Validators.required],
         percentage: [element.percentage, Validators.required]
       }));
     });
@@ -110,7 +110,7 @@ export class EducationEditComponent implements OnInit, OnDestroy {
       degree: ['', Validators.required],
       institute: ['', Validators.required],
       duration: ['', Validators.required],
-      specialty: ['', Validators.required],
+      speciality: ['', Validators.required],
       percentage: ['', Validators.required]
     }));
   }

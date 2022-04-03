@@ -21,7 +21,7 @@ export class BlogsComponent implements OnInit, OnDestroy {
   @ViewChild('deleteConfirmationModal', { static: true }) dialogContent!: TemplateRef<any>;
 
   constructor(
-    private contentService: ContentService,
+    public contentService: ContentService,
     private router: Router,
     public firebaseAuth: AngularFireAuth,
     private snackBar: MatSnackBar,

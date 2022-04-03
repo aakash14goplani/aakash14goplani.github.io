@@ -44,7 +44,7 @@
       </mat-card-content>
     </mat-card>
     <!-- edit -->
-    <mat-card class="skills-page-container" role="main" *ngIf="firebaseAuth.user | async">
+    <mat-card class="skills-page-container" role="main" *ngIf="(firebaseAuth.user | async) && (contentService.isDatabaseOnline | async)">
       <mat-card-content class="skills-page-container__contents">
         <button mat-raised-button color="accent" (click)="editSkillsPageDetails()">
           Edit

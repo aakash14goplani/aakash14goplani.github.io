@@ -1,8 +1,15 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { BehaviorSubject, concatMap, from, last, map, Observable, switchMap, tap } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { BehaviorSubject, concatMap, from, last, map, Observable, switchMap } from 'rxjs';
 import { Collections, Documents, Locale, PAGENAME } from '../global.model';
+import { blogsData } from '../site-content/blogs';
+import { educationData } from '../site-content/education';
+import { introduction } from '../site-content/home';
+import { projects } from '../site-content/projects';
+import { skillsPageData } from '../site-content/skills';
+import { workExperience } from '../site-content/work-experience';
 
 @Injectable({
   providedIn: 'root'
@@ -10,15 +17,17 @@ import { Collections, Documents, Locale, PAGENAME } from '../global.model';
 export class ContentService {
 
   private locale$ = new BehaviorSubject<Locale>(Locale.en);
+  private isDatabaseOnline$ = new BehaviorSubject<boolean>(false);
   private pagesWithSnapshot: Array<PAGENAME> = [PAGENAME.BLOGS, PAGENAME.PROJECTS, PAGENAME.WORK_EXPERIENCE];
 
   constructor(
     private datastore: AngularFirestore,
-    private storage: AngularFireStorage
+    private storage: AngularFireStorage,
+    private snackBar: MatSnackBar
   ) { }
 
   /**
-   * Gets content of a page from firestore
+   * Gets content of a page from firestore. If firestore is down, returns static content.
    * @param pagename { PAGENAME } - Page Name
    * @returns { Observable<T | undefined> | Observable<Array<{ id: string, data: T }>> } - Observable of Page Content
    */
@@ -29,7 +38,16 @@ export class ContentService {
     return this.getApplicationLocale().pipe(
       switchMap((locale) => {
         const document = this.fetchDocumentName(locale, pagename);
-        return this.datastore.collection<T>(Collections[pagename]).doc(document).valueChanges();
+        return this.datastore.collection<T>(Collections[pagename]).doc(document).valueChanges().pipe(
+          map((data) => {
+            if (data) {
+              this.isDatabaseOnline$.next(true);
+              return data;
+            } else {
+              return this.handleOfflineFirestoreData<T>(pagename, locale) as T;
+            }
+          })
+        );
       })
     );
   }
@@ -45,21 +63,26 @@ export class ContentService {
         .collection<T>(Collections[pagename])
         .snapshotChanges().pipe(
           map((metadata) => {
-            const dataToReturn: Array<{ id: string, data: T }> = [];
-            metadata.forEach((_data) => {
-              const id = _data.payload.doc.id;
-              const data = _data.payload.doc.data();
-              if (locale === Locale.en) {
-                if (id.endsWith('_en')) {
-                  dataToReturn.push({ id, data });
+            if (metadata?.length > 0) {
+              const dataToReturn: Array<{ id: string, data: T }> = [];
+              metadata.forEach((_data) => {
+                const id = _data.payload.doc.id;
+                const data = _data.payload.doc.data();
+                if (locale === Locale.en) {
+                  if (id.endsWith('_en')) {
+                    dataToReturn.push({ id, data });
+                  }
+                } else {
+                  if (id.endsWith('_hi')) {
+                    dataToReturn.push({ id, data });
+                  }
                 }
-              } else {
-                if (id.endsWith('_hi')) {
-                  dataToReturn.push({ id, data });
-                }
-              }
-            });
-            return dataToReturn;
+              });
+              this.isDatabaseOnline$.next(true);
+              return dataToReturn;
+            } else {
+              return this.handleOfflineFirestoreData<Array<{ id: string, data: T }>>(pagename, locale);
+            }
           })
         ))
     );
@@ -152,6 +175,14 @@ export class ContentService {
   }
 
   /**
+   * Checks if firebase is connected
+   * @returns { Observable<boolean> } - Observable of boolean
+   */
+  get isDatabaseOnline(): Observable<boolean> {
+    return this.isDatabaseOnline$.asObservable();
+  }
+
+  /**
    * Computes firestore document name
    * @param locale { Locale } - Locale
    * @param pagename { PAGENAME } - Page Name
@@ -174,5 +205,39 @@ export class ContentService {
     };
 
     return mapper[pagename][locale];
+  }
+
+  /**
+   * Returns the content of a page for offline access if in case firebase is down
+   * @param pagename { PAGENAME } - Page Name
+   * @returns { any } - Page Content
+   */
+  private getOfflineDataKey(pagename: PAGENAME): any {
+    const mapper = {
+      [PAGENAME.HOME]: introduction,
+      [PAGENAME.SKILLS]: skillsPageData,
+      [PAGENAME.EDUCATION]: educationData,
+      [PAGENAME.BLOGS]: blogsData,
+      [PAGENAME.PROJECTS]: projects,
+      [PAGENAME.WORK_EXPERIENCE]: workExperience
+    };
+
+    return mapper[pagename];
+  }
+
+  /**
+   * Returns static data when firestore connection is down
+   * @param pagename { PAGENAME } - Page Name
+   * @param locale { Locale } - Locale
+   * @returns { T } - Page Content
+   */
+  private handleOfflineFirestoreData<T>(pagename: PAGENAME, locale: Locale): T {
+    this.isDatabaseOnline$.next(false);
+    this.snackBar.open('Error connecting with firestore, displaying static data.', 'X', {
+      duration: 6000,
+      verticalPosition: 'bottom',
+      horizontalPosition: 'center'
+    });
+    return this.getOfflineDataKey(pagename)[locale] as T;
   }
 }

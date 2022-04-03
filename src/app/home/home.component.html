@@ -19,7 +19,7 @@
         </div>
       </mat-card-content>
       <mat-card-actions align="end">
-        <button mat-raised-button color="accent" *ngIf="firebaseAuth.user | async" (click)="editHomePageDetails()">
+        <button mat-raised-button color="accent" *ngIf="(firebaseAuth.user | async) && (contentService.isDatabaseOnline | async)" (click)="editHomePageDetails()">
           Edit
         </button>
       </mat-card-actions>

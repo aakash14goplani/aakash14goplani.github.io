@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
   LocalEnum = Locale;
 
   constructor(
-    private helperService: ContentService,
+    public helperService: ContentService,
     private themeService: ThemeService,
     private matIcon: MatIconRegistry,
     private sanitizer: DomSanitizer,
@@ -60,9 +60,9 @@ export class AppComponent implements OnInit {
    * else fall back to default light theme.
    */
   private configureThemeOption(): void {
-    const themeFromsession = sessionStorage.getItem(SessionKey.THEME);
-    this.themeService.setTheme(themeFromsession ? themeFromsession : 'indigo-pink');
-    this.activeTheme = themeFromsession ? themeFromsession : 'indigo-pink';
+    const themeFromSession = sessionStorage.getItem(SessionKey.THEME);
+    this.themeService.setTheme(themeFromSession ? themeFromSession : 'indigo-pink');
+    this.activeTheme = themeFromSession ? themeFromSession : 'indigo-pink';
     this.themeType = this.getThemeType(this.activeTheme);
     sessionStorage.setItem(SessionKey.THEME, this.activeTheme);
   }

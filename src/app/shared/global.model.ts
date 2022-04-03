@@ -58,7 +58,7 @@ export interface ICertifications {
 export interface IDegree {
   institute: string;
   degree: string;
-  specialty: string;
+  speciality: string;
   duration: string;
   percentage: string;
 }

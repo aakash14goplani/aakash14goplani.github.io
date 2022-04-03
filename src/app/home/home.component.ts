@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   private isAdmin: boolean = false;
 
   constructor(
-    private contentService: ContentService,
+    public contentService: ContentService,
     private router: Router,
     public firebaseAuth: AngularFireAuth,
     private _snackBar: MatSnackBar

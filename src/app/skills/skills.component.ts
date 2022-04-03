@@ -19,7 +19,7 @@ export class SkillsComponent implements OnInit, OnDestroy {
   displaySpinner$: Subject<boolean> = new Subject<boolean>();
 
   constructor(
-    private contentService: ContentService,
+    public contentService: ContentService,
     public firebaseAuth: AngularFireAuth,
     private router: Router,
     private _snackBar: MatSnackBar

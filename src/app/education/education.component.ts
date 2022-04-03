@@ -19,7 +19,7 @@ export class EducationComponent implements OnInit, OnDestroy {
   unsubscriber$: Subject<void> = new Subject<void>();
 
   constructor(
-    private contentService: ContentService,
+    public contentService: ContentService,
     private router: Router,
     public firebaseAuth: AngularFireAuth,
     private snackBar: MatSnackBar
