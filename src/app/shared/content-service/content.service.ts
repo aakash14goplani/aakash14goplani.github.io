@@ -99,6 +99,7 @@ export class ContentService {
         const document = (this.pagesWithSnapshot.includes(pagename))
           ? content['id']
           : this.fetchDocumentName(locale, pagename);
+        console.log(Collections[pagename], document);
         return from(this.datastore.collection<T>(Collections[pagename]).doc(document).update(content));
       })
     );

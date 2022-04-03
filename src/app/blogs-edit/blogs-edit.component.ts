@@ -25,6 +25,7 @@ export class BlogsEditComponent implements OnDestroy {
     private contentService: ContentService,
     private _snackBar: MatSnackBar
   ) {
+    this.displaySpinner.next(true);
     this.blogsEditForm = this.formConfiguration;
     this.dataToEdit = this.router.getCurrentNavigation()?.extras?.state?.['data'] || window.history.state?.data;
     // route back on page reload
@@ -57,6 +58,8 @@ export class BlogsEditComponent implements OnDestroy {
       blogButtonText: this.dataToEdit.blogButtonText,
       description: this.prefillBlogDescription(this.dataToEdit.description)
     });
+    // as it is invoked immediately, it is not captured in CD, so delay the invocation
+    setTimeout(() => this.displaySpinner.next(false));
   }
 
   /**

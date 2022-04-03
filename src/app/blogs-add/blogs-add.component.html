@@ -51,3 +51,7 @@
     </mat-card-content>
   </mat-card>
 </section>
+
+<ng-container *ngIf="(displaySpinner | async) === false" #displayLoadingSpinner>
+  <mat-spinner [diameter]="100"></mat-spinner>
+</ng-container>

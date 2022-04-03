@@ -1,1 +1,92 @@
-<p>projects-edit works!</p>
+<section for="projects-edit-page">
+  <mat-card class="projects-edit-page__container">
+    <mat-card-title class="projects-edit-page__container__title">Edit Project Details</mat-card-title>
+    <mat-card-content class="projects-edit-page__container__contents">
+      <form [formGroup]="projectsEditForm" (ngSubmit)="onSubmit()" *ngIf="(displaySpinner | async) === false; else displayLoadingSpinner">
+        <!-- edit title -->
+        <div class="form-group">
+          <mat-form-field>
+            <mat-label>Project Title</mat-label>
+            <input type="text" matInput placeholder="Project Title" formControlName="title">
+            <mat-error *ngIf="projectsEditForm?.get('title')?.errors">Please enter valid title</mat-error>
+          </mat-form-field>
+        </div>
+        <!-- edit link -->
+        <div class="form-group">
+          <mat-form-field>
+            <mat-label>Project URL</mat-label>
+            <input type="text" matInput placeholder="Project URL" formControlName="link">
+            <mat-error *ngIf="projectsEditForm?.get('link')?.errors">Please enter valid URL</mat-error>
+          </mat-form-field>
+        </div>
+        <!-- edit show More Content -->
+        <div class="form-group__radio-group">
+          <mat-radio-group aria-label="Show More Content?" formControlName="showMoreContent">
+            <mat-label>Show More Content?</mat-label>
+            <mat-radio-button [value]="true">Yes</mat-radio-button>
+            <mat-radio-button [value]="false">No</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <!-- edit button label text -->
+        <div class="form-group">
+          <mat-form-field>
+            <mat-label>Project Label Text</mat-label>
+            <input type="text" matInput placeholder="Project Button Text" formControlName="buttonText">
+            <mat-error *ngIf="projectsEditForm?.get('buttonText')?.errors">Please enter valid label text</mat-error>
+          </mat-form-field>
+        </div>
+        <!-- edit content -->
+        <div class="projects-edit-page__container__contents--description" formArrayName="content">
+          <ng-container *ngFor="let control of getAbstractControlFor('content'); let i = index" [formGroupName]="i">
+            <div>
+              <mat-form-field>
+                <mat-label>Project Para Description #{{i + 1}}</mat-label>
+                <textarea matInput placeholder="Project Description" [formControl]="getFormControlFor('content', i)" rows="5"></textarea>
+                <mat-error *ngIf="control?.errors">Please enter valid description</mat-error>
+              </mat-form-field>
+              <!-- delete project description -->
+              <button mat-raised-button type="button" color="warn" (click)="removeFromArray('content', i)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </ng-container>
+        </div>
+        <!-- add new content -->
+        <button class="projects-edit-page__container__contents--add-btn-cta" mat-raised-button type="button" (click)="addNewFormControlFor('content')" color="primary">
+          <mat-icon>add</mat-icon>
+          <span>Add New Description</span>
+        </button>
+        <!-- edit tools -->
+        <div class="projects-edit-page__container__contents--description" formArrayName="tools">
+          <ng-container *ngFor="let control of getAbstractControlFor('tools'); let j = index" [formGroupName]="j">
+            <div>
+              <mat-form-field>
+                <mat-label>Project Tools #{{j + 1}}</mat-label>
+                <input type="text" matInput placeholder="Project Tools" [formControl]="getFormControlFor('tools', j)" rows="5">
+                <mat-error *ngIf="control?.errors">Please enter valid tools name</mat-error>
+              </mat-form-field>
+              <!-- delete project description -->
+              <button mat-raised-button type="button" color="warn" (click)="removeFromArray('tools', j)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </ng-container>
+        </div>
+        <!-- add new content -->
+        <button mat-raised-button class="projects-edit-page__container__contents--add-btn-cta" type="button" (click)="addNewFormControlFor('tools')" color="primary">
+          <mat-icon>add</mat-icon>
+          <span>Add New tools</span>
+        </button>
+        <!-- cta -->
+        <mat-card-actions class="projects-edit-page__container__contents__cta">
+          <button mat-raised-button color="primary" type="button" (click)="backToProjectsPage()">Cancel</button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="!projectsEditForm.valid">Save</button>
+        </mat-card-actions>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</section>
+
+<ng-template #displayLoadingSpinner>
+  <mat-spinner [diameter]="100"></mat-spinner>
+</ng-template>

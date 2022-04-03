@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule, Routes } from '@angular/router';
 import { ProjectsEditComponent } from './projects-edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -9,7 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { RouterModule, Routes } from '@angular/router';
+import { MatRadioModule } from '@angular/material/radio';
 
 const routes: Routes = [
   { path: '', component: ProjectsEditComponent }
@@ -29,7 +30,8 @@ const routes: Routes = [
     MatSnackBarModule,
     MatFormFieldModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    MatRadioModule
   ]
 })
 export class ProjectsEditModule { }

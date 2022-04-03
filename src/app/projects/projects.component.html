@@ -1,7 +1,7 @@
 <section for="projects">
   <div class="container">
     <ng-container *ngIf="(projectContents$ | async) as projects; else displayLoadingSpinner">
-      <mat-card class="container__root" *ngFor="let project of projects; trackBy: trackById;" role="main">
+      <mat-card class="container__root" *ngFor="let project of projects" role="main">
         <mat-card-title class="container__root__title">{{ project.title }}</mat-card-title>
         <mat-card-content class="container__root__contents">
           <div class="description" [ngStyle]="{ 'max-height': project.showMoreContent ? 'inherit' : '5rem' }">

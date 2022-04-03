@@ -1,0 +1,72 @@
+@import "../../assets/css/variables";
+
+.projects-edit-page__container {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+
+  &__title {
+    text-align: center;
+  }
+
+  &__contents {
+    form {
+      display: flex;
+      flex-direction: column;
+      margin: 1rem 0;
+
+      .form-group {
+        display: flex;
+
+        &__radio-group {
+          margin: 1rem 0;
+
+          .mat-radio-button {
+            margin: 0 2rem;
+          }
+        }
+
+        .mat-form-field {
+          width: 100%;
+        }
+      }
+    }
+
+    &--description {
+      display: flex;
+      align-self: stretch;
+      flex-direction: column;
+
+      div {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        .mat-form-field {
+          width: 70%;
+        }
+      }
+    }
+
+    &--add-btn-cta {
+      margin: 2rem 0;
+    }
+
+    &__cta {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+    }
+  }
+}
+
+@media screen and (min-width: $small_tablets) {
+  .projects-edit-page__container {
+    &__contents {
+      form {
+        width: 70%;
+      }
+    }
+  }
+}
