@@ -1,0 +1,55 @@
+@import "../../../assets/css/variables";
+
+.education-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1rem;
+  margin-bottom: 1rem;
+
+  &__contents {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+
+    .mat-list-base .mat-list-item.mat-3-line,
+    .mat-list-base .mat-list-option.mat-3-line {
+      height: 10rem;
+    }
+
+    .dot-separator {
+      font-weight: bolder;
+      font-size: 1.2rem;
+      vertical-align: text-bottom;
+    }
+
+    .wrap {
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+
+    &--title {
+      margin: 1rem 0 !important;
+    }
+  }
+}
+
+button[mat-raised-button] {
+  display: flex;
+  margin: auto;
+}
+
+@media screen and (min-width: $small_desktop_screens) {
+  .education-page-container {
+    padding: 3rem;
+
+    &__contents {
+      .mat-list-base .mat-list-item.mat-3-line,
+      .mat-list-base .mat-list-option.mat-3-line {
+        height: 7rem;
+      }
+    }
+  }
+}
