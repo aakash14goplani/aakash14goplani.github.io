@@ -65,15 +65,16 @@ export interface IDegree {
 
 export interface ICompanyExperience {
   title?: string;
-  startDate?: Date;
-  endDate?: Date | null;
+  startDate?: any; // firestore Timestamp -> cannot initialize as will give error when firestore is offline
+  endDate?: any; // Uncaught TypeError: Cannot read properties of undefined (reading 'Timestamp')
   location?: string;
   description?: Array<string>;
   showMoreContent?: boolean;
   isExpanded?: boolean;
   expandable: boolean;
   level: number;
-  id: string;
+  levelId: string;
+  id?: string;
 }
 
 export interface IHomePage {
@@ -145,7 +146,7 @@ export enum Collections {
   HOME = 'home_page',
   SKILLS = 'skills_page',
   EDUCATION = 'education_page',
-  WORK_EXPERIENCE = 'work_experience_page',
+  ['WORK EXPERIENCE'] = 'work_experience_page',
   PROJECTS = 'projects_page',
   BLOGS = 'blogs_page',
   NAVIGATION = 'navigation',

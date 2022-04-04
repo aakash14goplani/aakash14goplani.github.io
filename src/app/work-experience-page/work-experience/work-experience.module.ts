@@ -6,6 +6,8 @@ import { MatCardModule } from '@angular/material/card';
 import { CdkTreeModule } from '@angular/cdk/tree';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 const routes: Routes = [
   { path: '', component: WorkExperienceComponent }
@@ -21,7 +23,9 @@ const routes: Routes = [
     MatCardModule,
     CdkTreeModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule
   ]
 })
 export class WorkExperienceModule { }

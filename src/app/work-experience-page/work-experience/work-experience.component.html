@@ -1,10 +1,9 @@
 <section name="work-experience-page">
   <mat-card class="work-experience-container" role="main">
-    <mat-card-content class="work-experience-container__contents" *ngIf="(dataSource$ | async) as dataSource">
+    <mat-card-content class="work-experience-container__contents" *ngIf="(dataSource$ | async) as dataSource; else displayLoadingSpinner">
       <cdk-tree [dataSource]="dataSource" [treeControl]="treeControl">
         <!-- This is the tree node template for leaf nodes -->
-        <cdk-tree-node *cdkTreeNodeDef="let node" cdkTreeNodePadding [style.display]="shouldRender(node) ? 'flex' : 'none'" class="example-tree-node"
-          [ngStyle]="{ 'flex-direction': treeControl.getLevel(node) === 2 ? 'column' : 'row' }">
+        <cdk-tree-node *cdkTreeNodeDef="let node" cdkTreeNodePadding [style.display]="shouldRender(node) ? 'flex' : 'none'" class="example-tree-node" [ngStyle]="{ 'flex-direction': treeControl.getLevel(node) === 2 ? 'column' : 'row' }">
           <div class="description" [ngStyle]="{ 'max-height': node.showMoreContent ? 'inherit' : '4rem' }">
             <p *ngFor="let content of node.description">
               - {{ content }}
@@ -17,8 +16,7 @@
         <!-- This is the tree node template for expandable nodes -->
         <cdk-tree-node *cdkTreeNodeDef="let node; when: hasChild" cdkTreeNodePadding [style.display]="shouldRender(node) ? 'flex' : 'none'" class="example-tree-node">
           <div class="node-icon">
-            <button mat-icon-button cdkTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name" (click)="node.isExpanded = !node.isExpanded"
-              [style.visibility]="node.expandable ? 'visible' : 'hidden'">
+            <button mat-icon-button cdkTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name" (click)="node.isExpanded = !node.isExpanded" [style.visibility]="node.expandable ? 'visible' : 'hidden'">
               <mat-icon class="mat-icon-rtl-mirror">
                 {{ treeControl.getLevel(node) === 0 ? 'expand_more ' : treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
               </mat-icon>
@@ -30,7 +28,7 @@
               <div class="duration">{{ computeRootNodeDuration(node.startDate, node.endDate) }}</div>
             </ng-container>
             <ng-template #durationChildNodes>
-              <div class="duration">{{ node.startDate | date: 'mediumDate' }} - {{ !node.endDate ? 'Present' : node.endDate | date: 'mediumDate' }}</div>
+              <div class="duration">{{ (node.startDate?.toDate ? node.startDate?.toDate() : node.startDate) | date: 'mediumDate' }} - {{ !node.endDate ? 'Present' : (node.endDate?.toDate ? node.endDate?.toDate() : node.endDate) | date: 'mediumDate' }}</div>
             </ng-template>
             <div class="location">{{ node.location }}</div>
           </div>
@@ -39,3 +37,7 @@
     </mat-card-content>
   </mat-card>
 </section>
+
+<ng-template #displayLoadingSpinner>
+  <mat-spinner [diameter]="100"></mat-spinner>
+</ng-template>
