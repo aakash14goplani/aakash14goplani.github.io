@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import firebase from 'firebase/compat/app';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -91,15 +92,19 @@ export class ContentService {
   /**
    * Updates content of a page in firestore
    * @param pagename { PAGENAME } - Page Name
+   * @param content { T } - Content
+   * @param isArrayUpdateOp { boolean } - Is Array Update Operation
    * @returns { Observable<void> } - Observable
    */
-  updatePageContent<T>(pagename: PAGENAME, content: T): Observable<void> {
+  updatePageContent<T>(pagename: PAGENAME, content: T, isArrayUpdateOp: boolean = false): Observable<void> {
     return this.getApplicationLocale().pipe(
       switchMap((locale) => {
         const document = (this.pagesWithSnapshot.includes(pagename))
           ? content['id']
           : this.fetchDocumentName(locale, pagename);
-        return from(this.datastore.collection<T>(Collections[pagename]).doc(document).update(content));
+        return (!isArrayUpdateOp)
+          ? from(this.datastore.collection<T>(Collections[pagename]).doc(document).update(content))
+          : from(this.datastore.collection(Collections[pagename]).doc(document).set({ 0: firebase.firestore.FieldValue.arrayUnion(content) }, { merge: true }));
       })
     );
   }

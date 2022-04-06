@@ -1,0 +1,90 @@
+@import "../../../assets/css/variables";
+
+.mat-stepper-vertical {
+  margin-top: 1rem;
+}
+
+.mat-step-label > .mat-step-text-label {
+  font-weight: 500;
+  font-size: 1.4rem !important;
+}
+
+.we-edit-page__container {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+
+  &__content {
+    form {
+      display: flex;
+      flex-direction: column;
+      margin: 1rem 0;
+
+      .form-group {
+        display: flex;
+
+        &__radio-group {
+          margin-top: 2rem;
+
+          .mat-radio-button {
+            margin: 0 1rem;
+          }
+        }
+
+        &__description {
+          display: flex;
+          align-self: stretch;
+          flex-direction: column;
+
+          div {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+
+            .mat-form-field {
+              width: 70%;
+            }
+          }
+        }
+
+        .mat-form-field {
+          width: 100%;
+          margin: 1rem auto;
+        }
+      }
+    }
+
+    &--add-btn-cta {
+      margin: 2rem auto;
+      width: 50%;
+    }
+
+    &__cta {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+    }
+
+    .stepper-buttons {
+      display: flex;
+      justify-content: space-evenly;
+    }
+  }
+}
+
+.back-to-we-page {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 2rem;
+}
+
+@media screen and (min-width: $small_tablets) {
+  .we-edit-page__container {
+    &__contents {
+      form {
+        width: 70%;
+      }
+    }
+  }
+}

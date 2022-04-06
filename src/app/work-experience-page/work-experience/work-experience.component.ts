@@ -1,5 +1,5 @@
 import { FlatTreeControl } from '@angular/cdk/tree';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, TemplateRef } from '@angular/core';
 import firebase from 'firebase/compat/app';
 import Timestamp = firebase.firestore.Timestamp;
 import { AngularFireAuth } from '@angular/fire/compat/auth';
@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { catchError, combineLatest, EMPTY, map, Observable, Subject, takeUntil, tap } from 'rxjs';
 import { ContentService } from '../../shared/content-service/content.service';
 import { ICompanyExperience, Locale, PAGENAME } from '../../shared/global.model';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-work-experience',
@@ -34,7 +35,8 @@ export class WorkExperienceComponent implements OnInit {
     private contentService: ContentService,
     private router: Router,
     private firebaseAuth: AngularFireAuth,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -46,9 +48,11 @@ export class WorkExperienceComponent implements OnInit {
     );
 
     this.displaySpinner$.next(true);
-    // any below = { [key: number]: ICompanyExperience[] };
-    this.dataSource$ = (this.contentService.getContentForPage<ICompanyExperience>(PAGENAME.WORK_EXPERIENCE) as Observable<Array<{ id: string, data: any }>>)
+    type inputValueType = { [key: number]: ICompanyExperience[] };
+    type returnValueType = Observable<Array<{ id: string, data: inputValueType }>>;
+    this.dataSource$ = (this.contentService.getContentForPage<inputValueType>(PAGENAME.WORK_EXPERIENCE) as returnValueType)
       .pipe(
+        tap(data => console.log(data[0].data)),
         map(data => data.map(_data => ({ id: _data.id, data: _data.data[0] }))[0]),
         tap((data: { id: string, data: ICompanyExperience[] }) => {
           this.EXPERIENCE_DATA = data.data;
@@ -112,6 +116,45 @@ export class WorkExperienceComponent implements OnInit {
 
   updateShowMoreContentForNode(node: ICompanyExperience) {
     node.showMoreContent = !node.showMoreContent;
+  }
+
+  /**
+   * Delete Work Experience details
+   */
+  deleteWorkExperience(templateRef: TemplateRef<any>) {
+    const dialogRef = this.dialog.open(templateRef);
+    dialogRef.afterClosed().subscribe((data) => {
+      if (data) {
+        /* this.displaySpinner$.next(true);
+        this.contentService.deletePageContent<ICompanyExperience>(PAGENAME.PROJECTS, this.EXPERIENCE_DATA[0]).pipe(
+          tap(_ => this.displaySpinner$.next(false)),
+          catchError((err) => {
+            this.snackBar.open(err, 'X', {
+              duration: 6000,
+              verticalPosition: 'bottom',
+              horizontalPosition: 'center'
+            });
+            this.displaySpinner$.next(false);
+            return EMPTY;
+          }),
+          takeUntil(this.unsubscriber$)
+        ).subscribe(); */
+      }
+    });
+  }
+
+  /**
+   * Edit Work Experience details
+   */
+  editWorkExperience(): void {
+    this.router.navigate(['/work-experience-edit'], { state: { data: this.EXPERIENCE_DATA } });
+  }
+
+  /**
+   * Add Work Experience details
+   */
+  addWorkExperience() {
+    this.router.navigate(['/work-experience-add']);
   }
 
 }

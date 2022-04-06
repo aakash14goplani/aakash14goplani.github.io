@@ -1,1 +1,91 @@
-<p>work-experience-edit works!</p>
+<section for="we-edit-page">
+  <div *ngIf="(displaySpinner | async) === false; else displayLoadingSpinner" class="we-edit-page__container">
+    <mat-stepper orientation="vertical" [linear]="false" #stepper class="we-edit-page__container__content">
+      <ng-container *ngFor="let formGroupContent of workExperienceEditForm; let i = index;">
+        <mat-step [stepControl]="formGroupContent">
+          <form [formGroup]="formGroupContent" (ngSubmit)="onSubmit()">
+            <ng-template matStepLabel>{{ getStepperHeader(formGroupContent) }}</ng-template>
+            <!-- Company/Position Title -->
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Title</mat-label>
+                <input matInput placeholder="Title" formControlName="title">
+              </mat-form-field>
+            </div>
+            <!-- Location -->
+            <div class="form-group" *ngIf="formGroupContent?.controls?.['levelId']?.value !== '00'">
+              <mat-form-field appearance="fill">
+                <mat-label>Location</mat-label>
+                <input matInput placeholder="Location" formControlName="location">
+              </mat-form-field>
+            </div>
+            <!-- Start date -->
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>Start Date</mat-label>
+                <input matInput placeholder="Start Date" formControlName="startDate">
+                <mat-hint>Enter date in MM/dd/yyy format</mat-hint>
+              </mat-form-field>
+            </div>
+            <!-- End Date -->
+            <div class="form-group">
+              <mat-form-field appearance="fill">
+                <mat-label>End Date</mat-label>
+                <input matInput placeholder="End Date" formControlName="endDate">
+                <mat-hint>Leave blank if still working else enter date in MM/dd/yyy format</mat-hint>
+              </mat-form-field>
+            </div>
+            <!-- edit show More Content -->
+            <div class="form-group__radio-group" *ngIf="formGroupContent?.controls?.['levelId']?.value !== '00'">
+              <mat-radio-group aria-label="Show More Content?" formControlName="showMoreContent">
+                <mat-label>Show More Content?</mat-label>
+                <mat-radio-button [value]="true">Yes</mat-radio-button>
+                <mat-radio-button [value]="false">No</mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <!-- edit description -->
+            <div class="form-group__description" formArrayName="description" *ngIf="formGroupContent?.controls?.['levelId']?.value !== '00'">
+              <ng-container *ngFor="let control of getAbstractControlFor(formGroupContent); let j = index" [formGroupName]="j">
+                <div>
+                  <mat-form-field>
+                    <mat-label>Description #{{j + 1}}</mat-label>
+                    <textarea matInput placeholder="Description" [formControl]="getFormControlFor(formGroupContent, j)" rows="5"></textarea>
+                    <mat-error *ngIf="control?.errors">Please enter valid description</mat-error>
+                  </mat-form-field>
+                  <!-- delete description -->
+                  <button mat-raised-button type="button" color="warn" (click)="removeFromArray(formGroupContent, j)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+              </ng-container>
+            </div>
+            <!-- add new description -->
+            <button class="we-edit-page__container__content--add-btn-cta" mat-raised-button type="button" (click)="addNewFormControlFor(formGroupContent)" color="primary" *ngIf="formGroupContent?.controls?.['levelId']?.value !== '00'">
+              <mat-icon>add</mat-icon>
+              <span>Add New Description</span>
+            </button>
+            <div class="stepper-buttons">
+              <button *ngIf="i > 0" mat-raised-button color="primary" type="button" matStepperPrevious>Back</button>
+              <button mat-raised-button color="primary" matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step *ngIf="i === (workExperienceEditForm.length - 1)">
+          <ng-template matStepLabel>Done</ng-template>
+          <p>You are now done.</p>
+          <div class="stepper-buttons">
+            <button mat-raised-button type="button" matStepperPrevious>Back</button>
+          </div>
+        </mat-step>
+      </ng-container>
+    </mat-stepper>
+    <div class="back-to-we-page">
+      <button mat-raised-button (click)="backToWorkExperiencePage()" color="primary" type="button">Cancel</button>
+      <button mat-raised-button (click)="updateChanges()" color="primary" type="button">Update Changes</button>
+    </div>
+  </div>
+</section>
+
+<ng-template #displayLoadingSpinner>
+  <mat-spinner [diameter]="100"></mat-spinner>
+</ng-template>
