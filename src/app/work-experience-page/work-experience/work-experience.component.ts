@@ -52,7 +52,6 @@ export class WorkExperienceComponent implements OnInit {
     type returnValueType = Observable<Array<{ id: string, data: inputValueType }>>;
     this.dataSource$ = (this.contentService.getContentForPage<inputValueType>(PAGENAME.WORK_EXPERIENCE) as returnValueType)
       .pipe(
-        tap(data => console.log(data[0].data)),
         map(data => data.map(_data => ({ id: _data.id, data: _data.data[0] }))[0]),
         tap((data: { id: string, data: ICompanyExperience[] }) => {
           this.EXPERIENCE_DATA = data.data;
@@ -147,7 +146,7 @@ export class WorkExperienceComponent implements OnInit {
    * Edit Work Experience details
    */
   editWorkExperience(): void {
-    this.router.navigate(['/work-experience-edit'], { state: { data: this.EXPERIENCE_DATA } });
+    this.router.navigate(['/work-experience-edit'], { state: { data: { id: this.documentId, content: this.EXPERIENCE_DATA } } });
   }
 
   /**

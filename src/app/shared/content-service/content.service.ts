@@ -102,9 +102,10 @@ export class ContentService {
         const document = (this.pagesWithSnapshot.includes(pagename))
           ? content['id']
           : this.fetchDocumentName(locale, pagename);
+
         return (!isArrayUpdateOp)
           ? from(this.datastore.collection<T>(Collections[pagename]).doc(document).update(content))
-          : from(this.datastore.collection(Collections[pagename]).doc(document).set({ 0: firebase.firestore.FieldValue.arrayUnion(content) }, { merge: true }));
+          : from(this.datastore.collection<{ [key: number]: T }>(Collections[pagename]).doc(document).set({ 0: content['content'] }, { merge: true }));
       })
     );
   }

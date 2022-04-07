@@ -3,8 +3,6 @@ import { FormGroup, FormBuilder, Validators, FormArray, FormControl, AbstractCon
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Subject, tap, takeUntil } from 'rxjs';
-import firebase from 'firebase/compat/app';
-import Timestamp = firebase.firestore.Timestamp;
 import { ContentService } from 'src/app/shared/content-service/content.service';
 import { ICompanyExperience, PAGENAME } from 'src/app/shared/global.model';
 import { WorkExperienceService } from '../services/work-experience.service';
@@ -22,7 +20,9 @@ export class WorkExperienceEditComponent implements OnDestroy {
   workExperienceEditForm: FormGroup[];
   displaySpinner: Subject<boolean> = new Subject<boolean>();
   unsubscriber$: Subject<void> = new Subject<void>();
+  dataFromRouter: { id: string, content: ICompanyExperience[] };
   dataToEdit: ICompanyExperience[];
+  isFormValid: boolean = true;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -32,7 +32,8 @@ export class WorkExperienceEditComponent implements OnDestroy {
     private weService: WorkExperienceService,
     private date: DatePipe
   ) {
-    this.dataToEdit = this.router.getCurrentNavigation()?.extras?.state?.['data'] || window.history.state?.data;
+    this.dataFromRouter = this.router.getCurrentNavigation()?.extras?.state?.['data'] || window.history.state?.data;
+    this.dataToEdit = this.dataFromRouter?.content;
     // route back on page reload
     if (!this.dataToEdit) {
       this.workExperienceEditForm = [];
@@ -125,7 +126,6 @@ export class WorkExperienceEditComponent implements OnDestroy {
    */
   private prefillFormArray(data: string[], index: number) {
     if (data && data.length > 0) {
-      // console.log('in: ', this.workExperienceEditForm[index].controls);
       data.forEach((content) => {
         (this.workExperienceEditForm[index].get('description') as FormArray)?.push(
           new FormControl(content)
@@ -207,17 +207,19 @@ export class WorkExperienceEditComponent implements OnDestroy {
   /**
    * Submit form and update content in firebase
    */
-  onSubmit() {
+  updateChanges() {
+    const submittedValues: ICompanyExperience[] = [];
     for (const data of this.workExperienceEditForm) {
-      console.log('onSubmit', data.value);
+      this.isFormValid = this.isFormValid && data.valid;
+      submittedValues.push(data.value);
     }
-    // this.workExperienceEditForm.updateValueAndValidity();
-    if (this.workExperienceEditForm) {
-      /* const editedData = {
-        id: this.dataToEdit.id,
-        ...this.workExperienceEditForm.value
+
+    if (this.isFormValid) {
+      const dataToFirestore = {
+        id: this.dataFromRouter.id,
+        content: this.weService.prepareObjectToStoreInFirestore(submittedValues)
       };
-      this.contentService.updatePageContent<ICompanyExperience>(PAGENAME.PROJECTS, editedData).pipe(
+      this.contentService.updatePageContent<{ id: string, content: ICompanyExperience[] }>(PAGENAME.WORK_EXPERIENCE, dataToFirestore, true).pipe(
         tap(_ => this.displaySpinner.next(true)),
         takeUntil(this.unsubscriber$)
       ).subscribe({
@@ -228,11 +230,11 @@ export class WorkExperienceEditComponent implements OnDestroy {
         error: (err) => {
           this.handleFirebaseError(err);
         }
-      }); */
+      });
+    } else {
+      this.handleFirebaseError('Please fill all the required fields');
     }
   }
-
-  updateChanges() { }
 
   ngOnDestroy(): void {
     this.displaySpinner.complete();

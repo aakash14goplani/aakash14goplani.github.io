@@ -3,7 +3,7 @@
     <mat-stepper orientation="vertical" [linear]="false" #stepper class="we-edit-page__container__content">
       <ng-container *ngFor="let formGroupContent of workExperienceEditForm; let i = index;">
         <mat-step [stepControl]="formGroupContent">
-          <form [formGroup]="formGroupContent" (ngSubmit)="onSubmit()">
+          <form [formGroup]="formGroupContent">
             <ng-template matStepLabel>{{ getStepperHeader(formGroupContent) }}</ng-template>
             <!-- Company/Position Title -->
             <div class="form-group">
@@ -81,7 +81,7 @@
     </mat-stepper>
     <div class="back-to-we-page">
       <button mat-raised-button (click)="backToWorkExperiencePage()" color="primary" type="button">Cancel</button>
-      <button mat-raised-button (click)="updateChanges()" color="primary" type="button">Update Changes</button>
+      <button mat-raised-button (click)="updateChanges()" [disabled]="!isFormValid" color="primary" type="button">Update Changes</button>
     </div>
   </div>
 </section>
