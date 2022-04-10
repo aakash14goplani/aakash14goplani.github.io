@@ -15,7 +15,7 @@
     "emulator-firestore": "firebase emulators:start --only firestore --import test-data",
     "export": "firebase emulators:export test-data",
     "local-dev": "firebase emulators:start --only firestore,auth,storage --import test-data",
-    "docs": "compodoc -p tsconfig.docs.json -s -o --theme material"
+    "docs": "compodoc -p tsconfig.docs.json -s -o -w --theme material"
   },
   "private": true,
   "dependencies": {

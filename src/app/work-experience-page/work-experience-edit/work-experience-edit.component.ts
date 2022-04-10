@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, TemplateRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl, AbstractControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -7,6 +7,7 @@ import { ContentService } from 'src/app/shared/content-service/content.service';
 import { ICompanyExperience, PAGENAME } from 'src/app/shared/global.model';
 import { WorkExperienceService } from '../services/work-experience.service';
 import { DatePipe } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-work-experience-edit',
@@ -23,6 +24,7 @@ export class WorkExperienceEditComponent implements OnDestroy {
   dataFromRouter: { id: string, content: ICompanyExperience[] };
   dataToEdit: ICompanyExperience[];
   isFormValid: boolean = true;
+  displayAddNewPositionTemplate: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -30,7 +32,8 @@ export class WorkExperienceEditComponent implements OnDestroy {
     private contentService: ContentService,
     private _snackBar: MatSnackBar,
     private weService: WorkExperienceService,
-    private date: DatePipe
+    private date: DatePipe,
+    private dialog: MatDialog
   ) {
     this.dataFromRouter = this.router.getCurrentNavigation()?.extras?.state?.['data'] || window.history.state?.data;
     this.dataToEdit = this.dataFromRouter?.content;
@@ -43,6 +46,7 @@ export class WorkExperienceEditComponent implements OnDestroy {
       this.workExperienceEditForm = new Array(Object.keys(groupedDataToEdit).length);
       this.initializeFormSkeleton(0);
       this.prefillForm(groupedDataToEdit);
+      this.weService.setCurrentlyEditedData(this.dataToEdit);
       // as it is invoked immediately, it is not captured in CD, so delay the invocation
       setTimeout(() => this.displaySpinner.next(false));
     }
@@ -205,22 +209,75 @@ export class WorkExperienceEditComponent implements OnDestroy {
   }
 
   /**
+   * Add New Position
+   * @param status { boolean } - launches screen for add position if true
+   */
+  addNewPosition(status: boolean): void {
+    this.displayAddNewPositionTemplate = status;
+  }
+
+  /**
+   * Update spinner status as per child component's state
+   * @param status { boolean } - hide / dispay spinner
+   */
+  spinnerStatusFromChildComponent(status: boolean): void {
+    this.displaySpinner.next(status);
+  }
+
+  /**
+   * Update error status as per child component's state
+   * @param error { string } - error message
+   */
+  errorStatusFromChildComponent(error: string): void {
+    this.handleFirebaseError(error);
+  }
+
+  /**
+   * Position to delete
+   * @param { FormGroup } - form group content
+   * @param { TemplateRef<any> } - modal reference
+   */
+  deleteThisPosition(formGroupContent: FormGroup, modalRef: TemplateRef<any>): void {
+    const dialogRef = this.dialog.open(modalRef);
+    dialogRef.afterClosed().subscribe((_data) => {
+      if (_data) {
+        this.displaySpinner.next(true);
+        const content = this.dataToEdit.filter((data: ICompanyExperience) => data.levelId !== formGroupContent.controls['levelId'].value);
+        const dataToFirestore = { id: this.dataFromRouter.id, content };
+
+        this.contentService.updatePageContent<{ id: string, content: ICompanyExperience[] }>(PAGENAME.WORK_EXPERIENCE, dataToFirestore, true).pipe(
+          takeUntil(this.unsubscriber$)
+        ).subscribe({
+          next: () => {
+            this.displaySpinner.next(false);
+            this.router.navigate(['/work-experience']);
+          },
+          error: (err) => {
+            this.handleFirebaseError(err);
+          }
+        });
+      }
+    });
+  }
+
+  /**
    * Submit form and update content in firebase
    */
   updateChanges() {
-    const submittedValues: ICompanyExperience[] = [];
-    for (const data of this.workExperienceEditForm) {
-      this.isFormValid = this.isFormValid && data.valid;
-      submittedValues.push(data.value);
-    }
-
     if (this.isFormValid) {
+      this.displaySpinner.next(true);
+
+      const submittedValues: ICompanyExperience[] = [];
+      for (const data of this.workExperienceEditForm) {
+        this.isFormValid = this.isFormValid && data.valid;
+        submittedValues.push(data.value);
+      }
+
       const dataToFirestore = {
         id: this.dataFromRouter.id,
         content: this.weService.prepareObjectToStoreInFirestore(submittedValues)
       };
       this.contentService.updatePageContent<{ id: string, content: ICompanyExperience[] }>(PAGENAME.WORK_EXPERIENCE, dataToFirestore, true).pipe(
-        tap(_ => this.displaySpinner.next(true)),
         takeUntil(this.unsubscriber$)
       ).subscribe({
         next: () => {

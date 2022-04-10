@@ -96,7 +96,7 @@ export class ContentService {
    * @param isArrayUpdateOp { boolean } - Is Array Update Operation
    * @returns { Observable<void> } - Observable
    */
-  updatePageContent<T>(pagename: PAGENAME, content: T, isArrayUpdateOp: boolean = false): Observable<void> {
+  updatePageContent<T>(pagename: PAGENAME, content: T, isArrayUpdateOp: boolean = false, arrayIndex: number = 0): Observable<void> {
     return this.getApplicationLocale().pipe(
       switchMap((locale) => {
         const document = (this.pagesWithSnapshot.includes(pagename))
@@ -105,7 +105,7 @@ export class ContentService {
 
         return (!isArrayUpdateOp)
           ? from(this.datastore.collection<T>(Collections[pagename]).doc(document).update(content))
-          : from(this.datastore.collection<{ [key: number]: T }>(Collections[pagename]).doc(document).set({ 0: content['content'] }, { merge: true }));
+          : from(this.datastore.collection<{ [key: number]: T }>(Collections[pagename]).doc(document).set({ [arrayIndex]: content['content'] }, { merge: true }));
       })
     );
   }

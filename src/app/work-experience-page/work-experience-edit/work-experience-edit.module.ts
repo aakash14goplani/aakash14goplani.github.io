@@ -4,7 +4,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { WorkExperienceEditComponent } from './work-experience-edit.component';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -12,6 +11,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatStepperModule } from '@angular/material/stepper';
+import { WorkExperienceAddPositionModule } from './work-experience-add-position/work-experience-add-position.module';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const routes: Routes = [
   { path: '', component: WorkExperienceEditComponent }
@@ -27,7 +28,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     ReactiveFormsModule,
-    MatCardModule,
+    WorkExperienceAddPositionModule,
     MatButtonModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
@@ -35,7 +36,8 @@ const routes: Routes = [
     MatInputModule,
     MatIconModule,
     MatRadioModule,
-    MatStepperModule
+    MatStepperModule,
+    MatDialogModule
   ]
 })
 export class WorkExperienceEditModule { }

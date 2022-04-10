@@ -10,6 +10,9 @@ import { ContentService } from '../../shared/content-service/content.service';
 import { ICompanyExperience, Locale, PAGENAME } from '../../shared/global.model';
 import { MatDialog } from '@angular/material/dialog';
 
+type inputValueType = { [key: number]: ICompanyExperience[] };
+type returnValueType = Observable<Array<{ id: string, data: inputValueType }>>;
+
 @Component({
   selector: 'app-work-experience',
   templateUrl: './work-experience.component.html',
@@ -23,9 +26,8 @@ export class WorkExperienceComponent implements OnInit {
   private unsubscriber$: Subject<void> = new Subject<void>();
   displaySpinner$: Subject<boolean> = new Subject<boolean>();
   isAdmin$!: Observable<boolean>;
-  dataSource$!: Observable<ICompanyExperience[]>;
+  dataSource$!: Observable<{ id: string, data: inputValueType }[]>;
   showMoreContent: boolean = false;
-  private documentId: string = '';
   treeControl: FlatTreeControl<ICompanyExperience> = new FlatTreeControl<ICompanyExperience>(
     node => node.level,
     node => node.expandable
@@ -48,17 +50,11 @@ export class WorkExperienceComponent implements OnInit {
     );
 
     this.displaySpinner$.next(true);
-    type inputValueType = { [key: number]: ICompanyExperience[] };
-    type returnValueType = Observable<Array<{ id: string, data: inputValueType }>>;
     this.dataSource$ = (this.contentService.getContentForPage<inputValueType>(PAGENAME.WORK_EXPERIENCE) as returnValueType)
       .pipe(
-        map(data => data.map(_data => ({ id: _data.id, data: _data.data[0] }))[0]),
-        tap((data: { id: string, data: ICompanyExperience[] }) => {
-          this.EXPERIENCE_DATA = data.data;
-          this.documentId = data.id;
+        tap((data) => {
           this.displaySpinner$.next(false);
         }),
-        map(data => data.data),
         catchError((err) => {
           this.snackBar.open(err, 'X', {
             duration: 6000,
@@ -71,9 +67,20 @@ export class WorkExperienceComponent implements OnInit {
       );
   }
 
+  /**
+   * Compute if node has childrens
+   * @param _ ( number ) - index of current node
+   * @param node { ICompanyExperience } - current node
+   * @returns { boolean } - true if has children
+   */
   hasChild = (_: number, node: ICompanyExperience) => node.expandable;
 
-  shouldRender(node: ICompanyExperience) {
+  /**
+   * Should renter current node as parent node
+   * @param node { ICompanyExperience } - current node
+   * @returns { boolean } - true if node is expanded
+   */
+  shouldRender(node: ICompanyExperience): boolean {
     let parent = this.getParentNode(node);
     while (parent) {
       if (!parent.isExpanded) {
@@ -84,7 +91,22 @@ export class WorkExperienceComponent implements OnInit {
     return true;
   }
 
-  private getParentNode(node: ICompanyExperience) {
+  /**
+   * We need to set this as it will be required while computing parent node
+   * @param data { ICompanyExperience[] } - data to be displayed
+   */
+  setExperienceData(data: ICompanyExperience[]): void {
+    if (data) {
+      this.EXPERIENCE_DATA = [...data];
+    }
+  }
+
+  /**
+   * Computes parent mode for given node
+   * @param node { ICompanyExperience } - current node
+   * @returns { ICompanyExperience | null } - parent node
+   */
+  private getParentNode(node: ICompanyExperience): ICompanyExperience | null {
     const nodeIndex = this.EXPERIENCE_DATA.indexOf(node);
 
     for (let i = nodeIndex - 1; i >= 0; i--) {
@@ -96,6 +118,12 @@ export class WorkExperienceComponent implements OnInit {
     return null;
   }
 
+  /**
+   * Compute the total number of months/years for particular position
+   * @param _startDate { Timestamp } - start date
+   * @param _endDate { Timestamp } - end date
+   * @returns { string } - formatted date
+   */
   computeRootNodeDuration(_startDate: Timestamp | any, _endDate: Timestamp | null): string {
     const startDate: Date = _startDate?.toDate ? _startDate.toDate() : _startDate as Date;
     const endDate: Date = _endDate?.toDate ? _endDate.toDate() : new Date();
@@ -113,19 +141,27 @@ export class WorkExperienceComponent implements OnInit {
     return totalYears + _dateContent.years + partialMonths + _dateContent.months;
   }
 
-  updateShowMoreContentForNode(node: ICompanyExperience) {
+  /**
+   * Toggle data when user click on expand/collapse show more button
+   * @param node { ICompanyExperience } - current node
+   */
+  updateShowMoreContentForNode(node: ICompanyExperience): void {
     node.showMoreContent = !node.showMoreContent;
   }
 
   /**
    * Delete Work Experience details
+   * @param { TemplateRef } - Delete Modal reference
+   * @param { string } - current document id
+   * @param { ICompanyExperience[] } - current document content
    */
-  deleteWorkExperience(templateRef: TemplateRef<any>) {
+  deleteWorkExperience(templateRef: TemplateRef<any>, id: string, content: ICompanyExperience[]): void {
     const dialogRef = this.dialog.open(templateRef);
     dialogRef.afterClosed().subscribe((data) => {
       if (data) {
-        /* this.displaySpinner$.next(true);
-        this.contentService.deletePageContent<ICompanyExperience>(PAGENAME.PROJECTS, this.EXPERIENCE_DATA[0]).pipe(
+        this.displaySpinner$.next(true);
+        const dataToFirestore = { id, content };
+        this.contentService.deletePageContent<{ id: string, content: ICompanyExperience[] }>(PAGENAME.WORK_EXPERIENCE, dataToFirestore).pipe(
           tap(_ => this.displaySpinner$.next(false)),
           catchError((err) => {
             this.snackBar.open(err, 'X', {
@@ -137,16 +173,18 @@ export class WorkExperienceComponent implements OnInit {
             return EMPTY;
           }),
           takeUntil(this.unsubscriber$)
-        ).subscribe(); */
+        ).subscribe();
       }
     });
   }
 
   /**
    * Edit Work Experience details
+   * @param { string } - current document id
+   * @param { ICompanyExperience[] } - current document content
    */
-  editWorkExperience(): void {
-    this.router.navigate(['/work-experience-edit'], { state: { data: { id: this.documentId, content: this.EXPERIENCE_DATA } } });
+  editWorkExperience(id: string, content: ICompanyExperience[]): void {
+    this.router.navigate(['/work-experience-edit'], { state: { data: { id, content } } });
   }
 
   /**

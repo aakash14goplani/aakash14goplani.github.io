@@ -65,7 +65,10 @@
               <span>Add New Description</span>
             </button>
             <div class="stepper-buttons">
-              <button *ngIf="i > 0" mat-raised-button color="primary" type="button" matStepperPrevious>Back</button>
+              <ng-container *ngIf="i > 0">
+                <button mat-raised-button color="primary" type="button" matStepperPrevious>Back</button>
+                <button mat-raised-button color="warn" type="button" (click)="deleteThisPosition(formGroupContent, deleteConfirmationModal)">Delete</button>
+              </ng-container>
               <button mat-raised-button color="primary" matStepperNext>Next</button>
             </div>
           </form>
@@ -81,11 +84,26 @@
     </mat-stepper>
     <div class="back-to-we-page">
       <button mat-raised-button (click)="backToWorkExperiencePage()" color="primary" type="button">Cancel</button>
+      <button mat-raised-button (click)="addNewPosition(true)" color="primary" type="button">Add New Position</button>
       <button mat-raised-button (click)="updateChanges()" [disabled]="!isFormValid" color="primary" type="button">Update Changes</button>
     </div>
   </div>
 </section>
 
+<ng-container *ngIf="displayAddNewPositionTemplate">
+  <app-work-experience-add-position (actionResponse)="addNewPosition($event)" (displaySpinner)="spinnerStatusFromChildComponent($event)" (handleFirebaseError)="errorStatusFromChildComponent($event)" [documentId]="dataFromRouter.id">
+  </app-work-experience-add-position>
+</ng-container>
+
 <ng-template #displayLoadingSpinner>
   <mat-spinner [diameter]="100"></mat-spinner>
+</ng-template>
+
+<ng-template #deleteConfirmationModal>
+  <h1 mat-dialog-title>Are you sure?</h1>
+  <div mat-dialog-content>Performing this action will delete this entry forever!</div>
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Delete</button>
+  </div>
 </ng-template>

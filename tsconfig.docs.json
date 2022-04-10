@@ -3,6 +3,8 @@
     "src/app/**/*.ts"
   ],
   "exclude": [
-    "src/app/**/*.spec.ts"
+    "src/app/**/*.spec.ts",
+    "src/app/**/*.model.ts",
+    "src/app/shared/site-content/**/*.ts"
   ]
 }

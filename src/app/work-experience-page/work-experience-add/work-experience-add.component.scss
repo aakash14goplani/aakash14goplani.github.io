@@ -1,0 +1,54 @@
+.container {
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+
+  &__root {
+    display: flex;
+    margin: 2rem auto;
+    padding: 2rem;
+    flex-direction: column;
+
+    &__title {
+      text-align: center;
+    }
+
+    &__content {
+      .form-group {
+        margin: 1rem auto;
+
+        .mat-form-field {
+          width: 100%;
+        }
+      }
+
+      .description {
+        display: flex;
+        align-self: stretch;
+        flex-direction: column;
+        margin: 1rem auto;
+
+        div {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+
+          .mat-form-field {
+            width: 70%;
+          }
+        }
+      }
+
+      .add-btn-cta {
+        margin: 2rem 0;
+      }
+
+      .cta {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,70 @@
+<mat-card class="add-new-position">
+  <mat-card-header>
+    <mat-card-title>
+      <h1>Add New Position</h1>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="addNewPosition" (ngSubmit)="saveNewPosition()">
+      <!-- Position Title -->
+      <div class="form-group">
+        <mat-form-field appearance="fill">
+          <mat-label>Title</mat-label>
+          <input matInput placeholder="Title" formControlName="title">
+          <mat-error *ngIf="addNewPosition?.get('title')?.errors">Please enter valid title</mat-error>
+        </mat-form-field>
+      </div>
+      <!-- Location -->
+      <div class="form-group">
+        <mat-form-field appearance="fill">
+          <mat-label>Location</mat-label>
+          <input matInput placeholder="Location" formControlName="location">
+          <mat-error *ngIf="addNewPosition?.get('location')?.errors">Please enter valid location</mat-error>
+        </mat-form-field>
+      </div>
+      <!-- Start date -->
+      <div class="form-group">
+        <mat-form-field appearance="fill">
+          <mat-label>Start Date</mat-label>
+          <input matInput placeholder="Start Date" formControlName="startDate">
+          <mat-hint>Enter date in MM/dd/yyy format</mat-hint>
+          <mat-error *ngIf="addNewPosition?.get('startDate')?.errors">Please enter valid location</mat-error>
+        </mat-form-field>
+      </div>
+      <!-- End Date -->
+      <div class="form-group">
+        <mat-form-field appearance="fill">
+          <mat-label>End Date</mat-label>
+          <input matInput placeholder="End Date" formControlName="endDate">
+          <mat-hint>Leave blank if still working else enter date in MM/dd/yyy format</mat-hint>
+        </mat-form-field>
+      </div>
+      <!-- description -->
+      <div class="form-group description" formArrayName="description">
+        <ng-container *ngFor="let control of getAbstractControlFor('description'); let i = index" [formGroupName]="i">
+          <div>
+            <mat-form-field>
+              <mat-label>Description #{{i + 1}}</mat-label>
+              <textarea matInput placeholder="Description" [formControl]="getFormControlFor('description', i)" rows="5"></textarea>
+              <mat-error *ngIf="control?.errors">Please enter valid description</mat-error>
+            </mat-form-field>
+            <!-- delete description -->
+            <button mat-raised-button type="button" color="warn" (click)="removeFromArray('description', i)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </ng-container>
+      </div>
+      <!-- add new content -->
+      <button class="add-btn-cta" mat-raised-button type="button" (click)="addNewFormControlFor('description')" color="primary">
+        <mat-icon>add</mat-icon>
+        <span>Add New Description</span>
+      </button>
+      <!-- cta -->
+      <mat-card-actions class="cta">
+        <button mat-raised-button color="primary" type="button" (click)="cancelEditingForm()">Cancel</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!addNewPosition.valid">Save</button>
+      </mat-card-actions>
+    </form>
+  </mat-card-content>
+</mat-card>

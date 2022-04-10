@@ -1,55 +1,58 @@
 <section name="work-experience-page">
-  <mat-card class="work-experience-container" role="main">
-    <mat-card-content class="work-experience-container__contents" *ngIf="(dataSource$ | async) as dataSource; else displayLoadingSpinner">
-      <cdk-tree [dataSource]="dataSource" [treeControl]="treeControl">
-        <!-- This is the tree node template for leaf nodes -->
-        <cdk-tree-node *cdkTreeNodeDef="let node" cdkTreeNodePadding [style.display]="shouldRender(node) ? 'flex' : 'none'" class="example-tree-node" [ngStyle]="{ 'flex-direction': treeControl.getLevel(node) === 2 ? 'column' : 'row' }">
-          <div class="description" [ngStyle]="{ 'max-height': node.showMoreContent ? 'inherit' : '4rem' }">
-            <p *ngFor="let content of node.description">
-              - {{ content }}
-            </p>
-          </div>
-          <div class="description-button">
-            <button mat-button (click)="updateShowMoreContentForNode(node)">{{ node.showMoreContent ? 'show less' : '... show more' }}</button>
-          </div>
-        </cdk-tree-node>
-        <!-- This is the tree node template for expandable nodes -->
-        <cdk-tree-node *cdkTreeNodeDef="let node; when: hasChild" cdkTreeNodePadding [style.display]="shouldRender(node) ? 'flex' : 'none'" class="example-tree-node">
-          <div class="node-icon">
-            <button mat-icon-button cdkTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name" (click)="node.isExpanded = !node.isExpanded" [style.visibility]="node.expandable ? 'visible' : 'hidden'">
-              <mat-icon class="mat-icon-rtl-mirror">
-                {{ treeControl.getLevel(node) === 0 ? 'expand_more ' : treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
-              </mat-icon>
+  <ng-container *ngIf="(dataSource$ | async); else displayLoadingSpinner">
+    <mat-card *ngFor="let data of (dataSource$ | async)" class="work-experience-container" role="main">
+      <ng-container>{{ setExperienceData(data.data[0]) }}</ng-container>
+      <mat-card-content class="work-experience-container__contents">
+        <cdk-tree [dataSource]="data.data[0]" [treeControl]="treeControl">
+          <!-- This is the tree node template for leaf nodes -->
+          <cdk-tree-node *cdkTreeNodeDef="let node" cdkTreeNodePadding [style.display]="shouldRender(node) ? 'flex' : 'none'" class="example-tree-node" [ngStyle]="{ 'flex-direction': treeControl.getLevel(node) === 2 ? 'column' : 'row' }">
+            <div class="description" [ngStyle]="{ 'max-height': node.showMoreContent ? 'inherit' : '4rem' }">
+              <p *ngFor="let content of node.description">
+                - {{ content }}
+              </p>
+            </div>
+            <div class="description-button">
+              <button mat-button (click)="updateShowMoreContentForNode(node)">{{ node.showMoreContent ? 'show less' : '... show more' }}</button>
+            </div>
+          </cdk-tree-node>
+          <!-- This is the tree node template for expandable nodes -->
+          <cdk-tree-node *cdkTreeNodeDef="let node; when: hasChild" cdkTreeNodePadding [style.display]="shouldRender(node) ? 'flex' : 'none'" class="example-tree-node">
+            <div class="node-icon">
+              <button mat-icon-button cdkTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name" (click)="node.isExpanded = !node.isExpanded" [style.visibility]="node.expandable ? 'visible' : 'hidden'">
+                <mat-icon class="mat-icon-rtl-mirror">
+                  {{ treeControl.getLevel(node) === 0 ? 'expand_more ' : treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
+                </mat-icon>
+              </button>
+            </div>
+            <div class="node-contents">
+              <div class="designation" [ngClass]="{ 'root-node': treeControl.getLevel(node) === 0 }">{{ node.title }}</div>
+              <ng-container *ngIf="treeControl.getLevel(node) === 0; else durationChildNodes">
+                <div class="duration">{{ computeRootNodeDuration(node.startDate, node.endDate) }}</div>
+              </ng-container>
+              <ng-template #durationChildNodes>
+                <div class="duration">{{ (node.startDate?.toDate ? node.startDate?.toDate() : node.startDate) | date: 'mediumDate' }} - {{ !node.endDate ? 'Present' : (node.endDate?.toDate ? node.endDate?.toDate() : node.endDate) | date: 'mediumDate' }}</div>
+              </ng-template>
+              <div class="location">{{ node.location }}</div>
+            </div>
+          </cdk-tree-node>
+        </cdk-tree>
+        <mat-card-actions class="work-experience-container__contents__cta" *ngIf="(isAdmin$ | async)">
+          <div>
+            <button mat-raised-button color="warn" (click)="deleteWorkExperience(deleteConfirmationModal, data.id, data.data[0])">
+              <mat-icon>delete</mat-icon>
+              <span>Delete</span>
             </button>
           </div>
-          <div class="node-contents">
-            <div class="designation" [ngClass]="{ 'root-node': treeControl.getLevel(node) === 0 }">{{ node.title }}</div>
-            <ng-container *ngIf="treeControl.getLevel(node) === 0; else durationChildNodes">
-              <div class="duration">{{ computeRootNodeDuration(node.startDate, node.endDate) }}</div>
-            </ng-container>
-            <ng-template #durationChildNodes>
-              <div class="duration">{{ (node.startDate?.toDate ? node.startDate?.toDate() : node.startDate) | date: 'mediumDate' }} - {{ !node.endDate ? 'Present' : (node.endDate?.toDate ? node.endDate?.toDate() : node.endDate) | date: 'mediumDate' }}</div>
-            </ng-template>
-            <div class="location">{{ node.location }}</div>
+          <div>
+            <button mat-raised-button color="accent" (click)="editWorkExperience(data.id, data.data[0])">
+              <mat-icon>edit</mat-icon>
+              <span>Edit</span>
+            </button>
           </div>
-        </cdk-tree-node>
-      </cdk-tree>
-      <mat-card-actions class="work-experience-container__contents__cta" *ngIf="(isAdmin$ | async)">
-        <div>
-          <button mat-raised-button color="warn" (click)="deleteWorkExperience(deleteConfirmationModal)">
-            <mat-icon>delete</mat-icon>
-            <span>Delete this position</span>
-          </button>
-        </div>
-        <div>
-          <button mat-raised-button color="accent" (click)="editWorkExperience()">
-            <mat-icon>edit</mat-icon>
-            <span>Edit Existing Details</span>
-          </button>
-        </div>
-      </mat-card-actions>
-    </mat-card-content>
-  </mat-card>
+        </mat-card-actions>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
   <div class="add-new-experience" *ngIf="(isAdmin$ | async)">
     <button mat-raised-button color="primary" (click)="addWorkExperience()">
       <mat-icon>add</mat-icon>
