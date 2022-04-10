@@ -17,12 +17,21 @@
             <span>{{ navItem.name }}</span>
           </a>
         </mat-list-item>
-        <mat-list-item *ngIf="(firebaseAuth.user | async) && (helperService.isDatabaseOnline | async)">
-          <a matLine (click)="logOut()">
-            <mat-icon>power_settings_new</mat-icon>
-            <span>{{ locale === LocalEnum.en ? "Logout" : "लॉग आउट" }}</span>
-          </a>
-        </mat-list-item>
+        <!-- logout & edit nav details -->
+        <ng-container *ngIf="(firebaseAuth.user | async) && (helperService.isDatabaseOnline | async)">
+          <mat-list-item>
+            <a matLine (click)="editNavItems()">
+              <mat-icon>edit</mat-icon>
+              <span>{{ locale === LocalEnum.en ? "Edit" : "संपादन" }}</span>
+            </a>
+          </mat-list-item>
+          <mat-list-item>
+            <a matLine (click)="logOut()">
+              <mat-icon>power_settings_new</mat-icon>
+              <span>{{ locale === LocalEnum.en ? "Logout" : "लॉग आउट" }}</span>
+            </a>
+          </mat-list-item>
+        </ng-container>
       </mat-nav-list>
       <!-- side navigation footer -->
       <mat-toolbar color="primary" class="app-sidenav-container__nav--footer">

@@ -102,6 +102,14 @@ const routes: Routes = [
     }
   },
   {
+    path: 'navigation-edit',
+    loadChildren: () => import('./navigation-edit-page/navigation-edit/navigation-edit.module').then(m => m.NavigationEditModule),
+    canActivate: [AngularFireAuthGuard],
+    data: {
+      authGuardPipe: redirectUnauthorizedToHomePage
+    }
+  },
+  {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },

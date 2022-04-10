@@ -73,6 +73,11 @@ export class AppComponent implements OnInit {
     sessionStorage.setItem(SessionKey.THEME, this.activeTheme);
   }
 
+  /**
+   * Handle firebase error.
+   * @param err { any } error
+   * @returns { Observable<any> } observable
+   */
   private handleFirebaseError(err: any): Observable<never> {
     this._snackBar.open(err, 'X', {
       duration: 6000,
@@ -178,6 +183,14 @@ export class AppComponent implements OnInit {
       .catch((error) => {
         this.performLogoutActions(error);
       });
+  }
+
+  /**
+   * Navigate to the navigate-edit page.
+   */
+  editNavItems(): void {
+    this.close();
+    this.router.navigate(['/navigation-edit']);
   }
 
   /**

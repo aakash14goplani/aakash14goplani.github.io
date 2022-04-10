@@ -1,0 +1,33 @@
+.container {
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+
+  &__root {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+
+    &__title {
+      text-align: center;
+    }
+
+    &__content {
+      padding: 2rem;
+      .form-group {
+        margin: 1rem auto;
+
+        .mat-form-field {
+          width: 100%;
+        }
+      }
+    }
+
+    &__footer {
+      &--cta {
+        display: flex;
+        justify-content: space-evenly;
+      }
+    }
+  }
+}
