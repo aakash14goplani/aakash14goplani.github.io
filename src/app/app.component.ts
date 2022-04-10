@@ -6,10 +6,9 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { catchError, EMPTY, map, Observable } from 'rxjs';
 import { ContentService } from './shared/content-service/content.service';
 import { INavigation, IThemes, Locale, PAGENAME, PAGENAME_HI, SessionKey } from './shared/global.model';
-import { navigation } from './shared/site-content/navigation';
 import { ThemeService } from './shared/theme-service/theme.service';
 
 @Component({
@@ -24,8 +23,8 @@ export class AppComponent implements OnInit {
   direction!: Direction;
   language!: Locale;
   isMobile: boolean = true;
-  navigationDetails$: BehaviorSubject<Array<INavigation>> = new BehaviorSubject<Array<INavigation>>(navigation.en);
-  options$: Observable<Array<IThemes>> = this.themeService.getThemeOptions();
+  navigationDetails$!: Observable<INavigation[]>;
+  options$!: Observable<Array<IThemes>>;
   activeTheme: string = '';
   themeType: string = '';
   currentYear: number = new Date().getFullYear();
@@ -48,11 +47,15 @@ export class AppComponent implements OnInit {
     this.configureThemeOption();
     this.configureDirectionOption();
     this.configureLanguageOption();
-    type key = keyof typeof navigation;
-    this.helperService.getApplicationLocale().subscribe((locale) => {
-      this.navigationDetails$.next(navigation[locale as key]);
-      this.locale = locale;
-    });
+    this.configureNavigationOptions();
+  }
+
+  private configureNavigationOptions(): void {
+    this.navigationDetails$ = (this.helperService.getContentForPage<{ [key: number]: INavigation[] }>(PAGENAME.NAVIGATION) as Observable<{ [key: number]: INavigation[] }>)
+      .pipe(
+        map(navigation => navigation[0]),
+        catchError(this.handleFirebaseError.bind(this))
+      );
   }
 
   /**
@@ -60,11 +63,23 @@ export class AppComponent implements OnInit {
    * else fall back to default light theme.
    */
   private configureThemeOption(): void {
+    this.options$ = this.themeService.getThemeOptions().pipe(
+      catchError(this.handleFirebaseError.bind(this))
+    );
     const themeFromSession = sessionStorage.getItem(SessionKey.THEME);
     this.themeService.setTheme(themeFromSession ? themeFromSession : 'indigo-pink');
     this.activeTheme = themeFromSession ? themeFromSession : 'indigo-pink';
     this.themeType = this.getThemeType(this.activeTheme);
     sessionStorage.setItem(SessionKey.THEME, this.activeTheme);
+  }
+
+  private handleFirebaseError(err: any): Observable<never> {
+    this._snackBar.open(err, 'X', {
+      duration: 6000,
+      verticalPosition: 'bottom',
+      horizontalPosition: 'center'
+    });
+    return EMPTY;
   }
 
   /**
@@ -146,7 +161,7 @@ export class AppComponent implements OnInit {
       };
       this._snackBar.open(_snackBarText.content, _snackBarText.button, {
         duration: 6000,
-        verticalPosition: 'top',
+        verticalPosition: 'bottom',
         horizontalPosition: 'center'
       });
     }

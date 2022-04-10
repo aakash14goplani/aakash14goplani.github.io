@@ -11,7 +11,9 @@ export enum PAGENAME {
   WORK_EXPERIENCE = 'WORK EXPERIENCE',
   PROJECTS = 'PROJECTS',
   BLOGS = 'BLOGS',
-  RESUME = 'RESUME'
+  RESUME = 'RESUME',
+  NAVIGATION = 'NAVIGATION',
+  THEMES = 'THEMES'
 }
 
 export enum PAGENAME_HI {
@@ -150,7 +152,7 @@ export enum Collections {
   PROJECTS = 'projects_page',
   BLOGS = 'blogs_page',
   NAVIGATION = 'navigation',
-  THEME = 'theme'
+  THEMES = 'theme'
 }
 
 export enum Documents {

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import firebase from 'firebase/compat/app';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -11,6 +10,8 @@ import { introduction } from '../site-content/home';
 import { projects } from '../site-content/projects';
 import { skillsPageData } from '../site-content/skills';
 import { workExperience } from '../site-content/work-experience';
+import { navigation } from '../site-content/navigation';
+import themeConfiguration from '../site-content/theme';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class ContentService {
 
   private locale$ = new BehaviorSubject<Locale>(Locale.en);
   private isDatabaseOnline$ = new BehaviorSubject<boolean>(false);
-  private pagesWithSnapshot: Array<PAGENAME> = [PAGENAME.BLOGS, PAGENAME.PROJECTS, PAGENAME.WORK_EXPERIENCE];
+  private pagesWithSnapshot: Array<PAGENAME> = [PAGENAME.BLOGS, PAGENAME.PROJECTS, PAGENAME.WORK_EXPERIENCE, PAGENAME.THEMES];
 
   constructor(
     private datastore: AngularFirestore,
@@ -72,9 +73,15 @@ export class ContentService {
                 if (locale === Locale.en) {
                   if (id.endsWith('_en')) {
                     dataToReturn.push({ id, data });
+                  } else {
+                    // for themes
+                    dataToReturn.push({ id, data });
                   }
                 } else {
                   if (id.endsWith('_hi')) {
+                    dataToReturn.push({ id, data });
+                  } else {
+                    // for themes
                     dataToReturn.push({ id, data });
                   }
                 }
@@ -207,6 +214,10 @@ export class ContentService {
       [PAGENAME.EDUCATION]: {
         [Locale.en]: Documents.EDUCATION_PAGE_EN,
         [Locale.hi]: Documents.EDUCATION_PAGE_HI
+      },
+      [PAGENAME.NAVIGATION]: {
+        [Locale.en]: Documents.NAVIGATION_EN,
+        [Locale.hi]: Documents.NAVIGATION_HI
       }
     };
 
@@ -225,7 +236,9 @@ export class ContentService {
       [PAGENAME.EDUCATION]: educationData,
       [PAGENAME.BLOGS]: blogsData,
       [PAGENAME.PROJECTS]: projects,
-      [PAGENAME.WORK_EXPERIENCE]: workExperience
+      [PAGENAME.WORK_EXPERIENCE]: workExperience,
+      [PAGENAME.NAVIGATION]: navigation,
+      [PAGENAME.THEMES]: themeConfiguration
     };
 
     return mapper[pagename];
@@ -244,6 +257,6 @@ export class ContentService {
       verticalPosition: 'bottom',
       horizontalPosition: 'center'
     });
-    return this.getOfflineDataKey(pagename)[locale] as T;
+    return (pagename === PAGENAME.THEMES) ? this.getOfflineDataKey(pagename) as T : this.getOfflineDataKey(pagename)[locale] as T;
   }
 }

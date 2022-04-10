@@ -125,7 +125,7 @@ export class WorkExperienceAddComponent implements OnDestroy {
           this.displaySpinner.next(false);
           this.router.navigate(['/work-experience']);
         }),
-        catchError(this.handleFirebaseError),
+        catchError(this.handleFirebaseError.bind(this)),
         takeUntil(this.unsubscriber$)
       ).subscribe();
     }
