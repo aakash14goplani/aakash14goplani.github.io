@@ -9,7 +9,7 @@ const introduction_en: IHomePage = {
   title: 'Aakash Goplani',
   subtitle: 'Web and Hybrid Mobile App Dev',
   description:
-    `I am a Full Stack JavaScript Developer with ${yearsOfExperience} years of rich experience in developing Web Applications using Node and Angular. I am also experienced in developing Hybrid Mobile Applications using Ionic. Apart from Web development, I have also worked on Content Management Systems using Oracle WebCentere Sites.`,
+    `I am a Full Stack JavaScript Developer with ${yearsOfExperience} years of rich experience in developing Web Applications using Node and Angular. I am also experienced in developing Hybrid Mobile Applications using Ionic. Apart from Web development, I have also worked on Content Management Systems using Oracle WebCenter Sites.`,
   socialHandles: [
     { title: 'E-Mail', url: environment.email },
     { title: 'Linkedin', url: environment.linkedin },
@@ -25,7 +25,7 @@ const introduction_hi: IHomePage = {
   title: 'आकाश गोपलानी',
   subtitle: 'वेब और हाइब्रिड मोबाइल ऐप डेवलपर',
   description:
-    `मैं एक Full Stack JavaScript डेवलपर हूं, जिसके पास Node और Angular का उपयोग करके वेब एप्लिकेशन विकसित करने का ${yearsOfExperience} वर्षों का समृद्ध अनुभव है। मुझे Ionic का उपयोग करके हाइब्रिड मोबाइल एप्लिकेशन विकसित करने का भी अनुभव है। वेब विकास के अलावा, मैंने Oracle WebCentere Sites का उपयोग करके Content Management पर भी काम किया है।`,
+    `मैं एक Full Stack JavaScript डेवलपर हूं, जिसके पास Node और Angular का उपयोग करके वेब एप्लिकेशन विकसित करने का ${yearsOfExperience} वर्षों का समृद्ध अनुभव है। मुझे Ionic का उपयोग करके हाइब्रिड मोबाइल एप्लिकेशन विकसित करने का भी अनुभव है। वेब विकास के अलावा, मैंने Oracle WebCenter Sites का उपयोग करके Content Management पर भी काम किया है।`,
   socialHandles: [
     { title: 'ईमेल', url: environment.email },
     { title: 'लिंक्डइन', url: environment.linkedin },

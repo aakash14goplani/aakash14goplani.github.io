@@ -10,7 +10,7 @@ const educationDetails: Array<IDegree> = [
     percentage: '73%'
   },
   {
-    institute: 'Smt. Chandibai Himatmal Mansukhani College',
+    institute: 'Smt. Chandibai Himathmal Mansukhani College',
     degree: 'High School Degree in Science',
     speciality: 'Science',
     duration: '2009 - 2011',

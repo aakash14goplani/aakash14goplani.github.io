@@ -36,6 +36,6 @@ export const environment = {
   project_angular_material: 'https://github.com/aakash14goplani/Angular-Material',
   project_css: 'https://github.com/aakash14goplani/CSS-In-Depth',
   project_nodejs: 'https://github.com/aakash14goplani/Node-Practice',
-  project_angular_fire: '',
-  project_pwa: ''
+  project_angular_fire: 'https://github.com/aakash14goplani/firebase-course',
+  project_pwa: 'https://github.com/aakash14goplani/Progressive-Web-App'
 };

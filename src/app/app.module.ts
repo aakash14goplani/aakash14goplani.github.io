@@ -55,7 +55,6 @@ import { AngularFireStorageModule, USE_EMULATOR as USE_STORAGE_EMULATOR } from '
     { provide: USE_FUNCTIONS_EMULATOR, useValue: environment.useEmulators ? ['http://localhost:5001', { disableWarnings: true }] : undefined },
     { provide: USE_STORAGE_EMULATOR, useValue: environment.useEmulators ? ['localhost', 9199] : undefined },
     { provide: PERSISTENCE, useValue: 'session' }
-    // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

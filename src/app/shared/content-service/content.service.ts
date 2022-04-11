@@ -73,14 +73,14 @@ export class ContentService {
                 if (locale === Locale.en) {
                   if (id.endsWith('_en')) {
                     dataToReturn.push({ id, data });
-                  } else {
+                  } else if (pagename === PAGENAME.THEMES) {
                     // for themes
                     dataToReturn.push({ id, data });
                   }
                 } else {
                   if (id.endsWith('_hi')) {
                     dataToReturn.push({ id, data });
-                  } else {
+                  } else if (pagename === PAGENAME.THEMES) {
                     // for themes
                     dataToReturn.push({ id, data });
                   }

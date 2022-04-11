@@ -57,7 +57,7 @@ export class HomeEditComponent implements OnInit, OnDestroy {
       takeUntil(this.unsubscriber$)
     ).subscribe({
       next: (data) => {
-        if (data) {
+        if (Object.keys(data).length > 0) {
           this.prefillForm(data);
         }
       },

@@ -12,7 +12,7 @@ const workExperienceEn: Array<{ id: string, data: { 0: ICompanyExperience[] } }>
           expandable: true,
           level: 0,
           isExpanded: true,
-          levelId: '01'
+          levelId: '00'
         }, {
           title: 'Team Lead',
           startDate: new Date('06/01/2021'),
@@ -20,7 +20,7 @@ const workExperienceEn: Array<{ id: string, data: { 0: ICompanyExperience[] } }>
           location: 'Mumbai, India',
           expandable: true,
           level: 1,
-          levelId: '11'
+          levelId: '04'
         }, {
           description: [
             'Leading the team of 3 Junior resources in maintaining and upgrading Angular projects.',
@@ -32,7 +32,7 @@ const workExperienceEn: Array<{ id: string, data: { 0: ICompanyExperience[] } }>
           showMoreContent: false,
           expandable: false,
           level: 2,
-          levelId: '21'
+          levelId: '04'
         }, {
           title: 'Senior Analyst',
           startDate: new Date('12/01/2018'),
@@ -40,7 +40,7 @@ const workExperienceEn: Array<{ id: string, data: { 0: ICompanyExperience[] } }>
           location: 'Mumbai, India',
           expandable: true,
           level: 1,
-          levelId: '12'
+          levelId: '03'
         }, {
           description: [
             'Consulted client on revamping and migrating sites build with JSPs and JSFs to Angular.',
@@ -53,7 +53,7 @@ const workExperienceEn: Array<{ id: string, data: { 0: ICompanyExperience[] } }>
           showMoreContent: false,
           expandable: false,
           level: 2,
-          levelId: '22'
+          levelId: '03'
         }, {
           title: 'Analyst',
           startDate: new Date('12/01/2016'),
@@ -61,7 +61,7 @@ const workExperienceEn: Array<{ id: string, data: { 0: ICompanyExperience[] } }>
           location: 'Mumbai, India',
           expandable: true,
           level: 1,
-          levelId: '13'
+          levelId: '02'
         }, {
           description: [
             'Consulted client in revamping 6 sites from scratch and integrating them with OWCS.',
@@ -74,7 +74,7 @@ const workExperienceEn: Array<{ id: string, data: { 0: ICompanyExperience[] } }>
           showMoreContent: false,
           expandable: false,
           level: 2,
-          levelId: '23'
+          levelId: '02'
         }, {
           title: 'Associate',
           startDate: new Date('10/07/2015'),
@@ -82,7 +82,7 @@ const workExperienceEn: Array<{ id: string, data: { 0: ICompanyExperience[] } }>
           location: 'Mumbai, India',
           expandable: true,
           level: 1,
-          levelId: '14'
+          levelId: '01'
         }, {
           description: [
             'Worked on creating static pages using HTML, CSS and jQuery.',
@@ -92,7 +92,7 @@ const workExperienceEn: Array<{ id: string, data: { 0: ICompanyExperience[] } }>
           showMoreContent: false,
           expandable: false,
           level: 2,
-          levelId: '24'
+          levelId: '01'
         }
       ]
     }
@@ -111,7 +111,7 @@ const workExperienceHi: Array<{ id: string, data: { 0: ICompanyExperience[] } }>
           expandable: true,
           level: 0,
           isExpanded: true,
-          levelId: '01'
+          levelId: '00'
         }, {
           title: 'टीम लीडर',
           startDate: new Date('06/01/2021'),
@@ -119,7 +119,7 @@ const workExperienceHi: Array<{ id: string, data: { 0: ICompanyExperience[] } }>
           location: 'मुंबई, भारत',
           expandable: true,
           level: 1,
-          levelId: '11'
+          levelId: '04'
         }, {
           description: [
             'Angular परियोजनाओं के रखरखाव और उन्नयन में 3 जूनियर संसाधनों की टीम का नेतृत्व करना।',
@@ -131,7 +131,7 @@ const workExperienceHi: Array<{ id: string, data: { 0: ICompanyExperience[] } }>
           showMoreContent: false,
           expandable: false,
           level: 2,
-          levelId: '21'
+          levelId: '04'
         }, {
           title: 'वरिष्ठ सॉफ़्टवेयर इंजीनियर',
           startDate: new Date('12/01/2018'),
@@ -139,7 +139,7 @@ const workExperienceHi: Array<{ id: string, data: { 0: ICompanyExperience[] } }>
           location: 'मुंबई, भारत',
           expandable: true,
           level: 1,
-          levelId: '12'
+          levelId: '03'
         }, {
           description: [
             'JSP और JSF के साथ Angular में निर्मित साइटों में सुधार और माइग्रेट करने पर परामर्शदाता क्लाइंट।',
@@ -152,7 +152,7 @@ const workExperienceHi: Array<{ id: string, data: { 0: ICompanyExperience[] } }>
           showMoreContent: false,
           expandable: false,
           level: 2,
-          levelId: '22'
+          levelId: '03'
         }, {
           title: 'सॉफ्टवेयर इंजीनियर',
           startDate: new Date('12/01/2016'),
@@ -160,7 +160,7 @@ const workExperienceHi: Array<{ id: string, data: { 0: ICompanyExperience[] } }>
           location: 'मुंबई, भारत',
           expandable: true,
           level: 1,
-          levelId: '13'
+          levelId: '02'
         }, {
           description: [
             'शुरू से 6 साइटों को नया रूप देने और उन्हें OWCS के साथ एकीकृत करने के लिए क्लाइंट से परामर्श किया।',
@@ -173,7 +173,7 @@ const workExperienceHi: Array<{ id: string, data: { 0: ICompanyExperience[] } }>
           showMoreContent: false,
           expandable: false,
           level: 2,
-          levelId: '23'
+          levelId: '02'
         }, {
           title: 'जूनियर सॉफ्टवेयर इंजीनियर',
           startDate: new Date('10/07/2015'),
@@ -181,7 +181,7 @@ const workExperienceHi: Array<{ id: string, data: { 0: ICompanyExperience[] } }>
           location: 'मुंबई, भारत',
           expandable: true,
           level: 1,
-          levelId: '14'
+          levelId: '01'
         }, {
           description: [
             'HTML, CSS और jQuery का उपयोग करके स्थिर पृष्ठ बनाने पर काम किया।',
@@ -191,7 +191,7 @@ const workExperienceHi: Array<{ id: string, data: { 0: ICompanyExperience[] } }>
           showMoreContent: false,
           expandable: false,
           level: 2,
-          levelId: '24'
+          levelId: '01'
         }
       ]
     }
