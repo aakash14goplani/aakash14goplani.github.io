@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -30,6 +30,18 @@ export class NavigationEditComponent implements OnInit, OnDestroy {
     this.prefillForm();
   }
 
+  @HostListener('window:focusout', ['$event'])
+  onFocusOut(event: Event): void {
+    this.isFormValid = true;
+    for (const data of this.navigationEditForm) {
+      this.isFormValid = this.isFormValid && data.valid;
+    }
+  }
+
+  /**
+   * Initialize form skeleton
+   * @param index { number } index
+   */
   private initializeFormSkeleton(index: number) {
     const formGroupObject = this.formBuilder.group({
       name: ['', Validators.required],
@@ -42,6 +54,9 @@ export class NavigationEditComponent implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * Prefill form with data from Firebase
+   */
   private prefillForm(): void {
     (this.contentService.getContentForPage<{ [key: number]: INavigation[] }>(PAGENAME.NAVIGATION) as Observable<{ [key: number]: INavigation[] }>)
       .pipe(
@@ -94,13 +109,12 @@ export class NavigationEditComponent implements OnInit, OnDestroy {
   updateDetails(): void {
     if (this.isFormValid) {
       this.displayContent.next(false);
-
       const submittedValues: INavigation[] = [];
       for (const data of this.navigationEditForm) {
-        this.isFormValid = this.isFormValid && data.valid;
         submittedValues.push(data.value);
       }
-      this.contentService.updatePageContent<INavigation[]>(PAGENAME.NAVIGATION, submittedValues, true).pipe(
+
+      this.contentService.updatePageContent<{ content: INavigation[] }>(PAGENAME.NAVIGATION, { content: submittedValues }, true, 0).pipe(
         takeUntil(this.unsubscriber$)
       ).subscribe({
         next: () => {
