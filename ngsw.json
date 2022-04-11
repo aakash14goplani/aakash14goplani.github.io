@@ -1,0 +1,143 @@
+{
+  "configVersion": 1,
+  "timestamp": 1649709473127,
+  "index": "https://aakashgoplani.in/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "https://aakashgoplani.in/106.9c39fe7c153de622.js",
+        "https://aakashgoplani.in/109.bf057680f24eea00.js",
+        "https://aakashgoplani.in/134.2afde05a9db36dca.js",
+        "https://aakashgoplani.in/151.87e12d78293740c5.js",
+        "https://aakashgoplani.in/160.59428aa7174f8250.js",
+        "https://aakashgoplani.in/17.0625e1b572b573ee.js",
+        "https://aakashgoplani.in/192.d694c24fae6b035b.js",
+        "https://aakashgoplani.in/208.6370f6c419362289.js",
+        "https://aakashgoplani.in/212.eedf99161591d6a6.js",
+        "https://aakashgoplani.in/221.b7e767c4cb12177d.js",
+        "https://aakashgoplani.in/394.bdd745a1220667d0.js",
+        "https://aakashgoplani.in/462.963825e2cc5b75e5.js",
+        "https://aakashgoplani.in/511.4cfe2647be959608.js",
+        "https://aakashgoplani.in/531.c471eccf5d159c0e.js",
+        "https://aakashgoplani.in/537.f64df45f74134f4b.js",
+        "https://aakashgoplani.in/568.321637877edb129f.js",
+        "https://aakashgoplani.in/632.70a20ad6f61777db.js",
+        "https://aakashgoplani.in/670.631ee582b5b628ae.js",
+        "https://aakashgoplani.in/693.b0aff6a3f6ed8849.js",
+        "https://aakashgoplani.in/814.d7a4b649c115eb74.js",
+        "https://aakashgoplani.in/830.8df59d573f1c6e3a.js",
+        "https://aakashgoplani.in/897.d1dc7c41730397c2.js",
+        "https://aakashgoplani.in/common.8e9de87e7ae588f8.js",
+        "https://aakashgoplani.in/index.html",
+        "https://aakashgoplani.in/main.199ca90943e51036.js",
+        "https://aakashgoplani.in/manifest.webmanifest",
+        "https://aakashgoplani.in/polyfills.27c2d2dabbf4bb6d.js",
+        "https://aakashgoplani.in/runtime.909c5403965ff57a.js",
+        "https://aakashgoplani.in/styles.3f733addcd09c117.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "https://aakashgoplani.in/assets/css/_variables.scss",
+        "https://aakashgoplani.in/assets/css/deeppurple-amber.css",
+        "https://aakashgoplani.in/assets/css/indigo-pink.css",
+        "https://aakashgoplani.in/assets/css/pink-bluegrey.css",
+        "https://aakashgoplani.in/assets/css/purple-green.css",
+        "https://aakashgoplani.in/assets/icons.svg",
+        "https://aakashgoplani.in/assets/icons/icon-128x128.png",
+        "https://aakashgoplani.in/assets/icons/icon-144x144.png",
+        "https://aakashgoplani.in/assets/icons/icon-152x152.png",
+        "https://aakashgoplani.in/assets/icons/icon-192x192.png",
+        "https://aakashgoplani.in/assets/icons/icon-384x384.png",
+        "https://aakashgoplani.in/assets/icons/icon-512x512.png",
+        "https://aakashgoplani.in/assets/icons/icon-72x72.png",
+        "https://aakashgoplani.in/assets/icons/icon-96x96.png",
+        "https://aakashgoplani.in/assets/images/AakashImage.jpg",
+        "https://aakashgoplani.in/assets/js/analytics.js",
+        "https://aakashgoplani.in/favicon.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "https://aakashgoplani.in/106.9c39fe7c153de622.js": "9f4ed9e0dc0fe9d03d2e506eafafdcf96731448f",
+    "https://aakashgoplani.in/109.bf057680f24eea00.js": "66999dfed390937bb01c6f85f4b48e234ade1f29",
+    "https://aakashgoplani.in/134.2afde05a9db36dca.js": "03f702820359fe65649fa1b56118d798f1073cd0",
+    "https://aakashgoplani.in/151.87e12d78293740c5.js": "a30981ba163eaf7163f3cd30274ff3429f23e034",
+    "https://aakashgoplani.in/160.59428aa7174f8250.js": "805b889c4c261e4a92cebca059d9b8c2ddb715e1",
+    "https://aakashgoplani.in/17.0625e1b572b573ee.js": "135c4a6f5f27f2a2688ff5ac77dbd6508510856d",
+    "https://aakashgoplani.in/192.d694c24fae6b035b.js": "7510268d39e4b9f7385099948b5972322d3f7c5b",
+    "https://aakashgoplani.in/208.6370f6c419362289.js": "ca1620eea888af3f0ea79858aa16f92675fbf337",
+    "https://aakashgoplani.in/212.eedf99161591d6a6.js": "50e5e8f0cbc97918acd96daf527054083d66f228",
+    "https://aakashgoplani.in/221.b7e767c4cb12177d.js": "3ef158a02a9ec98d16b3ddfbee01d48921d22b40",
+    "https://aakashgoplani.in/394.bdd745a1220667d0.js": "0cb3604afabaa145c2fe4de2561077be12f62117",
+    "https://aakashgoplani.in/462.963825e2cc5b75e5.js": "5f4d5999b5dbb98c0d4b2290e60405586a30883d",
+    "https://aakashgoplani.in/511.4cfe2647be959608.js": "c8b5bb26817eccfa234e8128381e00a777f04ce7",
+    "https://aakashgoplani.in/531.c471eccf5d159c0e.js": "09dc961552536a5f2724239e2e9082f09824f1f8",
+    "https://aakashgoplani.in/537.f64df45f74134f4b.js": "98329350b695f23779222649c152260d776164d8",
+    "https://aakashgoplani.in/568.321637877edb129f.js": "e3ead1eb72fde74b599a8a043787835901a222c5",
+    "https://aakashgoplani.in/632.70a20ad6f61777db.js": "1f02a0d6c85d9c9ba08af19320ef759fa2f8a137",
+    "https://aakashgoplani.in/670.631ee582b5b628ae.js": "2e51bb3ced6a9af2613075103e5ad3b5ad58d8a4",
+    "https://aakashgoplani.in/693.b0aff6a3f6ed8849.js": "a704eb78a5c5ad421b6a99267626282e51beccd1",
+    "https://aakashgoplani.in/814.d7a4b649c115eb74.js": "e9bc30607d3af89f021bb5c57ca9c5b64fc193b3",
+    "https://aakashgoplani.in/830.8df59d573f1c6e3a.js": "bdda7e9b25f385164e2bdc221d67d09ee13ba042",
+    "https://aakashgoplani.in/897.d1dc7c41730397c2.js": "2e2014e87a323cb2da74bd6a1d708ad0ad2175bc",
+    "https://aakashgoplani.in/assets/css/_variables.scss": "a2d4ad7f362698bd3cf74658a8a987289f736c6f",
+    "https://aakashgoplani.in/assets/css/deeppurple-amber.css": "e0d93917a8ff207dabb8807242a62f79b0832941",
+    "https://aakashgoplani.in/assets/css/indigo-pink.css": "7e34810a9cc4c077a0d47e5fe9609b1a32967cfc",
+    "https://aakashgoplani.in/assets/css/pink-bluegrey.css": "9cb00428c4018ab3e45e188363598358cd871904",
+    "https://aakashgoplani.in/assets/css/purple-green.css": "ced47d004131aed31b460a81ec6c60b3bab597e5",
+    "https://aakashgoplani.in/assets/icons.svg": "97ea1721c0641cc5cdf34d4a62b1b85aa147a5eb",
+    "https://aakashgoplani.in/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
+    "https://aakashgoplani.in/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
+    "https://aakashgoplani.in/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
+    "https://aakashgoplani.in/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
+    "https://aakashgoplani.in/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
+    "https://aakashgoplani.in/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
+    "https://aakashgoplani.in/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
+    "https://aakashgoplani.in/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
+    "https://aakashgoplani.in/assets/images/AakashImage.jpg": "6304b052313050023c9e07aed0f687b8116138d8",
+    "https://aakashgoplani.in/assets/js/analytics.js": "7ddfe0725a4c4da351845ec40c60429b775427c6",
+    "https://aakashgoplani.in/common.8e9de87e7ae588f8.js": "247afa307c7ed37e2a499d78a1bf8f05e001d742",
+    "https://aakashgoplani.in/favicon.png": "f2ee4e507429d5ce8629136ccd6aed4431b2532d",
+    "https://aakashgoplani.in/index.html": "88df8372c2fd233b42cf9dc062c8ffa0766cb524",
+    "https://aakashgoplani.in/main.199ca90943e51036.js": "f93ad21239478a1340f648ae9178a7315774c047",
+    "https://aakashgoplani.in/manifest.webmanifest": "0d75d0e039562b49ede88689271fd9a43e74439d",
+    "https://aakashgoplani.in/polyfills.27c2d2dabbf4bb6d.js": "1a3fe49d234d6e9cbdb51b12fe1b050107d4169d",
+    "https://aakashgoplani.in/runtime.909c5403965ff57a.js": "5e6623b3f3ff876f52ade4281687ddc9d4866fbe",
+    "https://aakashgoplani.in/styles.3f733addcd09c117.css": "71b57a2cc72521691be3c10205a3b4ad4ccab99b"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
