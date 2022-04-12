@@ -1,6 +1,13 @@
 {
   "name": "resume-angular",
-  "version": "2.7.0",
+  "version": "3.0.1",
+  "description": "My Personal Resume site",
+  "keywords": [
+    "resume",
+    "angular",
+    "personal",
+    "portfolio"
+  ],
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
