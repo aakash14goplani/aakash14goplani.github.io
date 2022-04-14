@@ -22,7 +22,8 @@
     "emulator-firestore": "firebase emulators:start --only firestore --import test-data",
     "export": "firebase emulators:export test-data",
     "local-dev": "firebase emulators:start --only firestore,auth,storage --import test-data",
-    "docs": "compodoc -p tsconfig.docs.json -s -o -w --theme material"
+    "docs": "compodoc -p tsconfig.docs.json -s -o -w --theme material",
+    "server": "ng build --configuration production && http-server -c-1 -p 4100 ./dist/resume-angular/"
   },
   "private": true,
   "dependencies": {
@@ -64,6 +65,7 @@
     "eslint": "^8.2.0",
     "eslint-plugin-ngrx": "^2.0.3",
     "firebase-tools": "^10.3.1",
+    "http-server": "^14.1.0",
     "jasmine-core": "~3.10.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",

@@ -1,12 +1,13 @@
 import { Direction } from '@angular/cdk/bidi';
-import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { MatIconRegistry } from '@angular/material/icon';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { catchError, EMPTY, map, Observable } from 'rxjs';
+import { SwUpdate } from '@angular/service-worker';
+import { catchError, EMPTY, map, Observable, Subject, takeUntil } from 'rxjs';
 import { ContentService } from './shared/content-service/content.service';
 import { INavigation, IThemes, Locale, PAGENAME, PAGENAME_HI, SessionKey } from './shared/global.model';
 import { ThemeService } from './shared/theme-service/theme.service';
@@ -17,7 +18,7 @@ import { ThemeService } from './shared/theme-service/theme.service';
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
 
   @ViewChild('sidenav') sidenav!: MatSidenav;
   direction!: Direction;
@@ -30,6 +31,7 @@ export class AppComponent implements OnInit {
   currentYear: number = new Date().getFullYear();
   locale: Locale = Locale.en;
   LocalEnum = Locale;
+  private unsubscriber$: Subject<void> = new Subject<void>();
 
   constructor(
     public helperService: ContentService,
@@ -38,16 +40,50 @@ export class AppComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private _snackBar: MatSnackBar,
     public firebaseAuth: AngularFireAuth,
-    private router: Router
+    private router: Router,
+    private swUpdate: SwUpdate
   ) {
     this.matIcon.addSvgIconSet(this.sanitizer.bypassSecurityTrustResourceUrl('assets/icons.svg'));
   }
 
   ngOnInit(): void {
+    this.configureServiceWorker();
     this.configureThemeOption();
     this.configureDirectionOption();
     this.configureLanguageOption();
     this.configureNavigationOptions();
+  }
+
+  /**
+   * Configure service worker.
+   * @returns { void }
+   */
+  private configureServiceWorker(): void {
+    if (this.swUpdate.isEnabled) {
+      this.swUpdate.versionUpdates.pipe(
+        takeUntil(this.unsubscriber$)
+      ).subscribe((event) => {
+        switch (event.type) {
+          case 'VERSION_DETECTED':
+          case 'VERSION_READY':
+            this._snackBar.open('New version is available. Reloading the app...', 'X', {
+              duration: 6000,
+              verticalPosition: 'bottom',
+              horizontalPosition: 'center'
+            });
+            setTimeout(() => window.location.reload(), 6000);
+            break;
+
+          case 'VERSION_INSTALLATION_FAILED':
+            this._snackBar.open(`Failed to install app version '${event.version.hash}': ${event.error}`, 'X', {
+              duration: 6000,
+              verticalPosition: 'bottom',
+              horizontalPosition: 'center'
+            });
+            break;
+        }
+      });
+    }
   }
 
   private configureNavigationOptions(): void {
@@ -59,8 +95,9 @@ export class AppComponent implements OnInit {
   }
 
   /**
-   * Configure themes options from session storage. If value is present in session, select that
+   * @description: Configure themes options from session storage. If value is present in session, select that
    * else fall back to default light theme.
+   * @returns { void }
    */
   private configureThemeOption(): void {
     this.options$ = this.themeService.getThemeOptions().pipe(
@@ -88,8 +125,9 @@ export class AppComponent implements OnInit {
   }
 
   /**
-   * Configure direction options from session storage. If value is present in session, select that
+   * @description: Configure direction options from session storage. If value is present in session, select that
    * else fall back to default ltr direction.
+   * @returns { void }
    */
   private configureDirectionOption(): void {
     const directionFromSession = sessionStorage.getItem(SessionKey.DIRECTION);
@@ -100,6 +138,7 @@ export class AppComponent implements OnInit {
   /**
    * Configure language option from session storage. If value is present in session, select that
    * else fall back to default english language.
+   * @returns { void }
    */
   private configureLanguageOption(): void {
     const languageFromSession: Locale = sessionStorage.getItem(SessionKey.LANGUAGE) as Locale;
@@ -110,6 +149,7 @@ export class AppComponent implements OnInit {
 
   /**
    * Close sidenav.
+   * @returns { void }
    */
   close(): void {
     this.sidenav.close();
@@ -117,6 +157,7 @@ export class AppComponent implements OnInit {
 
   /**
    * Change language.
+   * @returns { void }
    */
   toggleLanguage(): void {
     this.language = this.language === Locale.en ? Locale.hi : Locale.en;
@@ -127,6 +168,7 @@ export class AppComponent implements OnInit {
   /**
    * Change theme.
    * @param themeToSet { string } theme to be set
+   * @returns { void }
    */
   changeTheme(themeToSet: string): void {
     this.themeService.setTheme(themeToSet);
@@ -146,6 +188,7 @@ export class AppComponent implements OnInit {
 
   /**
    * Toggle directions.
+   * @returns { void }
    */
   toggleDirection(): void {
     this.direction = this.direction === 'ltr' ? 'rtl' : 'ltr';
@@ -174,6 +217,7 @@ export class AppComponent implements OnInit {
 
   /**
    * Logout user.
+   * @returns { void }
    */
   logOut(): void {
     this.firebaseAuth.signOut()
@@ -187,6 +231,7 @@ export class AppComponent implements OnInit {
 
   /**
    * Navigate to the navigate-edit page.
+   * @returns { void }
    */
   editNavItems(): void {
     this.close();
@@ -196,6 +241,7 @@ export class AppComponent implements OnInit {
   /**
    * Perform logout actions.
    * @param message { string } error/success message
+   * @returns { void }
    */
   private performLogoutActions(message: string | any): void {
     this._snackBar.open(message, 'X', {
@@ -205,5 +251,10 @@ export class AppComponent implements OnInit {
     });
     this.close();
     this.router.navigate(['/home']);
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscriber$.next();
+    this.unsubscriber$.complete();
   }
 }
