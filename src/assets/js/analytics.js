@@ -1,11 +1,14 @@
-var script = document.createElement('script');
+/* eslint-disable no-undef */
+const script = document.createElement('script');
 script.src = 'https://www.googletagmanager.com/gtag/js?id=UA-84331973-1';
 script.type = 'text/javascript';
 script.async = true;
 script.onload = function () {
   // Global site tag (gtag.js) - Google Analytics
   window.dataLayer = window.dataLayer || [];
-  function gtag() { dataLayer.push(arguments); }
+  function gtag() {
+    dataLayer.push(arguments);
+  }
   gtag('js', new Date());
   gtag('config', 'UA-84331973-1');
 };

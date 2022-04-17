@@ -164,6 +164,14 @@ export class ContentService {
   }
 
   /**
+   * Returns URL of resume from firebase storage
+   * @returns { Observable<string> } - Observable of File URL
+   */
+  downloadResume(): Observable<string> {
+    return this.storage.ref('resume/Resume_Aakash_Goplani.pdf').getDownloadURL();
+  }
+
+  /**
    * Generates unique course id.
    * @returns { string } - The id of the course
    */

@@ -1,5 +1,5 @@
 import { Direction } from '@angular/cdk/bidi';
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { MatIconRegistry } from '@angular/material/icon';
 import { MatSidenav } from '@angular/material/sidenav';
@@ -7,7 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { SwUpdate } from '@angular/service-worker';
-import { catchError, EMPTY, map, Observable, Subject, takeUntil } from 'rxjs';
+import { catchError, EMPTY, map, Observable, Subject, take, takeUntil, tap } from 'rxjs';
 import { ContentService } from './shared/content-service/content.service';
 import { INavigation, IThemes, Locale, PAGENAME, PAGENAME_HI, SessionKey } from './shared/global.model';
 import { ThemeService } from './shared/theme-service/theme.service';
@@ -21,6 +21,7 @@ import { ThemeService } from './shared/theme-service/theme.service';
 export class AppComponent implements OnInit, OnDestroy {
 
   @ViewChild('sidenav') sidenav!: MatSidenav;
+  @ViewChild('navList', { static: false }) navList!: ElementRef;
   direction!: Direction;
   language!: Locale;
   isMobile: boolean = true;
@@ -32,6 +33,7 @@ export class AppComponent implements OnInit, OnDestroy {
   locale: Locale = Locale.en;
   LocalEnum = Locale;
   private unsubscriber$: Subject<void> = new Subject<void>();
+  private resumeURL: string = '../assets/files/Resume_Aakash_Goplani.pdf';
 
   constructor(
     public helperService: ContentService,
@@ -41,7 +43,8 @@ export class AppComponent implements OnInit, OnDestroy {
     private _snackBar: MatSnackBar,
     public firebaseAuth: AngularFireAuth,
     private router: Router,
-    private swUpdate: SwUpdate
+    private swUpdate: SwUpdate,
+    private renderer: Renderer2
   ) {
     this.matIcon.addSvgIconSet(this.sanitizer.bypassSecurityTrustResourceUrl('assets/icons.svg'));
   }
@@ -86,6 +89,10 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * @description: Configure Side Navigation
+   * @returns { void }
+   */
   private configureNavigationOptions(): void {
     this.navigationDetails$ = (this.helperService.getContentForPage<{ [key: number]: INavigation[] }>(PAGENAME.NAVIGATION) as Observable<{ [key: number]: INavigation[] }>)
       .pipe(
@@ -203,15 +210,21 @@ export class AppComponent implements OnInit, OnDestroy {
   downloadResume(navItem: INavigation, event: Event): void {
     if (navItem.name.includes(PAGENAME.RESUME) || navItem.name.includes(PAGENAME_HI.RESUME)) {
       event.preventDefault();
-      const _snackBarText = {
-        content: this.locale === Locale.en ? 'Feature still in progress' : 'सुविधा अभी जारी है',
-        button: this.locale === Locale.en ? 'Close' : 'बंद करे'
-      };
-      this._snackBar.open(_snackBarText.content, _snackBarText.button, {
-        duration: 6000,
-        verticalPosition: 'bottom',
-        horizontalPosition: 'center'
-      });
+      this.helperService.downloadResume().pipe(
+        tap((url) => {
+          this.resumeURL = url ? url : this.resumeURL;
+
+          const link = this.renderer.createElement('a');
+          this.renderer.setAttribute(link, 'download', 'Resume_Aakash_Goplani.pdf');
+          this.renderer.setAttribute(link, 'href', this.resumeURL);
+          this.renderer.setAttribute(link, 'target', '_blank');
+          this.renderer.appendChild(this.navList.nativeElement, link);
+          link.click();
+          this.renderer.removeChild(this.navList.nativeElement, link);
+        }),
+        take(1),
+        catchError(this.handleFirebaseError.bind(this))
+      ).subscribe();
     }
   }
 

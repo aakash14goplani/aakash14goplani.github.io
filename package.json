@@ -23,7 +23,10 @@
     "export": "firebase emulators:export test-data",
     "local-dev": "firebase emulators:start --only firestore,auth,storage --import test-data",
     "docs": "compodoc -p tsconfig.docs.json -s -o -w --theme material",
-    "server": "ng build --configuration production && http-server -c-1 -p 4100 ./dist/resume-angular/"
+    "server-build": "ng build --configuration production && http-server -c-1 --port 4100 ./dist/resume-angular/ -P http://localhost:4100?",
+    "server": "http-server -c-1 --port 4100 ./dist/resume-angular/ -P http://localhost:4100?",
+    "backup-firebase-db-json": "firestore-export --accountCredentials ./key.json --backupFile ./backup-db.json --prettyPrint",
+    "import-from-firebase": "set FIRESTORE_EMULATOR_HOST=0.0.0.0:4080 && firestore-import --accountCredentials ./key.json --backupFile ./backup-db.json"
   },
   "private": true,
   "dependencies": {

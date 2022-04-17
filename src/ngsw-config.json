@@ -11,14 +11,14 @@
           "/index.html",
           "/manifest.webmanifest",
           "/*.css",
-          "/*.js"
+          "/*.js",
+          "/*.html"
         ]
       }
     },
     {
       "name": "assets",
       "installMode": "lazy",
-      "updateMode": "prefetch",
       "resources": {
         "files": [
           "/assets/**/*",
@@ -41,9 +41,7 @@
     },
     {
       "name": "dynamic-assets",
-      "urls": [
-        "https://firestore.googleapis.com/"
-      ],
+      "urls": [],
       "cacheConfig": {
         "strategy": "freshness",
         "maxSize": 100,

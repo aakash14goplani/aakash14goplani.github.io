@@ -1,0 +1,20 @@
+{
+  "name": "profile_picture/AakashImage.jpg",
+  "bucket": "resume-cms-958e7.appspot.com",
+  "contentType": "image/jpeg",
+  "metageneration": 1,
+  "generation": 1650205008613,
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "cacheControl": "max-age=31536000, public",
+  "contentEncoding": "identity",
+  "downloadTokens": [
+    "dbccc9ea-5a35-4224-b741-96c861f300e0"
+  ],
+  "etag": "WQMRcmse3N4MeenCc0E2yGMA17M",
+  "timeCreated": "2022-04-17T14:16:48.614Z",
+  "updated": "2022-04-17T14:16:48.614Z",
+  "size": 17077,
+  "md5Hash": "SOwoT7e5erl2qlWbxdV6mw==",
+  "crc32c": "2369650610"
+}

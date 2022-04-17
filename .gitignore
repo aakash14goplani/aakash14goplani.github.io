@@ -43,6 +43,7 @@ testem.log
 src/environments/secrets.ts
 *.log
 documentation/*
+key.json
 
 # System Files
 .DS_Store

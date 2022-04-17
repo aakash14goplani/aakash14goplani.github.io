@@ -1,0 +1,1236 @@
+{
+  "__collections__": {
+    "blogs_page": {
+      "8SJISZplItfBQ12t9iro_hi": {
+        "id": "8SJISZplItfBQ12t9iro_hi",
+        "description": [
+          "लगभग 3 वर्षों (2016 - 2019) के लिए मुझे Oracle WebCenter Sites 11g का उपयोग करके material प्रबंधन प्रणाली पर काम करने का अवसर मिला।",
+          "जब मैंने फरवरी 2016 में Oracle WebCenter Sites 11.1.1.8 के साथ अपनी यात्रा शुरू की, तो इंटरनेट पर कोई ठोस ट्यूटोरियल उपलब्ध नहीं था, हमारे पास केवल एक डेवलपर गाइड था। इसलिए अपने वर्षों के अनुभव के साथ मैंने अपने स्वयं के ब्लॉग (मूल रूप से कोड स्निपेट) लिखने का फैसला किया है और अन्य ब्लॉगों से बेहतरीन टिप्स और ट्रिक्स (जो मुझे उपयोगी लगे) को भी एकीकृत किया है और उन्हें एक छत के नीचे लाया है।"
+        ],
+        "blogButtonText": "ब्लॉग साइट पर जाएँ",
+        "blogTitle": "Oracle WebCenter Sites",
+        "blogURL": "https://aakashgoplani.in/OWCS/",
+        "__collections__": {}
+      },
+      "FoDEF3sRjGVJykwhcMan_en": {
+        "blogTitle": "Oracle WebCenter Sites",
+        "blogButtonText": "VISIT BLOG SITE",
+        "id": "FoDEF3sRjGVJykwhcMan_en",
+        "description": [
+          "For about 3 years (2016 - 2019) I got an opportunity to work on Content Management System using Oracle WebCenter Sites 11g.",
+          "When I started my journey with Oracle WebCenter Sites 11.1.1.8 back in February 2016, there were no concrete tutorial available on internet. So with my years of experience I had decided to write my own blogs (basically code snippets) and also integrate great tips & tricks (that I found useful) from other blogs and bring them under one roof."
+        ],
+        "blogURL": "https://aakashgoplani.in/OWCS/",
+        "__collections__": {}
+      },
+      "ukTLy0CPqR5cKTU4cKql_hi": {
+        "blogButtonText": "ब्लॉग साइट पर जाएँ",
+        "description": [
+          "मैंने 2019 की शुरुआत से JavaScript पर काम करना शुरू कर दिया था। मेरा पहला असाइनमेंट Angular के साथ था और तब से मैं Angular का बहुत बड़ा प्रशंसक रहा हूं। समय के साथ, मुझे Node.js (Express.js और Nest.js का उपयोग करके), Ionic और Firebase पर भी काम करने का अवसर मिला है।",
+          "मैं अधिकतर Angular और JavaScript पर ब्लॉग लिखता हूँ। अपने दिन-प्रतिदिन के सीखने के अनुभव को यहां समुदाय के साथ साझा करूंगा।"
+        ],
+        "blogTitle": "वेब देव",
+        "blogURL": "https://blog.aakashgoplani.in/",
+        "id": "ukTLy0CPqR5cKTU4cKql_hi",
+        "__collections__": {}
+      },
+      "vUo3UW9xo0S3lvsof2hw_en": {
+        "description": [
+          "I started working on JavaScript since early 2019. My first assignment was with Angular and ever since then I have been a huge fan of Angular. Over the time, I have also had an opportunity to work on Node.js (using Express.js and Nest.js), Ionic and Firebase.",
+          "I write blogs mostly on Angular and JavaScript. Will be sharing my day-to-day learning experience here with the community."
+        ],
+        "blogTitle": "Web Dev",
+        "blogButtonText": "VISIT BLOG SITE",
+        "id": "vUo3UW9xo0S3lvsof2hw_en",
+        "blogURL": "https://blog.aakashgoplani.in/",
+        "__collections__": {}
+      }
+    },
+    "education_page": {
+      "education_page_en": {
+        "buttonText": "See Credentials",
+        "educationDetails": [
+          {
+            "percentage": "73%",
+            "degree": "Bachelor of Engineering (B.E.)",
+            "speciality": "Computer",
+            "duration": "2011 - 2015",
+            "institute": "Vivekanand Education Society\\'s Institute Of Technology"
+          },
+          {
+            "degree": "High School Degree in Science",
+            "speciality": "Science",
+            "institute": "Smt. Chandibai Himathmal Mansukhani College",
+            "duration": "2009 - 2011",
+            "percentage": "86%"
+          },
+          {
+            "institute": "St. Thomas English School",
+            "percentage": "89%",
+            "degree": "SSC Degree",
+            "speciality": "School/Secondary Certificate Programs",
+            "duration": "1997 - 2009"
+          }
+        ],
+        "certificationList": [
+          {
+            "issued": "March 2022",
+            "url": "https://www.udemy.com/certificate/UC-af643882-1fc5-4b3e-86e4-40f37b0ae6c6/",
+            "name": "Firebase & AngularFire In Depth",
+            "organization": "Udemy"
+          },
+          {
+            "url": "https://www.udemy.com/certificate/UC-7d2222af-ddd8-4743-9899-4d5a74945356/",
+            "name": "Progressive Web Apps (PWA) - The Complete Guide",
+            "organization": "Udemy",
+            "issued": "February 2022"
+          },
+          {
+            "issued": "Oct 2021",
+            "name": "CSS - The Complete Guide",
+            "url": "https://www.udemy.com/certificate/UC-115b9b30-f380-4c38-8ca9-d8e7b672ab6d/",
+            "organization": "Udemy"
+          },
+          {
+            "issued": "Aug 2021",
+            "organization": "Amazon",
+            "url": "https://www.credly.com/badges/903fd9da-eecf-4e80-9523-1d8f30654d63/public_url",
+            "name": "AWS Certified Developer - Associate"
+          },
+          {
+            "organization": "Microsoft",
+            "issued": "Feb 2021",
+            "url": "https://www.credly.com/badges/08629f46-02ec-48db-82ff-d7c4f649628c/public_url",
+            "name": "Microsoft Certified: Azure Fundamentals"
+          },
+          {
+            "url": "https://www.udemy.com/certificate/UC-7c1f5bd9-7d54-4a51-978e-182034af0a4d/",
+            "name": "Angular - The Complete Guide",
+            "issued": "April 2020",
+            "organization": "Udemy"
+          },
+          {
+            "url": "https://www.youracclaim.com/badges/0ad13351-cdbd-4bcd-b1a5-299123e4c38a/linked_in_profile",
+            "organization": "Oracle",
+            "issued": "July 2019",
+            "name": "Oracle Certified Professional, Java SE 8 Programmer"
+          },
+          {
+            "organization": "Oracle",
+            "url": "https://www.youracclaim.com/badges/42443813-d280-4af5-8a5b-acabf7d64694/linked_in_profile",
+            "issued": "May 2018",
+            "name": "Oracle Certified Associate, Java SE 8 Programmer"
+          }
+        ],
+        "educationHeadline": "Education",
+        "certificationHeadline": "Certifications",
+        "__collections__": {}
+      },
+      "education_page_hi": {
+        "certificationList": [
+          {
+            "url": "https://www.udemy.com/certificate/UC-af643882-1fc5-4b3e-86e4-40f37b0ae6c6/",
+            "issued": "मार्च 2022",
+            "organization": "Udemy",
+            "name": "Firebase & AngularFire In Depth"
+          },
+          {
+            "url": "https://www.udemy.com/certificate/UC-7d2222af-ddd8-4743-9899-4d5a74945356/",
+            "name": "Progressive Web Apps (PWA) - The Complete Guide",
+            "issued": "फ़रवरी 2022",
+            "organization": "Udemy"
+          },
+          {
+            "name": "CSS - The Complete Guide",
+            "organization": "Udemy",
+            "issued": "अक्टूबर 2021",
+            "url": "https://www.udemy.com/certificate/UC-115b9b30-f380-4c38-8ca9-d8e7b672ab6d/"
+          },
+          {
+            "name": "AWS Certified Developer - Associate",
+            "organization": "Amazon",
+            "url": "https://www.credly.com/badges/903fd9da-eecf-4e80-9523-1d8f30654d63/public_url",
+            "issued": "अगस्त 2021"
+          },
+          {
+            "issued": "फ़रवरी 2021",
+            "organization": "Microsoft",
+            "url": "https://www.credly.com/badges/08629f46-02ec-48db-82ff-d7c4f649628c/public_url",
+            "name": "Microsoft Certified: Azure Fundamentals"
+          },
+          {
+            "url": "https://www.udemy.com/certificate/UC-7c1f5bd9-7d54-4a51-978e-182034af0a4d/",
+            "issued": "अप्रैल 2020",
+            "name": "Angular - The Complete Guide",
+            "organization": "Udemy"
+          },
+          {
+            "name": "Oracle Certified Professional, Java SE 8 Programmer",
+            "organization": "Oracle",
+            "url": "https://www.youracclaim.com/badges/0ad13351-cdbd-4bcd-b1a5-299123e4c38a/linked_in_profile",
+            "issued": "जुलाई 2019"
+          },
+          {
+            "url": "https://www.youracclaim.com/badges/42443813-d280-4af5-8a5b-acabf7d64694/linked_in_profile",
+            "organization": "Oracle",
+            "name": "Oracle Certified Associate, Java SE 8 Programmer",
+            "issued": "मई 2018"
+          }
+        ],
+        "educationDetails": [
+          {
+            "degree": "बैचलर ऑफ इंजीनियरिंग (बी.ई.)",
+            "percentage": "73%",
+            "institute": "विवेकानंद एजुकेशन सोसाइटी इंस्टीट्यूट ऑफ टेक्नोलॉजी",
+            "speciality": "संगणक",
+            "duration": "2011 - 2015"
+          },
+          {
+            "degree": "विज्ञान में हाई स्कूल की डिग्री",
+            "speciality": "विज्ञान",
+            "institute": "श्रीमती चंडीबाई हिम्मतलाल मनसुखानी कॉलेज",
+            "duration": "2009 - 2011",
+            "percentage": "86%"
+          },
+          {
+            "institute": "सेंट थॉमस इंग्लिश स्कूल",
+            "duration": "1997 - 2009",
+            "degree": "एस.एस.सी. डिग्री",
+            "percentage": "89%",
+            "speciality": "स्कूल/माध्यमिक प्रमाणपत्र कार्यक्रम"
+          }
+        ],
+        "educationHeadline": "शिक्षा",
+        "certificationHeadline": "प्रमाणपत्र",
+        "buttonText": "क्रेडेंशियल देखें",
+        "__collections__": {}
+      }
+    },
+    "home_page": {
+      "home_page_en": {
+        "title": "Aakash Goplani",
+        "description": "I am a Full Stack JavaScript Developer with 7 years of rich experience in developing Web Applications using Node and Angular. I am also experienced in developing Hybrid Mobile Applications using Ionic. Apart from Web development, I have worked on Content Management Systems using Oracle WebCenter Sites.",
+        "subtitle": "Web and Hybrid Mobile App Dev",
+        "imageURL": "https://firebasestorage.googleapis.com/v0/b/resume-cms-958e7.appspot.com/o/profile_picture%2FAakashImage.jpg?alt=media&token=67a0b89e-9d0e-4575-bcf1-a3f5d6b08381",
+        "socialHandles": [
+          {
+            "url": "mailto:aakash.14.goplani@gmail.com",
+            "title": "E-Mail"
+          },
+          {
+            "title": "Linkedin",
+            "url": "https://www.linkedin.com/in/aakashgoplani/"
+          },
+          {
+            "url": "https://twitter.com/aakashgoplani",
+            "title": "Twitter"
+          },
+          {
+            "title": "Github",
+            "url": "https://github.com/aakash14goplani"
+          },
+          {
+            "url": "https://stackoverflow.com/users/3411606/aakash-goplani",
+            "title": "Stack Overflow"
+          },
+          {
+            "url": "https://blog.aakashgoplani.in/",
+            "title": "Blog"
+          }
+        ],
+        "__collections__": {}
+      },
+      "home_page_hi": {
+        "description": "मैं एक Full Stack JavaScript डेवलपर हूं, जिसके पास Node और Angular का उपयोग करके वेब एप्लिकेशन विकसित करने का 7 वर्षों का समृद्ध अनुभव है। मुझे Ionic का उपयोग करके हाइब्रिड मोबाइल एप्लिकेशन विकसित करने का भी अनुभव है। वेब विकास के अलावा, मैंने Oracle WebCenter Sites का उपयोग करके Content Management पर भी काम किया है।",
+        "title": "आकाश गोपलानी",
+        "subtitle": "वेब और हाइब्रिड मोबाइल ऐप डेवलपर",
+        "imageURL": "https://firebasestorage.googleapis.com/v0/b/resume-cms-958e7.appspot.com/o/profile_picture%2FAakashImage.jpg?alt=media&token=822e316d-2d9c-474a-a671-17b00fa29534",
+        "socialHandles": [
+          {
+            "title": "ईमेल",
+            "url": "mailto:aakash.14.goplani@gmail.com"
+          },
+          {
+            "url": "https://www.linkedin.com/in/aakashgoplani/",
+            "title": "लिंक्डइन"
+          },
+          {
+            "url": "https://twitter.com/aakashgoplani",
+            "title": "ट्विटर"
+          },
+          {
+            "url": "https://github.com/aakash14goplani",
+            "title": "गिटहब"
+          },
+          {
+            "url": "https://stackoverflow.com/users/3411606/aakash-goplani",
+            "title": "स्टैक ओवरफ़्लो"
+          },
+          {
+            "url": "https://blog.aakashgoplani.in/",
+            "title": "ब्लॉग"
+          }
+        ],
+        "__collections__": {}
+      }
+    },
+    "navigation": {
+      "navigation_en": {
+        "0": [
+          {
+            "icon": "home",
+            "url": "/home",
+            "name": "HOME"
+          },
+          {
+            "name": "SKILLS",
+            "url": "/skills",
+            "icon": "skills"
+          },
+          {
+            "url": "/education",
+            "icon": "education",
+            "name": "EDUCATION"
+          },
+          {
+            "url": "/work-experience",
+            "icon": "experience",
+            "name": "WORK EXPERIENCE"
+          },
+          {
+            "url": "/projects",
+            "name": "PROJECTS",
+            "icon": "projects"
+          },
+          {
+            "url": "/blogs",
+            "name": "BLOGS",
+            "icon": "blogs"
+          },
+          {
+            "icon": "resume",
+            "name": "RESUME DOWNLOAD",
+            "url": "#"
+          }
+        ],
+        "__collections__": {}
+      },
+      "navigation_hi": {
+        "0": [
+          {
+            "url": "/home",
+            "icon": "home",
+            "name": "होमपेज"
+          },
+          {
+            "url": "/skills",
+            "name": "कौशल",
+            "icon": "skills"
+          },
+          {
+            "icon": "education",
+            "name": "शिक्षा",
+            "url": "/education"
+          },
+          {
+            "icon": "experience",
+            "name": "कार्य अनुभव",
+            "url": "/work-experience"
+          },
+          {
+            "name": "परियोजनाओं",
+            "url": "/projects",
+            "icon": "projects"
+          },
+          {
+            "name": "ब्लॉग",
+            "icon": "blogs",
+            "url": "/blogs"
+          },
+          {
+            "name": "संक्षिप्त विवरण",
+            "url": "#",
+            "icon": "resume"
+          }
+        ],
+        "__collections__": {}
+      }
+    },
+    "projects_page": {
+      "1LYwoesBNCbqZAz9UEoX_hi": {
+        "title": "Post Management: Reactive Angular",
+        "link": "https://github.com/aakash14goplani/angular-reactive",
+        "id": "1LYwoesBNCbqZAz9UEoX_hi",
+        "buttonText": "GitHub",
+        "content": [
+          "यह एक साइड प्रोजेक्ट है जिसे निम्नलिखित ट्यूटोरियल RxJS in Angular: Reactive Development by Deborah Kurata द्वारा बनाया गया है।",
+          "इसमें RxJs, async pipes, flattening operators और कई अन्य विषयों का उपयोग कैसे करें जैसे विषयों को शामिल किया गया है ...",
+          "GitHub पर इस प्रोजेक्ट के बारे में और पढ़ें"
+        ],
+        "showMoreContent": false,
+        "tools": [
+          "Angular",
+          "RxJs"
+        ],
+        "__collections__": {}
+      },
+      "1TWOXOqOMFuJtXwMqLK1_en": {
+        "buttonText": "GitHub",
+        "content": [
+          "Aim was to learn CSS in depth. Example practiced and concepts learn in this project were from Udemy course by Maximilian Schwarzmüller",
+          "The learning process was divided into three sections: Basic Level, Intermediate Level and Advance Level",
+          "Naming conventions followed in this tutorial is BEM model.",
+          "Read more about this project on GitHub"
+        ],
+        "id": "1TWOXOqOMFuJtXwMqLK1_en",
+        "showMoreContent": false,
+        "link": "https://github.com/aakash14goplani/CSS-In-Depth",
+        "title": "Web Hosting Site: CSS and SCSS",
+        "tools": [
+          "CSS",
+          "SCSS",
+          "Flexbox",
+          "Grid"
+        ],
+        "__collections__": {}
+      },
+      "52XivNIayDIL49pvxqQJ_en": {
+        "link": "https://github.com/aakash14goplani/firebase-course",
+        "content": [
+          "This aim of the project was to learn more on Firebase integration with Angular.",
+          "Concepts leaned - Firestore CURD operations, Firebase Storage, User Authentication and Registration, Functions and Hoisting.",
+          "Course was taught by Angular University from Udemy. Read more about this project on GitHub"
+        ],
+        "buttonText": "GitHub",
+        "showMoreContent": false,
+        "title": "Angular Firebase",
+        "tools": [
+          "Angular",
+          "Firebase"
+        ],
+        "id": "52XivNIayDIL49pvxqQJ_en",
+        "__collections__": {}
+      },
+      "6Sm0lwjicUK2bYlbysQD_en": {
+        "content": [
+          "This is the side project that was created by following ng-conf Hardwired Workshop: Learn NgRX from the Creators of NgRX.",
+          "It covers topics like Selectors, Actions, Reducers, Effects, Entity, Meta-Reducers and many more...",
+          "Read more about this project on GitHub"
+        ],
+        "buttonText": "GitHub",
+        "id": "6Sm0lwjicUK2bYlbysQD_en",
+        "title": "Books Management: Angular NgRx",
+        "tools": [
+          "Angular",
+          "NgRx",
+          "immer"
+        ],
+        "link": "https://github.com/aakash14goplani/Angular-NgRx",
+        "showMoreContent": false,
+        "__collections__": {}
+      },
+      "8yFmBQLHquzYMfRhyF0v_en": {
+        "tools": [
+          "Angular"
+        ],
+        "link": "https://github.com/aakash14goplani/AngularAwesomeSnippets",
+        "buttonText": "GitHub",
+        "showMoreContent": false,
+        "content": [
+          "Sharing Cool snippets in Angular",
+          "Configuring Modals and Alerts using Dynamic Components in Angular",
+          "Manage list of supported browsers for your application in Angular",
+          "Angular Dynamic Form Validation - Template and Reactive Forms",
+          "Router Reuse Strategy",
+          "Read more about this project on GitHub"
+        ],
+        "title": "Angular Awesome Snippets",
+        "id": "8yFmBQLHquzYMfRhyF0v_en",
+        "__collections__": {}
+      },
+      "9xktFvwgDyxkJtg2qSML_hi": {
+        "id": "9xktFvwgDyxkJtg2qSML_hi",
+        "title": "Books Management: Angular NgRx",
+        "tools": [
+          "Angular",
+          "NgRx",
+          "immer"
+        ],
+        "link": "https://github.com/aakash14goplani/Angular-NgRx",
+        "showMoreContent": false,
+        "content": [
+          "यह एक साइड प्रोजेक्ट है जिसे ng-conf Hardwired Workshop: NgRX के क्रिएटर्स से NgRX सीखें का पालन करके बनाया गया था।",
+          "इसमें Selectors, Actions, Reducers, Effects, Entity, Meta-Reducers और कई अन्य विषय शामिल हैं ...",
+          "GitHub पर इस प्रोजेक्ट के बारे में और पढ़ें"
+        ],
+        "buttonText": "GitHub",
+        "__collections__": {}
+      },
+      "DerkFK9kzNxxZoFHRWnO_hi": {
+        "title": "Recipe: Learning Angular",
+        "buttonText": "GitHub",
+        "tools": [
+          "Angular"
+        ],
+        "content": [
+          "यह एक डमी प्रोजेक्ट है जिसे तब बनाया गया था जब मैं Udemy से Angular - The Complete Guide शीर्षक से Angular कोर्स सीख रहा था।",
+          "इसमें बुनियादी से लेकर अधिक जटिल भागों तक शुरू होने वाली Angular अवधारणाओं की विस्तृत विविधता शामिल है।",
+          "GitHub पर इस प्रोजेक्ट के बारे में और पढ़ें"
+        ],
+        "link": "https://github.com/aakash14goplani/AngularPractice",
+        "id": "DerkFK9kzNxxZoFHRWnO_hi",
+        "showMoreContent": false,
+        "__collections__": {}
+      },
+      "FHPJLhZRvtBIGefNyOMY_hi": {
+        "buttonText": "GitHub",
+        "content": [
+          "प्रोजैक्ट का यह उद्देश्य Angular के साथ Firebase एकीकरण के बारे में अधिक जानना था।",
+          "अवधारणाओं को सीखा - Firestore CURD operations, Firebase Storage, User Authentication and Registration, Functions और Hoisting.",
+          "पाठ्यक्रम Udemy से Angular University द्वारा पढ़ाया जाता था. GitHub पर इस प्रोजेक्ट के बारे में और पढ़ें|"
+        ],
+        "showMoreContent": false,
+        "link": "https://github.com/aakash14goplani/firebase-course",
+        "id": "FHPJLhZRvtBIGefNyOMY_hi",
+        "title": "Angular Firebase",
+        "tools": [
+          "Angular",
+          "Firebase"
+        ],
+        "__collections__": {}
+      },
+      "GfxJuoJyg7BdX6jBSqx4_hi": {
+        "link": "https://github.com/aakash14goplani/Angular-Material",
+        "showMoreContent": false,
+        "tools": [
+          "Angular",
+          "Material"
+        ],
+        "buttonText": "GitHub",
+        "content": [
+          "यह एक डमी प्रोजेक्ट है जिसे तब बनाया गया था जब मैं Angular Material सीख रहा था Pluralsight से Ajden Towfeek द्वारा",
+          "इस परियोजना में Angular Material जैसे कार्ड, बटन, सूची, चिह्न आदि द्वारा प्रदान किए गए लगभग सभी घटकों को शामिल किया गया है।",
+          "GitHub पर इस प्रोजेक्ट के बारे में और पढ़ें"
+        ],
+        "id": "GfxJuoJyg7BdX6jBSqx4_hi",
+        "title": "Contact Book: Angular Material",
+        "__collections__": {}
+      },
+      "PH0mJ0fSdHJPLwFrNUXq_hi": {
+        "showMoreContent": false,
+        "link": "https://github.com/aakash14goplani/CSS-In-Depth",
+        "tools": [
+          "CSS",
+          "SCSS",
+          "Flexbox",
+          "Grid"
+        ],
+        "buttonText": "GitHub",
+        "id": "PH0mJ0fSdHJPLwFrNUXq_hi",
+        "content": [
+          "उद्देश्य CSS को गहराई से सीखना था। उदाहरण अभ्यास और इस परियोजना में सीखी गई अवधारणाएं Maximilian Schwarzmüller द्वारा उडेमी पाठ्यक्रम से थीं",
+          "सीखने की प्रक्रिया को तीन खंडों में विभाजित किया गया था: मूल स्तर, मध्यवर्ती स्तर और अग्रिम स्तर",
+          "इस ट्यूटोरियल में अनुसरण की जाने वाली नामकरण परंपराएँ BEM मॉडल हैं।",
+          "GitHub पर इस प्रोजेक्ट के बारे में और पढ़ें"
+        ],
+        "title": "Web Hoisting Site: CSS and SCSS",
+        "__collections__": {}
+      },
+      "cunNgJHTzemH4jEe9zg6_en": {
+        "tools": [
+          "Angular",
+          "Material"
+        ],
+        "link": "https://github.com/aakash14goplani/Angular-Material",
+        "content": [
+          "This is a dummy project created while I was learning Angular Material (from Pluralsight by Ajden Towfeek)",
+          "This project covers almost all of Components provided by Angular Material like Card, Button, List, Icon etc.",
+          "Read more about this project on GitHub"
+        ],
+        "buttonText": "GitHub",
+        "title": "Contact Book: Angular Material",
+        "id": "cunNgJHTzemH4jEe9zg6_en",
+        "showMoreContent": false,
+        "__collections__": {}
+      },
+      "dkKp3pwMHf4sk2J24i4Z_en": {
+        "buttonText": "GitHub",
+        "tools": [
+          "Angular"
+        ],
+        "showMoreContent": false,
+        "link": "https://github.com/aakash14goplani/AngularPractice",
+        "title": "Recipe: Learning Angular",
+        "content": [
+          "This is a dummy project created while I was learning Angular course from Udemy titled as Angular - The Complete Guide.",
+          "This covers wide variety of Angular concepts starting from basics to more complex parts.",
+          "Read more about this project on GitHub"
+        ],
+        "id": "dkKp3pwMHf4sk2J24i4Z_en",
+        "__collections__": {}
+      },
+      "kJERDpeOnE5dCXIBwmLW_en": {
+        "id": "kJERDpeOnE5dCXIBwmLW_en",
+        "showMoreContent": false,
+        "title": "Progressive Web Apps - Complete Guide",
+        "link": "https://github.com/aakash14goplani/Progressive-Web-App",
+        "buttonText": "GitHub",
+        "content": [
+          "This project is part of Maximilian Schwarzmüller's \"Progressive Web Apps - Complete Guide\" course on udemy.com.",
+          "In this project we will build a simple Instagram clone with PWA features.",
+          "Read more about this project on GitHub"
+        ],
+        "tools": [
+          "PWA",
+          "Service Workers",
+          "Push Notifications",
+          "Offline Support"
+        ],
+        "__collections__": {}
+      },
+      "kle852ymmJPITqYiA6Gx_en": {
+        "tools": [
+          "Angular",
+          "RxJs"
+        ],
+        "buttonText": "GitHub",
+        "link": "https://github.com/aakash14goplani/angular-reactive",
+        "id": "kle852ymmJPITqYiA6Gx_en",
+        "content": [
+          "This is a side project created by following tutorial RxJS in Angular: Reactive Development by Deborah Kurata.",
+          "It covers topics like How to use RxJs, async pipes, flattening operators and many more...",
+          "Read more about this project on GitHub"
+        ],
+        "title": "Post Management: Reactive Angular",
+        "showMoreContent": false,
+        "__collections__": {}
+      },
+      "lkDVh18odR4Sk36HLwWj_hi": {
+        "title": "Unit Testing in Angular",
+        "content": [
+          "Angular में Karma और Jasmine का उपयोग करके यूनिट परीक्षण के बुनियादी सिद्धांत सीखना",
+          "परीक्षण को अनुकूलित और तेज करने की रणनीतियाँ",
+          "विभिन्न विकल्पों के साथ Karma को कॉन्फ़िगर करना और 3rd party की निर्भरता को जोड़ना",
+          "GitHub पर इस प्रोजेक्ट के बारे में और पढ़ें"
+        ],
+        "tools": [
+          "Angular",
+          "Jasmine",
+          "Karma"
+        ],
+        "showMoreContent": false,
+        "id": "lkDVh18odR4Sk36HLwWj_hi",
+        "link": "https://github.com/aakash14goplani/AngularTesting",
+        "buttonText": "GitHub",
+        "__collections__": {}
+      },
+      "ovn89bWr6zB4xjaSpoIl_en": {
+        "showMoreContent": false,
+        "id": "ovn89bWr6zB4xjaSpoIl_en",
+        "tools": [
+          "Angular",
+          "Jasmine",
+          "Karma"
+        ],
+        "content": [
+          "Learning Fundamentals of Unit testing using Karma and Jasmine in Angular",
+          "Strategies to optimize and speed up testing",
+          "Configuring karma with different options and adding third party dependencies",
+          "Read more about this project on GitHub"
+        ],
+        "buttonText": "GitHub",
+        "title": "Unit Testing in Angular",
+        "link": "https://github.com/aakash14goplani/AngularTesting",
+        "__collections__": {}
+      },
+      "q4QaMnV0in0wDIMJMl8p_hi": {
+        "link": "https://github.com/aakash14goplani/AngularAwesomeSnippets",
+        "tools": [
+          "Angular"
+        ],
+        "showMoreContent": false,
+        "buttonText": "GitHub",
+        "title": "Angular Awesome Snippets",
+        "content": [
+          "Angular में कूल स्निपेट साझा करना",
+          "Angular में Dynamic Components का उपयोग करके Modal और Alert को कॉन्फ़िगर करना",
+          "Angular में अपने आवेदन के लिए समर्थित browsers की सूची प्रबंधित करें",
+          "Angular Dynamic फार्म Validation - Template और Reactive फार्म",
+          "Router Reuse Strategy",
+          "GitHub पर इस प्रोजेक्ट के बारे में और पढ़ें"
+        ],
+        "id": "q4QaMnV0in0wDIMJMl8p_hi",
+        "__collections__": {}
+      },
+      "sS3Z2cokqVNfnTDzZFZy_en": {
+        "content": [
+          "Learning fundamentals of NodeJs (using ExpressJs) and GraphQL from Udemy course by Maximilian Schwarzmüller",
+          "Project covers how to use NodeJs, Configure project with ExpressJs, Using REST API and then using GraphQL",
+          "Read more about this project on GitHub"
+        ],
+        "buttonText": "GitHub",
+        "id": "sS3Z2cokqVNfnTDzZFZy_en",
+        "link": "https://github.com/aakash14goplani/Node-Practice",
+        "title": "Shopping Cart: Learning Node and GraphQL",
+        "showMoreContent": false,
+        "tools": [
+          "NodeJs",
+          "ExpressJs",
+          "REST",
+          "GraphQL"
+        ],
+        "__collections__": {}
+      },
+      "vOLw1rVhUv9BNpdxwvPf_hi": {
+        "title": "Progressive Web Apps - Complete Guide",
+        "content": [
+          "यह प्रोजेक्ट Maximilian Schwarzmüller's का हिस्सा है जिसमें \"Progressive Web Apps - Complete Guide\" उसके बारे में सीखा.",
+          "इस प्रोजेक्ट में हम PWA सुविधाओं के साथ एक साधारण Instagram क्लोन बनाएंगे।",
+          "GitHub पर इस प्रोजेक्ट के बारे में और पढ़ें|"
+        ],
+        "showMoreContent": false,
+        "buttonText": "GitHub",
+        "id": "vOLw1rVhUv9BNpdxwvPf_hi",
+        "tools": [
+          "PWA",
+          "Service Workers",
+          "Push Notifications",
+          "Offline Support"
+        ],
+        "link": "https://github.com/aakash14goplani/Progressive-Web-App",
+        "__collections__": {}
+      },
+      "xwrxPJRwrbyQll6yr9XP_hi": {
+        "buttonText": "GitHub",
+        "showMoreContent": false,
+        "title": "Shooping Cart: Learning Node and GraphQL",
+        "tools": [
+          "NodeJs",
+          "ExpressJs",
+          "REST",
+          "GraphQL"
+        ],
+        "link": "https://github.com/aakash14goplani/Node-Practice",
+        "id": "xwrxPJRwrbyQll6yr9XP_hi",
+        "content": [
+          "Maximilian Schwarzmüller द्वारा Udemy पाठ्यक्रम से NodeJs (ExpressJs का उपयोग करके) और GraphQL के मूल सिद्धांतों को सीखना",
+          "प्रोजेक्ट कवर करता है कि NodeJs का उपयोग कैसे करें, ExpressJs के साथ प्रोजेक्ट को कॉन्फ़िगर करें, REST API का उपयोग करें और फिर GraphQL का उपयोग करें",
+          "GitHub पर इस प्रोजेक्ट के बारे में और पढ़ें"
+        ],
+        "__collections__": {}
+      }
+    },
+    "skills_page": {
+      "skills_page_en": {
+        "techContent": [
+          {
+            "skills": "JavaScript, Angular (2+), HTML, CSS, SCSS, jQuery",
+            "expertise": "Frontend"
+          },
+          {
+            "expertise": "Backend",
+            "skills": "TypeScript, Node, Express.js, Nest.js, Firebase, Java"
+          },
+          {
+            "expertise": "Mobile",
+            "skills": "Ionic"
+          },
+          {
+            "expertise": "Content Management Systems",
+            "skills": "Oracle WebCenter Sites (11g), Wordpress"
+          },
+          {
+            "skills": "MySQL, Firestore, MongoDB",
+            "expertise": "Database"
+          },
+          {
+            "skills": "GitHub CI-CD, Jenkins, uDeploy",
+            "expertise": "DevOps"
+          },
+          {
+            "expertise": "Cloud",
+            "skills": "Fundamentals of AWS"
+          },
+          {
+            "expertise": "IDE",
+            "skills": "VSCode, Eclipse"
+          }
+        ],
+        "futureLearningHeadline": "Future Learning Aspirations",
+        "techSkillHeadline": "Tech Stack",
+        "softSkillHeadline": "Soft Skills",
+        "softContent": [
+          "Verbal and Written Communication",
+          "Teamwork",
+          "Problem-solving",
+          "Adaptability",
+          "Work Ethic",
+          "Attention to Detail",
+          "Interpersonal skill"
+        ],
+        "tableColumnA": "Expertise",
+        "tableColumnB": "Skills",
+        "futureLearnContent": [
+          "Web3",
+          "Blockchain",
+          "Focusing more on Cloud",
+          "Better at System Designing",
+          "Better at DSA",
+          "Better at designing systems using Micro-frontend & Monorepos",
+          "Time Management",
+          "Patience",
+          "Leadership"
+        ],
+        "__collections__": {}
+      },
+      "skills_page_hi": {
+        "futureLearnContent": [
+          "वेब3",
+          "ब्लॉकचेन",
+          "क्लाउड पर अधिक ध्यान केंद्रित करना",
+          "सिस्टम डिजाइनिंग में बेहतर",
+          "डीएसए में बेहतर",
+          "माइक्रो-फ्रंटएंड और मोनोरपोस का उपयोग करके सिस्टम डिजाइन करने में बेहतर",
+          "समय प्रबंधन",
+          "धैर्य",
+          "नेतृत्व"
+        ],
+        "softContent": [
+          "मौखिक और लिखित संचार",
+          "टीम वर्क",
+          "समस्या को सुलझाना",
+          "अनुकूलन क्षमता",
+          "कार्य नीति",
+          "विस्तार पर ध्यान",
+          "अन्तर्वैक्तिक कुशलता"
+        ],
+        "techSkillHeadline": "टेक स्टैक",
+        "techContent": [
+          {
+            "expertise": "Frontend",
+            "skills": "JavaScript, Angular (2+), HTML, CSS, SCSS, jQuery"
+          },
+          {
+            "skills": "TypeScript, Node, Express.js, Nest.js, Firebase, Java",
+            "expertise": "Backend"
+          },
+          {
+            "skills": "Ionic",
+            "expertise": "Mobile"
+          },
+          {
+            "expertise": "Content Management Systems",
+            "skills": "Oracle WebCenter Sites (11g), Wordpress"
+          },
+          {
+            "skills": "MySQL, Firestore, MongoDB",
+            "expertise": "Database"
+          },
+          {
+            "expertise": "DevOps",
+            "skills": "GitHub CI-CD, Jenkins, uDeploy"
+          },
+          {
+            "skills": "Fundamentals of AWS",
+            "expertise": "Cloud"
+          },
+          {
+            "skills": "VSCode, Eclipse",
+            "expertise": "IDE"
+          }
+        ],
+        "futureLearningHeadline": "भविष्य में सीखने की आकांक्षाएं",
+        "tableColumnB": "कौशल",
+        "softSkillHeadline": "सॉफ्ट स्किल्स",
+        "tableColumnA": "विशेषज्ञता",
+        "__collections__": {}
+      }
+    },
+    "theme": {
+      "j2JnvgluhSvATJyYYeON": {
+        "0": [
+          {
+            "headingColor": "#673ab7",
+            "type": "light",
+            "backgroundColor": "#fff",
+            "value": "deeppurple-amber",
+            "buttonColor": "#ffc107",
+            "label": "Deep Purple & Amber"
+          },
+          {
+            "backgroundColor": "#fff",
+            "type": "light",
+            "value": "indigo-pink",
+            "buttonColor": "#ff4081",
+            "headingColor": "#3f51b5",
+            "label": "Indigo & Pink"
+          },
+          {
+            "type": "dark",
+            "label": "Pink & Blue Grey",
+            "backgroundColor": "#303030",
+            "value": "pink-bluegrey",
+            "headingColor": "#e91e63",
+            "buttonColor": "#607d8b"
+          },
+          {
+            "backgroundColor": "#303030",
+            "label": "Purple & Green",
+            "buttonColor": "#4caf50",
+            "value": "purple-green",
+            "type": "dark",
+            "headingColor": "#9c27b0"
+          }
+        ],
+        "id": "j2JnvgluhSvATJyYYeON",
+        "__collections__": {}
+      }
+    },
+    "work_experience_page": {
+      "MptFdTmMTqLYFyA20sQj_hi": {
+        "0": [
+          {
+            "startDate": {
+              "__datatype__": "timestamp",
+              "value": {
+                "_seconds": 1444156200,
+                "_nanoseconds": 0
+              }
+            },
+            "levelId": "00",
+            "expandable": true,
+            "isExpanded": true,
+            "endDate": null,
+            "title": "एक्सेंचर",
+            "level": 0
+          },
+          {
+            "levelId": "04",
+            "expandable": true,
+            "title": "टीम लीडर",
+            "location": "मुंबई, भारत",
+            "startDate": {
+              "__datatype__": "timestamp",
+              "value": {
+                "_seconds": 1622485800,
+                "_nanoseconds": 0
+              }
+            },
+            "endDate": null,
+            "level": 1
+          },
+          {
+            "levelId": "04",
+            "level": 2,
+            "expandable": false,
+            "description": [
+              "Angular परियोजनाओं के रखरखाव और उन्नयन में 3 जूनियर संसाधनों की टीम का नेतृत्व करना।",
+              "कई प्रदर्शन सुधार और material UX डिजाइनिंग पर काम किया।",
+              "PWA और Service Workers का उपयोग करके content loading को अनुकूलित करने के लिए पीओसी पर काम किया।",
+              "Angular में विषय विशेषज्ञ के रूप में काम किया और एक्सेंचर डिजिटल स्पेस में कई परियोजनाओं से परामर्श किया।",
+              "Angular पर कौशल संसाधनों को पार करने के लिए Angular में विभिन्न प्रशिक्षण सत्रों का आयोजन किया।"
+            ],
+            "showMoreContent": false
+          },
+          {
+            "title": "वरिष्ठ सॉफ़्टवेयर इंजीनियर",
+            "endDate": {
+              "__datatype__": "timestamp",
+              "value": {
+                "_seconds": 1622399400,
+                "_nanoseconds": 0
+              }
+            },
+            "levelId": "03",
+            "location": "मुंबई, भारत",
+            "startDate": {
+              "__datatype__": "timestamp",
+              "value": {
+                "_seconds": 1543602600,
+                "_nanoseconds": 0
+              }
+            },
+            "level": 1,
+            "expandable": true
+          },
+          {
+            "description": [
+              "JSP और JSF के साथ Angular में निर्मित साइटों में सुधार और माइग्रेट करने पर परामर्शदाता क्लाइंट।",
+              "Components, Templates, Directives, Pipes and Services की योजना बनाने पर काम किया।",
+              "Guards and Resolvers बनाने के लिए रणनीति तैयार की।",
+              "सर्वोत्तम प्रथाओं को लागू किया और प्रदर्शन में 47% की वृद्धि की।",
+              "Jasmine और Karma का उपयोग करके 90% तक बेहतर कोड कवरेज।",
+              "Angular स्पेस के आसपास विभिन्न हैकथॉन, पीओसी और मीटअप में भाग लिया।"
+            ],
+            "expandable": false,
+            "level": 2,
+            "showMoreContent": false,
+            "levelId": "03",
+            "endDate": {
+              "__datatype__": "timestamp",
+              "value": {
+                "_seconds": 1622399400,
+                "_nanoseconds": 0
+              }
+            }
+          },
+          {
+            "levelId": "02",
+            "endDate": {
+              "__datatype__": "timestamp",
+              "value": {
+                "_seconds": 1543516200,
+                "_nanoseconds": 0
+              }
+            },
+            "expandable": true,
+            "location": "मुंबई, भारत",
+            "title": "सॉफ्टवेयर इंजीनियर",
+            "startDate": {
+              "__datatype__": "timestamp",
+              "value": {
+                "_seconds": 1480530600,
+                "_nanoseconds": 0
+              }
+            },
+            "level": 1
+          },
+          {
+            "level": 2,
+            "showMoreContent": false,
+            "expandable": false,
+            "description": [
+              "शुरू से 6 साइटों को नया रूप देने और उन्हें OWCS के साथ एकीकृत करने के लिए क्लाइंट से परामर्श किया।",
+              "Oracle WebCenter Sites में assets प्रदान करने पर काम किया।",
+              "उपयोगकर्ता विशेषताओं के आधार पर अनुकूलित material प्रदर्शित करने के लिए OWCS Recommendation Engage इंजन का उपयोग किया।",
+              "प्रोग्रामिक रूप से assets (basic and flex) प्रस्तुत करने के लिए एक उपयोगिता बनाई गई।",
+              "वर्कफ़्लो प्रकाशित करने वाली विभिन्न संपत्तियों में भाग लिया।",
+              "OWCS के लिए एक्सेंचर में क्रॉस स्किल प्रशिक्षण आयोजित किया।"
+            ],
+            "levelId": "02",
+            "endDate": {
+              "__datatype__": "timestamp",
+              "value": {
+                "_seconds": 1543516200,
+                "_nanoseconds": 0
+              }
+            }
+          },
+          {
+            "startDate": {
+              "__datatype__": "timestamp",
+              "value": {
+                "_seconds": 1444156200,
+                "_nanoseconds": 0
+              }
+            },
+            "expandable": true,
+            "location": "मुंबई, भारत",
+            "endDate": {
+              "__datatype__": "timestamp",
+              "value": {
+                "_seconds": 1480444200,
+                "_nanoseconds": 0
+              }
+            },
+            "levelId": "01",
+            "level": 1,
+            "title": "जूनियर सॉफ्टवेयर इंजीनियर"
+          },
+          {
+            "endDate": {
+              "__datatype__": "timestamp",
+              "value": {
+                "_seconds": 1480444200,
+                "_nanoseconds": 0
+              }
+            },
+            "showMoreContent": false,
+            "expandable": false,
+            "levelId": "01",
+            "level": 2,
+            "description": [
+              "HTML, CSS और jQuery का उपयोग करके स्थिर पृष्ठ बनाने पर काम किया।",
+              "यूनिट परीक्षण किया और एंड-टू-एंड सिस्टम परीक्षण में टीम के साथ भाग लिया।",
+              "Oracle WebCenter Sites में डिज़ाइन की गई Basic, Flex और Recommendation assets।"
+            ]
+          }
+        ],
+        "id": "MptFdTmMTqLYFyA20sQj_hi",
+        "__collections__": {}
+      },
+      "ruINyDOf2oLdgoKgCPzS_en": {
+        "0": [
+          {
+            "startDate": {
+              "__datatype__": "timestamp",
+              "value": {
+                "_seconds": 1444156200,
+                "_nanoseconds": 0
+              }
+            },
+            "endDate": null,
+            "isExpanded": true,
+            "title": "Accenture",
+            "level": 0,
+            "expandable": true,
+            "levelId": "00"
+          },
+          {
+            "endDate": null,
+            "title": "Team Lead",
+            "startDate": {
+              "__datatype__": "timestamp",
+              "value": {
+                "_seconds": 1622485800,
+                "_nanoseconds": 0
+              }
+            },
+            "location": "Mumbai, India",
+            "level": 1,
+            "levelId": "04",
+            "expandable": true
+          },
+          {
+            "level": 2,
+            "description": [
+              "Leading the team of 3 Junior resources in maintaining and upgrading Angular projects.",
+              "Worked on multiple performance improvement and material UX designing.",
+              "Worked on POCs to optimize content loading using PWA and Service Workers.",
+              "Acted as SME in Angular and consulted multiple projects across Accenture Digital space.",
+              "Conducted various training sessions in Angular to cross skill resources on Angular."
+            ],
+            "showMoreContent": false,
+            "levelId": "04",
+            "expandable": false
+          },
+          {
+            "title": "Senior Analyst",
+            "expandable": true,
+            "location": "Mumbai, India",
+            "levelId": "03",
+            "endDate": {
+              "__datatype__": "timestamp",
+              "value": {
+                "_seconds": 1622399400,
+                "_nanoseconds": 0
+              }
+            },
+            "level": 1,
+            "startDate": {
+              "__datatype__": "timestamp",
+              "value": {
+                "_seconds": 1543602600,
+                "_nanoseconds": 0
+              }
+            }
+          },
+          {
+            "levelId": "03",
+            "description": [
+              "Consulted client on revamping and migrating sites build with JSPs and JSFs to Angular.",
+              "Worked on planning and creating Components, Templates, Directives, Pipes and Services.",
+              "Designed strategies in creating Guards and Resolvers.",
+              "Implemented best practices and brought up performance by 47%.",
+              "Improved code coverage using Jasmine and Karma to 90%.",
+              "Participated in various Hackathons, POCs and meetups around Angular space."
+            ],
+            "showMoreContent": false,
+            "level": 2,
+            "endDate": {
+              "__datatype__": "timestamp",
+              "value": {
+                "_seconds": 1622399400,
+                "_nanoseconds": 0
+              }
+            },
+            "expandable": false
+          },
+          {
+            "title": "Analyst",
+            "location": "Mumbai, India",
+            "startDate": {
+              "__datatype__": "timestamp",
+              "value": {
+                "_seconds": 1480530600,
+                "_nanoseconds": 0
+              }
+            },
+            "endDate": {
+              "__datatype__": "timestamp",
+              "value": {
+                "_seconds": 1543516200,
+                "_nanoseconds": 0
+              }
+            },
+            "expandable": true,
+            "level": 1,
+            "levelId": "02"
+          },
+          {
+            "endDate": {
+              "__datatype__": "timestamp",
+              "value": {
+                "_seconds": 1543516200,
+                "_nanoseconds": 0
+              }
+            },
+            "levelId": "02",
+            "showMoreContent": false,
+            "description": [
+              "Consulted client in revamping 6 sites from scratch and integrating them with OWCS.",
+              "Worked on rendering assets in Oracle WebCenter Sites.",
+              "Used OWCS recommendation Engage engine to display customize contents based on user attributes.",
+              "Created a utility to render assets (basic and flex) programmatically.",
+              "Participated in various assets publishing workflows.",
+              "Conducted cross skill trainings in Accenture for OWCS."
+            ],
+            "expandable": false,
+            "level": 2
+          },
+          {
+            "expandable": true,
+            "title": "Associate",
+            "location": "Mumbai, India",
+            "startDate": {
+              "__datatype__": "timestamp",
+              "value": {
+                "_seconds": 1444156200,
+                "_nanoseconds": 0
+              }
+            },
+            "levelId": "01",
+            "endDate": {
+              "__datatype__": "timestamp",
+              "value": {
+                "_seconds": 1480444200,
+                "_nanoseconds": 0
+              }
+            },
+            "level": 1
+          },
+          {
+            "level": 2,
+            "showMoreContent": false,
+            "description": [
+              "Worked on creating static pages using HTML, CSS and jQuery.",
+              "Performed unit testing and participated with team in end-to-end system testing.",
+              "Designed Basic, Flex and Recommendation assets in Oracle WebCenter Sites."
+            ],
+            "expandable": false,
+            "levelId": "01",
+            "endDate": {
+              "__datatype__": "timestamp",
+              "value": {
+                "_seconds": 1480444200,
+                "_nanoseconds": 0
+              }
+            }
+          }
+        ],
+        "id": "ruINyDOf2oLdgoKgCPzS_en",
+        "__collections__": {}
+      }
+    }
+  }
+}
