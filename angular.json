@@ -30,7 +30,8 @@
               "src/favicon.png",
               "src/assets",
               "src/manifest.webmanifest",
-              "src/404.html"
+              "src/404.html",
+              "src/custom-service-worker.js"
             ],
             "styles": [
               "src/styles.scss"
@@ -90,7 +91,8 @@
               "src/favicon.png",
               "src/assets",
               "src/manifest.webmanifest",
-              "src/404.html"
+              "src/404.html",
+              "src/custom-service-worker.js"
             ],
             "styles": [
               "src/styles.scss"
