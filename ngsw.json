@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1650281805000,
+  "timestamp": 1650283378109,
   "index": "https://aakashgoplani.in/index.html",
   "assetGroups": [
     {
@@ -36,7 +36,7 @@
         "https://aakashgoplani.in/904.04f3378b27263b71.js",
         "https://aakashgoplani.in/common.523b8b5ae059aca9.js",
         "https://aakashgoplani.in/index.html",
-        "https://aakashgoplani.in/main.5ed71fdf8c8c821e.js",
+        "https://aakashgoplani.in/main.6feac8e7ef64f3c2.js",
         "https://aakashgoplani.in/manifest.webmanifest",
         "https://aakashgoplani.in/polyfills.3d5c5d2cda6a4563.js",
         "https://aakashgoplani.in/runtime.244ec2d26f6835d8.js",
@@ -149,8 +149,8 @@
     "https://aakashgoplani.in/assets/js/service-worker-events.js": "d60884df113722945c94eba298ea04614a7305a4",
     "https://aakashgoplani.in/common.523b8b5ae059aca9.js": "4d679bbd0411e96d0437aa2b6b44d8fea44ca186",
     "https://aakashgoplani.in/favicon.png": "f2ee4e507429d5ce8629136ccd6aed4431b2532d",
-    "https://aakashgoplani.in/index.html": "218833f3b54ecc198ff125f34f09c4cacc682ec9",
-    "https://aakashgoplani.in/main.5ed71fdf8c8c821e.js": "071abe4ac4f3b4d7f0e000ad544d57dc9e7b550c",
+    "https://aakashgoplani.in/index.html": "e4741506226a90614614a51b309bdced16c4dad1",
+    "https://aakashgoplani.in/main.6feac8e7ef64f3c2.js": "3b238f9adcd63625eac0fd7c1c047c8771a1c807",
     "https://aakashgoplani.in/manifest.webmanifest": "d9bfbbbce225df10b023d3056601f5871aff449f",
     "https://aakashgoplani.in/polyfills.3d5c5d2cda6a4563.js": "9bad8941fface4c758f932622293ee7f7a57cd0b",
     "https://aakashgoplani.in/runtime.244ec2d26f6835d8.js": "1ddeb7d77cb5870350536656ba748ddba56113dd",
