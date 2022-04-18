@@ -35,7 +35,9 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": [],
+            "scripts": [
+              "src/assets/js/service-worker-events.js"
+            ],
             "serviceWorker": true,
             "ngswConfigPath": "src/ngsw-config.json"
           },
@@ -95,7 +97,9 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/service-worker-events.js"
+            ]
           }
         },
         "lint": {

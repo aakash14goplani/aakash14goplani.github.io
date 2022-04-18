@@ -6,10 +6,10 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { SwUpdate } from '@angular/service-worker';
-import { catchError, EMPTY, map, Observable, Subject, take, takeUntil, tap } from 'rxjs';
+import { catchError, EMPTY, map, Observable, Subject, take, tap } from 'rxjs';
 import { ContentService } from './shared/content-service/content.service';
 import { INavigation, IThemes, Locale, PAGENAME, PAGENAME_HI, SessionKey } from './shared/global.model';
+import { ServiceWorkerEventsService } from './shared/service-worker-events/service-worker-events.service';
 import { ThemeService } from './shared/theme-service/theme.service';
 
 @Component({
@@ -43,50 +43,18 @@ export class AppComponent implements OnInit, OnDestroy {
     private _snackBar: MatSnackBar,
     public firebaseAuth: AngularFireAuth,
     private router: Router,
-    private swUpdate: SwUpdate,
+    private serviceWorker: ServiceWorkerEventsService,
     private renderer: Renderer2
   ) {
     this.matIcon.addSvgIconSet(this.sanitizer.bypassSecurityTrustResourceUrl('assets/icons.svg'));
   }
 
   ngOnInit(): void {
-    this.configureServiceWorker();
+    setTimeout(() => this.serviceWorker.configureServiceWorker(), 1000);
     this.configureThemeOption();
     this.configureDirectionOption();
     this.configureLanguageOption();
     this.configureNavigationOptions();
-  }
-
-  /**
-   * Configure service worker.
-   * @returns { void }
-   */
-  private configureServiceWorker(): void {
-    if (this.swUpdate.isEnabled) {
-      this.swUpdate.versionUpdates.pipe(
-        takeUntil(this.unsubscriber$)
-      ).subscribe((event) => {
-        switch (event.type) {
-          case 'VERSION_DETECTED':
-          case 'VERSION_READY':
-            this._snackBar.open('New version is available. Reloading the app...', 'X', {
-              duration: 6000,
-              verticalPosition: 'bottom',
-              horizontalPosition: 'center'
-            });
-            setTimeout(() => window.location.reload(), 6000);
-            break;
-
-          case 'VERSION_INSTALLATION_FAILED':
-            this._snackBar.open(`Failed to install app version '${event.version.hash}': ${event.error}`, 'X', {
-              duration: 6000,
-              verticalPosition: 'bottom',
-              horizontalPosition: 'center'
-            });
-            break;
-        }
-      });
-    }
   }
 
   /**

@@ -73,8 +73,12 @@
             </button>
           </mat-menu>
           <!-- toggle button button -->
-          <button mat-icon-button (click)="toggleDirection()" aria-label="Toggle Direction">
+          <button mat-icon-button (click)="toggleDirection()" aria-label="Toggle Direction" id="toggle_app_directions">
             <mat-icon aria-hidden="false" aria-label="Toggle Sidenav Direction">directions</mat-icon>
+          </button>
+          <!-- instal PWA -->
+          <button mat-icon-button aria-label="Install App" id="install_pwa_button" style="display: none;">
+            <mat-icon aria-hidden="true" aria-label="Install PWA App">arrow_downward</mat-icon>
           </button>
         </div>
       </mat-toolbar>
