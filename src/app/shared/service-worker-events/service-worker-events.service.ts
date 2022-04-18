@@ -26,13 +26,13 @@ export class ServiceWorkerEventsService {
             break;
 
           case 'VERSION_INSTALLATION_FAILED':
-            this.reloadApp(`Failed to install app version '${event.version.hash}': ${event.error}`);
+            this.reloadApp(`Failed to install app version '${event.version.hash}': CLEAR BROWSER HISTORY AND RELOAD THE APP.`);
             break;
         }
       });
 
       this.swUpdate.unrecoverable.subscribe((event) => {
-        this.reloadApp(`Unrecoverable error: ${event.reason}`);
+        this.reloadApp(`Unrecoverable error: ${event.reason}`, false);
       });
     }
   }
@@ -41,12 +41,14 @@ export class ServiceWorkerEventsService {
    * Reload application
    * @param reason { string } reason to be displayed in snackbar
    */
-  private reloadApp(reason: string): void {
+  private reloadApp(reason: string, shouldReload: boolean = true): void {
     this._snackBar.open(reason, 'X', {
       duration: 6000,
       verticalPosition: 'bottom',
       horizontalPosition: 'center'
     });
-    setTimeout(() => window.location.reload(), 6000);
+    if (shouldReload) {
+      setTimeout(() => window.location.reload(), 6000);
+    }
   }
 }
