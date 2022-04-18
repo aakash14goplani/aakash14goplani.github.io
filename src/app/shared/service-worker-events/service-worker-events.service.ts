@@ -26,7 +26,7 @@ export class ServiceWorkerEventsService {
             break;
 
           case 'VERSION_INSTALLATION_FAILED':
-            this.reloadApp(`Failed to install app version '${event.version.hash}': CLEAR BROWSER HISTORY AND RELOAD THE APP.`, false);
+            // this.reloadApp(`Failed to install app version '${event.version.hash}': CLEAR BROWSER HISTORY AND RELOAD THE APP.`, false);
             break;
         }
       });
