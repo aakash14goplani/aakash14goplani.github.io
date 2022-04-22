@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1650364043028,
+  "timestamp": 1650651627694,
   "index": "https://aakashgoplani.in/index.html",
   "assetGroups": [
     {
@@ -149,7 +149,7 @@
     "https://aakashgoplani.in/assets/js/service-worker-events.js": "d60884df113722945c94eba298ea04614a7305a4",
     "https://aakashgoplani.in/common.523b8b5ae059aca9.js": "4d679bbd0411e96d0437aa2b6b44d8fea44ca186",
     "https://aakashgoplani.in/favicon.png": "f2ee4e507429d5ce8629136ccd6aed4431b2532d",
-    "https://aakashgoplani.in/index.html": "6d6bf94c817bd14fbd9118556de76e530aa46741",
+    "https://aakashgoplani.in/index.html": "6a911b6bca3c8e45ce580e90efc30cf3e1fabf18",
     "https://aakashgoplani.in/main.43e837d854f78be4.js": "db0e12198802370a5d3f662f95fb470021e6317f",
     "https://aakashgoplani.in/manifest.webmanifest": "6e95fcd615fdd190f159a9403f1a530f35b439d0",
     "https://aakashgoplani.in/polyfills.3d5c5d2cda6a4563.js": "9bad8941fface4c758f932622293ee7f7a57cd0b",
