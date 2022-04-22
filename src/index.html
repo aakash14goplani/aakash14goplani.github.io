@@ -15,7 +15,6 @@
   <meta name="keywords" content="resume,angular,personal,portfolio,aakashgoplani,aakash,goplani" />
   <meta name="author" content="Aakash Goplani">
   <meta name="application-name" content="Aakash Goplani" />
-  <link rel="canonical" href="https://resume-cms-958e7.web.app" />
   <!-- OG Tags -->
   <meta property="og:locale" content="en_US" />
   <meta property="og:title" content="Aakash Goplani" />
@@ -42,6 +41,14 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="Aakash Goplani">
+  <!-- Add Canonical URL -->
+  <script>
+    const metaCanonical = document.createElement('link');
+    const href = (window.location.href.includes('resume')) ? 'https://aakashgoplani.in/' : 'https://resume-cms-958e7.web.app';
+    metaCanonical.setAttribute('rel', 'canonical');
+    metaCanonical.setAttribute('href', href);
+    document.getElementsByTagName('head')[0].appendChild(metaCanonical);
+  </script>
 </head>
 
 <body class="mat-typography">
